@@ -1,0 +1,53 @@
+---
+/**
+ * Enables Lenis smooth scrolling on the page.
+ * Drop this component once in your layout or page — it wraps nothing, just initializes Lenis.
+ *
+ * Props:
+ *  - duration: scroll duration/smoothness (default 1.2, higher = smoother)
+ *  - easing: custom easing (default ease-out)
+ *  - direction: 'vertical' or 'horizontal'
+ *  - gestureDirection: touch gesture direction
+ *  - smoothWheel: smooth mousewheel (default true)
+ *  - touchMultiplier: touch scroll speed multiplier (default 2)
+ */
+interface Props {
+  duration?: number;
+  smoothWheel?: boolean;
+  touchMultiplier?: number;
+}
+const { duration = 1.2, smoothWheel = true, touchMultiplier = 2 } = Astro.props;
+---
+<div
+  data-component="smooth-scroll"
+  data-duration={duration}
+  data-smooth-wheel={smoothWheel}
+  data-touch-multiplier={touchMultiplier}
+  style="display:none;"
+/>
+
+<script>
+  import Lenis from 'lenis';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const config = document.querySelector('[data-component="smooth-scroll"]') as HTMLElement;
+  if (config) {
+    const lenis = new Lenis({
+      duration: Number(config.dataset.duration) || 1.2,
+      smoothWheel: config.dataset.smoothWheel !== 'false',
+      touchMultiplier: Number(config.dataset.touchMultiplier) || 2,
+    });
+
+    // Connect Lenis to GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    // Respect reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      lenis.destroy();
+    }
+  }
+</script>

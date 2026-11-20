@@ -1,0 +1,111 @@
+---
+/**
+ * Scroll-driven image sequence — maps scroll position to canvas frame.
+ * Drop 60–120 WebP frames into public/frames/ and point this component at them.
+ *
+ * Props:
+ *  - framePath: path pattern with {n} placeholder, e.g. "/frames/frame_{n}.webp"
+ *  - frameCount: total number of frames
+ *  - startFrame: first frame number (default 1)
+ *  - padLength: zero-pad length for frame numbers (default 4 → 0001)
+ *  - scrollHeight: how tall the scroll container is in vh (default 300)
+ *  - width / height: canvas resolution
+ */
+interface Props {
+  framePath: string;
+  frameCount: number;
+  startFrame?: number;
+  padLength?: number;
+  scrollHeight?: number;
+  width?: number;
+  height?: number;
+}
+const {
+  framePath,
+  frameCount,
+  startFrame = 1,
+  padLength = 4,
+  scrollHeight = 300,
+  width = 1920,
+  height = 1080,
+} = Astro.props;
+const id = `scroll-seq-${Math.random().toString(36).slice(2, 8)}`;
+---
+<div
+  class="relative"
+  style={`height: ${scrollHeight}vh;`}
+  data-component="scroll-sequence"
+  id={id}
+  data-frame-path={framePath}
+  data-frame-count={frameCount}
+  data-start-frame={startFrame}
+  data-pad-length={padLength}
+>
+  <div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+    <canvas
+      id={`${id}-canvas`}
+      width={width}
+      height={height}
+      class="max-w-full max-h-full object-contain"
+    />
+  </div>
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-component="scroll-sequence"]').forEach((wrapper) => {
+    const el = wrapper as HTMLElement;
+    const canvas = el.querySelector('canvas') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d')!;
+    const pathTemplate = el.dataset.framePath!;
+    const count = Number(el.dataset.frameCount);
+    const start = Number(el.dataset.startFrame);
+    const pad = Number(el.dataset.padLength);
+
+    const images: HTMLImageElement[] = [];
+    const loaded: boolean[] = [];
+    let currentFrame = 0;
+
+    function frameSrc(n: number): string {
+      return pathTemplate.replace('{n}', String(n).padStart(pad, '0'));
+    }
+
+    function drawFrame(idx: number) {
+      if (idx === currentFrame && loaded[idx]) return;
+      currentFrame = idx;
+      if (loaded[idx]) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(images[idx], 0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    // Preload all frames
+    for (let i = 0; i < count; i++) {
+      const img = new Image();
+      img.src = frameSrc(start + i);
+      img.onload = () => {
+        loaded[i] = true;
+        if (i === 0) drawFrame(0);
+      };
+      images.push(img);
+    }
+
+    // Map scroll progress to frame index
+    const obj = { frame: 0 };
+    gsap.to(obj, {
+      frame: count - 1,
+      snap: 'frame',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.5,
+      },
+      onUpdate: () => drawFrame(Math.round(obj.frame)),
+    });
+  });
+</script>

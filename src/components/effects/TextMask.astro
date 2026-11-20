@@ -1,0 +1,37 @@
+---
+/**
+ * Giant text with an image showing through the letters (background-clip: text).
+ *
+ * Props:
+ *  - text: the word(s) to display
+ *  - image: photo URL, clipped to the letter shapes (optional; defaults to a gradient)
+ *  - fontSize: CSS font-size, e.g. "18vw" (default "18vw")
+ *  - fontWeight: CSS font-weight (default 900)
+ */
+interface Props {
+  text: string;
+  image?: string;
+  fontSize?: string;
+  fontWeight?: number;
+}
+const { text, image, fontSize = '18vw', fontWeight = 900 } = Astro.props;
+---
+<section class="py-24 md:py-32 overflow-hidden" data-component="text-mask">
+  <div class="flex items-center justify-center">
+    <h2
+      class="leading-none whitespace-nowrap text-center select-none"
+      style={[
+        `font-size: ${fontSize}`,
+        `font-weight: ${fontWeight}`,
+        'color: transparent',
+        '-webkit-background-clip: text',
+        'background-clip: text',
+        'background-size: cover',
+        'background-position: center',
+        image ? `background-image: url('${image}')` : 'background-image: linear-gradient(135deg, var(--color-primary, #C1A08A), var(--color-accent, #B76E79))',
+      ].join('; ')}
+    >
+      {text}
+    </h2>
+  </div>
+</section>

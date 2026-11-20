@@ -1,6 +1,6 @@
 ---
 interface Props { title?: string; subtitle?: string; whatsapp: string; message?: string; availability?: string }
-const { title = "Let's Chat", subtitle, whatsapp, message = 'Hello! I'd like to know more.', availability } = Astro.props;
+const { title = "Let's Chat", subtitle, whatsapp, message = "Hello! I'd like to know more.", availability } = Astro.props;
 const link = `https://wa.me/${whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
 ---
 <section class="py-24 md:py-32 bg-[var(--color-surface,#f9f9f9)]" data-component="contact-whatsapp">
