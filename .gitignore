@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+scratch/
+
 # Downloaded/processed client assets — never commit these
 media-library/videos/*
 media-library/images/*
