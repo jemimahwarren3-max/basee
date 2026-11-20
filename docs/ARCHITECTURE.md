@@ -63,15 +63,31 @@ contents are gitignored; only `.gitkeep` is tracked.
   resolution, fps, codec, and mute state actually changed as requested. See
   [docs/MEDIA_PROCESSING.md](MEDIA_PROCESSING.md).
 
+## Built (Phase 6): reusable components + templates
+
+- `src/video/ScrollSequence.tsx` + `src/video/scrollSequenceMath.ts` — canvas-based
+  scroll-scrubbed WebP sequence player. The frame-index/preload-window math is pure functions,
+  verified with real assertions (not just type-checked).
+- `src/effects/Parallax.tsx`, `HorizontalScroll.tsx`, `TextReveal.tsx`, `BeforeAfterSlider.tsx`
+  — each respects `prefers-reduced-motion` (or, for the slider, needs no motion at all).
+- `templates/` — six design-token "starting points" (`cinematic`, `luxury`, `editorial`,
+  `ecommerce`, `creative`, `immersive`), each with genuinely different colors/fonts/motion
+  intensity/suggested-and-avoided components — not the same site in six colors. Read via
+  `getTemplate(name)` from `templates/index.ts`. See [docs/TEMPLATES.md](TEMPLATES.md).
+- `src/App.tsx` demonstrates every Phase 6 component live; verified with `tsc -b`, a production
+  build, and a running dev server (every new module and the demo WebP sequence served 200).
+- `public/demo-sequence/` — a 20-frame, ~88 KB synthetic WebP sequence this repo generated
+  itself via `npm run extract-frames` (not stock footage) purely so `ScrollSequence` has
+  something real to scrub. Swap it out per client project.
+- `src/components/`, `src/layouts/`, `src/sections/` remain empty — this phase built the
+  lower-level reusable primitives (effects/3d/video), not page-level composition components.
+
 ## Reserved (later phases, currently empty — `.gitkeep` only)
 
 | Path | Will hold | Phase |
 | --- | --- | --- |
-| `src/video/` | Scroll-controlled video/canvas sequence components | 6 |
-| `src/effects/` | Shaders, particles, masking, morphing effects | 6 |
-| `src/components/`, `src/layouts/`, `src/sections/` | Reusable UI building blocks | 2-6 |
+| `src/components/`, `src/layouts/`, `src/sections/` | Page-level composition components | 7+ |
 | `automation/project-generation/` | `npm run create-project` scaffolding logic | 7 |
-| `templates/*` | Starting points per art direction (cinematic, luxury, editorial, ecommerce, creative, immersive) | 6 |
 | `.claude/skills/*` | Creative-direction, asset-research, video-processing, motion-design, threejs-development, frontend-development, quality-assurance skills | 7 |
 | `.claude/commands/` | Slash commands (e.g. project init) | 7 |
 | `tests/` | Playwright test suites | 8 |
