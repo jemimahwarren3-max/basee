@@ -86,8 +86,7 @@ contents are gitignored; only `.gitkeep` is tracked.
 
 - `.claude/skills/{creative-direction,asset-research,video-processing,motion-design,
   threejs-development,frontend-development,quality-assurance}/SKILL.md` — all seven, each
-  grounded in the files/scripts that actually exist (named explicitly), not aspirational. The
-  `quality-assurance` skill states plainly that Playwright (Phase 8) isn't built yet.
+  grounded in the files/scripts that actually exist (named explicitly), not aspirational.
 - `.claude/commands/create-project.md` — the `/create-project` slash command.
 - `automation/project-generation/createProject.ts` + `automation/project-generation/slug.ts` —
   clones the engine's current foundation into a new, isolated directory: excludes
@@ -108,11 +107,28 @@ contents are gitignored; only `.gitkeep` is tracked.
   Also verified the two refusal paths: an unknown template name throws, and a non-empty
   `outputDir` is refused rather than overwritten.
 
+## Built (Phase 8): Playwright tests
+
+- `playwright.config.ts` — two projects (Desktop Chrome, Mobile Chrome/Pixel 5), `webServer`
+  auto-starts `npm run dev`.
+- `tests/smoke.spec.ts`, `responsive.spec.ts`, `reduced-motion.spec.ts`,
+  `scroll-sequence.spec.ts`, `before-after-slider.spec.ts` — see
+  [docs/TESTING.md](TESTING.md) for exactly what each checks. All 12 (6 specs × 2 projects)
+  pass against the current demo `App.tsx`.
+- `scripts/run-tests.ts` (`npm run test:report`) — runs `tsc -b`, the production build,
+  `oxlint`, and the Playwright suite for real via `child_process`, writes
+  `test-results/REPORT.md` with PASS/FAIL per check. Fixed a real Windows bug found while
+  building this: spawning `npm`/`npx` directly fails with `EINVAL` on Windows because they're
+  `.cmd` wrappers — `automation/exec.ts`'s `runCommand()` now takes a `shell` option for this.
+- **No navigation/forms/buttons tests** — the current demo page has none of those; a real
+  client project needs its own specs added to `tests/` for whatever it actually has.
+- No visual-regression (pixel-diff) testing — deliberately not added, see docs/TESTING.md for
+  why.
+
 ## Reserved (later phases, currently empty — `.gitkeep` only)
 
 | Path | Will hold | Phase |
 | --- | --- | --- |
 | `src/components/`, `src/layouts/`, `src/sections/` | Page-level composition components, per client project | 7+ |
-| `tests/` | Playwright test suites | 8 |
 
 Nothing under "Reserved" should be treated as implemented until this table is updated.

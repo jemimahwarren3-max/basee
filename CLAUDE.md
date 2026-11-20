@@ -6,9 +6,8 @@ it, and reports what it actually did.
 
 ## Current status
 
-Phase 1-7 of 10. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what's built
-versus reserved (Playwright tests are Phase 8 — not built yet). Don't claim a later-phase
-feature works — check that file first.
+Phase 1-8 of 10. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what's built
+versus reserved. Don't claim a later-phase feature works — check that file first.
 
 ## How the skills fit together
 
@@ -25,8 +24,8 @@ order for a new client brief:
    (`src/animations/`, `src/effects/`, `src/video/`, `src/3d/`) against the processed assets.
 5. **frontend-development** — compose the actual pages in `src/components/`, `src/layouts/`,
    `src/sections/` out of all of the above.
-6. **quality-assurance** — type-check, build, lint before calling anything done; honest about
-   what's actually automatable until Phase 8 adds Playwright.
+6. **quality-assurance** — `npm run test:report` (type-check, build, lint, and the Playwright
+   suite) before calling anything done.
 
 Each skill's `SKILL.md` names the exact files/scripts it uses — if a skill describes something
 that no longer matches `docs/ARCHITECTURE.md`, trust the architecture doc and fix the skill.
@@ -53,9 +52,9 @@ never the previous client's downloaded assets, manifest, or `.env.local`.
 
 React 19, TypeScript, Vite, Tailwind CSS v4, GSAP + ScrollTrigger, Lenis, Framer Motion (no demo
 component yet), Three.js + React Three Fiber + Drei, FFmpeg/ffprobe (bundled via
-`ffmpeg-static`/`ffprobe-static`), Sharp, Zod, Lucide React. Playwright (Phase 8) is not
-installed yet. Keep each client project loading only what it actually uses — see each
-template's `suggestedLibraries`/`avoid` in `templates/`.
+`ffmpeg-static`/`ffprobe-static`), Sharp, Zod, Lucide React, Playwright. Keep each client
+project loading only what it actually uses — see each template's `suggestedLibraries`/`avoid`
+in `templates/`.
 
 ## Commands
 
@@ -70,4 +69,6 @@ npm run process-video      # probe / trim / transcode / poster
 npm run extract-frames     # WebP frame sequence for ScrollSequence
 npm run optimise-images    # resize/convert images, or generate a responsive set
 npm run create-project     # scaffold a new, isolated client project
+npm run test                # run the Playwright suite
+npm run test:report         # tsc -b + build + lint + Playwright, writes test-results/REPORT.md
 ```

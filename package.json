@@ -13,7 +13,9 @@
     "process-video": "tsx scripts/process-video.ts",
     "extract-frames": "tsx scripts/extract-frames.ts",
     "optimise-images": "tsx scripts/optimise-images.ts",
-    "create-project": "tsx scripts/create-project.ts"
+    "create-project": "tsx scripts/create-project.ts",
+    "test": "playwright test",
+    "test:report": "tsx scripts/run-tests.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
@@ -33,6 +35,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@types/ffprobe-static": "^2.0.3",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",

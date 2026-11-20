@@ -14,6 +14,12 @@ dist-ssr
 
 scratch/
 
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
 # Downloaded/processed client assets — never commit these
 media-library/videos/*
 media-library/images/*
