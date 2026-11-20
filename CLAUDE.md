@@ -6,10 +6,11 @@ it, and reports what it actually did.
 
 ## Current status
 
-Phase 1-9 of 10. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what's built
-versus reserved — only Phase 10 (final checks + GitHub publish) is left, and publishing needs
-your explicit go-ahead on repo name/visibility first. Don't claim a later-phase feature works —
-check that file first.
+All 10 phases of the master spec are built, verified, and published (private GitHub repo
+`yonah-creative-engine`). See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what
+each phase actually delivered — it's still the source of truth for new work, since everything
+from here is per-client or follow-up to the engine itself (see
+[CONTRIBUTING.md](CONTRIBUTING.md)).
 
 ## How the skills fit together
 

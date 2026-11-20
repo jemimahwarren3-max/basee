@@ -9,9 +9,9 @@ happened — never what it assumes happened.
 Describe it → Source it → Build it
 ```
 
-**Status:** Phase 1-8 of the full 10-phase spec are built and verified. See
-[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what's real versus still reserved
-(only Phase 9's docs pass and Phase 10's final GitHub publish remain).
+**Status:** all 10 phases of the master spec are built, verified, and published. See
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what each phase delivered and how it
+was verified.
 
 ## Quickstart
 

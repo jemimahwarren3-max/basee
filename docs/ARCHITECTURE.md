@@ -139,10 +139,24 @@ contents are gitignored; only `.gitkeep` is tracked.
   `docs/ENVIRONMENT.md`'s claim that `UNSPLASH_SECRET_KEY` isn't read anywhere was verified by
   grepping for it, not assumed).
 
-## Reserved (later phases, currently empty — `.gitkeep` only)
+## Built (Phase 10): final checks + publish
 
-| Path | Will hold | Phase |
-| --- | --- | --- |
-| `src/components/`, `src/layouts/`, `src/sections/` | Page-level composition components, per client project | 7+ |
+- Fresh clean `npm install` (after deleting `node_modules`) succeeded with 0 vulnerabilities,
+  confirming the repo installs correctly for someone cloning it new, not just in this session's
+  already-populated environment.
+- `npm run test:report` run again against that fresh install — `tsc -b`, production build,
+  `oxlint`, and the full Playwright suite all PASS.
+- Checked `git ls-files` for anything matching `.env.local`/secret/credential patterns before
+  publishing — only `.env.example` (placeholders, no real keys) is tracked.
+- Published to GitHub as `yonah-creative-engine`, **private**, confirmed via `gh repo view`
+  (`"visibility":"PRIVATE"`) after the user explicitly named the repo and visibility.
+
+All 10 phases of the master spec are now built, verified, and published.
+
+## Reserved (nothing — every phase is built)
+
+Per-client additions (`src/components/`, `src/layouts/`, `src/sections/` filled in per brief,
+new templates, new skills) happen in each cloned project or as follow-up work to this engine
+itself — see [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 Nothing under "Reserved" should be treated as implemented until this table is updated.
