@@ -1,7 +1,7 @@
 import { mkdir } from 'node:fs/promises'
 import path from 'node:path'
 import { FFMPEG_PATH } from './ffmpegPaths'
-import { runCommand } from './run'
+import { runCommand } from '../exec'
 
 export interface PosterOptions {
   input: string

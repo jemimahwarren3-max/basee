@@ -82,14 +82,37 @@ contents are gitignored; only `.gitkeep` is tracked.
 - `src/components/`, `src/layouts/`, `src/sections/` remain empty — this phase built the
   lower-level reusable primitives (effects/3d/video), not page-level composition components.
 
+## Built (Phase 7): Claude skills + project generation
+
+- `.claude/skills/{creative-direction,asset-research,video-processing,motion-design,
+  threejs-development,frontend-development,quality-assurance}/SKILL.md` — all seven, each
+  grounded in the files/scripts that actually exist (named explicitly), not aspirational. The
+  `quality-assurance` skill states plainly that Playwright (Phase 8) isn't built yet.
+- `.claude/commands/create-project.md` — the `/create-project` slash command.
+- `automation/project-generation/createProject.ts` + `automation/project-generation/slug.ts` —
+  clones the engine's current foundation into a new, isolated directory: excludes
+  `node_modules`/`.git`/`dist`/`.env.local`, scrubs any `media-library/*` contents down to
+  `.gitkeep` (never a previous client's assets or manifest), writes `project.config.json`,
+  seeds `docs/DESIGN_BRIEF.md` from the chosen template's tokens, appends a `## Project: ...`
+  section to the copied `CLAUDE.md`, and runs `git init` **inside the new directory**.
+- `automation/exec.ts` — the generic command runner (promoted out of
+  `automation/video-processing/run.ts`, which Phase 5's modules now import from here instead —
+  no behavior change, just removed duplication now that project-generation needed `git` too).
+- `scripts/create-project.ts` — the CLI entry point (`npm run create-project`).
+- **Verified end-to-end**, not just type-checked: ran `create-project` against a live template,
+  confirmed `node_modules`/`.env.local` were excluded, `media-library/*` was empty, the design
+  brief and `CLAUDE.md` section were correctly filled from the template's real tokens, and `git
+  init` created `.git` in the *new* directory, not the engine repo. Also caught and fixed a real
+  bug in this pass: the first version ran `git init` in the engine repo's own `cwd` instead of
+  the new project directory (harmless — `git init` on an existing repo is a no-op — but wrong).
+  Also verified the two refusal paths: an unknown template name throws, and a non-empty
+  `outputDir` is refused rather than overwritten.
+
 ## Reserved (later phases, currently empty — `.gitkeep` only)
 
 | Path | Will hold | Phase |
 | --- | --- | --- |
-| `src/components/`, `src/layouts/`, `src/sections/` | Page-level composition components | 7+ |
-| `automation/project-generation/` | `npm run create-project` scaffolding logic | 7 |
-| `.claude/skills/*` | Creative-direction, asset-research, video-processing, motion-design, threejs-development, frontend-development, quality-assurance skills | 7 |
-| `.claude/commands/` | Slash commands (e.g. project init) | 7 |
+| `src/components/`, `src/layouts/`, `src/sections/` | Page-level composition components, per client project | 7+ |
 | `tests/` | Playwright test suites | 8 |
 
 Nothing under "Reserved" should be treated as implemented until this table is updated.

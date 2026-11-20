@@ -6,10 +6,34 @@ it, and reports what it actually did.
 
 ## Current status
 
-Phase 1-2 only: the React + TypeScript + Vite + Tailwind foundation. See
-[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what's built versus reserved for later
-phases (asset research, FFmpeg pipeline, 3D/animation libraries, templates, Claude skills,
-Playwright tests). Don't claim a later-phase feature works — check that file first.
+Phase 1-7 of 10. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what's built
+versus reserved (Playwright tests are Phase 8 — not built yet). Don't claim a later-phase
+feature works — check that file first.
+
+## How the skills fit together
+
+Seven skills in `.claude/skills/` cover the production pipeline end to end, roughly in this
+order for a new client brief:
+
+1. **creative-direction** — brief → design spec, picks/adapts one of `templates/`'s six
+   directions, writes `docs/DESIGN_BRIEF.md`.
+2. **asset-research** — design spec → real, specific footage/images/3D assets via
+   `npm run search-assets` / `download-asset`, licensed and manifested.
+3. **video-processing** — raw downloaded assets → processed deliverables via
+   `npm run process-video` / `extract-frames` / `optimise-images`.
+4. **motion-design** and **threejs-development** — wire up the animation/3D components
+   (`src/animations/`, `src/effects/`, `src/video/`, `src/3d/`) against the processed assets.
+5. **frontend-development** — compose the actual pages in `src/components/`, `src/layouts/`,
+   `src/sections/` out of all of the above.
+6. **quality-assurance** — type-check, build, lint before calling anything done; honest about
+   what's actually automatable until Phase 8 adds Playwright.
+
+Each skill's `SKILL.md` names the exact files/scripts it uses — if a skill describes something
+that no longer matches `docs/ARCHITECTURE.md`, trust the architecture doc and fix the skill.
+
+`npm run create-project -- --name "..." --template <name>` (or `/create-project` in
+`.claude/commands/`) scaffolds a new, isolated client project from the current foundation —
+never the previous client's downloaded assets, manifest, or `.env.local`.
 
 ## Ground rules for this repo
 
@@ -27,16 +51,23 @@ Playwright tests). Don't claim a later-phase feature works — check that file f
 
 ## Stack (as installed so far)
 
-React 19, TypeScript, Vite, Tailwind CSS v4 (`@tailwindcss/vite`), Lucide React icons, Zod for
-validation. Everything else in the master spec (GSAP, Three.js/R3F, FFmpeg, Playwright, the
-`.claude/skills/*` set, templates) is scoped for later phases — add dependencies only when a
-phase actually needs them, and keep each client project loading only what it uses.
+React 19, TypeScript, Vite, Tailwind CSS v4, GSAP + ScrollTrigger, Lenis, Framer Motion (no demo
+component yet), Three.js + React Three Fiber + Drei, FFmpeg/ffprobe (bundled via
+`ffmpeg-static`/`ffprobe-static`), Sharp, Zod, Lucide React. Playwright (Phase 8) is not
+installed yet. Keep each client project loading only what it actually uses — see each
+template's `suggestedLibraries`/`avoid` in `templates/`.
 
 ## Commands
 
 ```
-npm run dev       # start the Vite dev server
-npm run build     # type-check + production build
-npm run preview   # preview the production build
-npm run lint      # oxlint
+npm run dev              # start the Vite dev server
+npm run build             # type-check + production build
+npm run preview           # preview the production build
+npm run lint               # oxlint
+npm run search-assets      # research assets (Pexels/Pixabay/Unsplash/Poly Haven/Sketchfab)
+npm run download-asset     # download one chosen asset + record it in the manifest
+npm run process-video      # probe / trim / transcode / poster
+npm run extract-frames     # WebP frame sequence for ScrollSequence
+npm run optimise-images    # resize/convert images, or generate a responsive set
+npm run create-project     # scaffold a new, isolated client project
 ```

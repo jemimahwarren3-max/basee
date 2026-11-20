@@ -12,7 +12,8 @@
     "download-asset": "tsx scripts/download-asset.ts",
     "process-video": "tsx scripts/process-video.ts",
     "extract-frames": "tsx scripts/extract-frames.ts",
-    "optimise-images": "tsx scripts/optimise-images.ts"
+    "optimise-images": "tsx scripts/optimise-images.ts",
+    "create-project": "tsx scripts/create-project.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",

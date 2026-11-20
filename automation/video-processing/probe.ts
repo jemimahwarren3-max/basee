@@ -1,5 +1,5 @@
 import { FFPROBE_PATH } from './ffmpegPaths'
-import { runCommand } from './run'
+import { runCommand } from '../exec'
 
 export interface VideoMetadata {
   durationSeconds: number
