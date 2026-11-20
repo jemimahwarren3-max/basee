@@ -3,20 +3,32 @@
 This repo is built in phases. This file tracks what is real versus reserved, so nothing in the
 folder tree is mistaken for a working feature before it exists.
 
-## Built (Phase 1-2)
+## Built (Phase 1-3)
 
 - `src/` — React 19 + TypeScript app, Vite dev/build, Tailwind CSS v4 via `@tailwindcss/vite`.
 - `package.json`, `vite.config.ts`, `tsconfig*.json` — working toolchain.
+- `src/animations/useLenis.ts` — Lenis smooth-scroll hook (self-driving `autoRaf`, skips under
+  `prefers-reduced-motion`).
+- `src/animations/ScrollReveal.tsx` — GSAP + ScrollTrigger fade/slide-in wrapper, skips under
+  `prefers-reduced-motion`, cleans up its ScrollTrigger on unmount.
+- `src/3d/RotatingObject.tsx` — React Three Fiber + Drei scene (lit, rotating mesh, OrbitControls,
+  HDRI environment). Lazy-loaded from `App.tsx` via `React.lazy`/`Suspense` so the ~1 MB
+  Three.js chunk is deferred, not in the main bundle.
+- `src/App.tsx` — wires all three together as a live, verified demo (not just unused files):
+  hero → 3D scene → scroll-triggered reveal section.
 - Directory skeleton below, created now so later phases land in the right place.
+- Verified: `tsc -b` clean, `npm run build` succeeds (code-split, main chunk 356 kB / 3D chunk
+  989 kB lazy), dev server serves and transforms all of the above without errors.
+- Framer Motion and `three`/`@react-three/drei`/`@react-three/fiber` are installed; Framer
+  Motion has no demo component yet (GSAP covers the current scroll-reveal case) — don't claim UI
+  transitions are built until one exists in `src/animations/`.
 
 ## Reserved (later phases, currently empty — `.gitkeep` only)
 
 | Path | Will hold | Phase |
 | --- | --- | --- |
-| `src/animations/` | GSAP, ScrollTrigger, Framer Motion helpers and components | 3 |
-| `src/3d/` | Three.js / React Three Fiber / Drei scenes | 3 |
-| `src/video/` | Scroll-controlled video/canvas sequence components | 3 |
-| `src/effects/` | Shaders, particles, masking, morphing effects | 3 |
+| `src/video/` | Scroll-controlled video/canvas sequence components | 5 |
+| `src/effects/` | Shaders, particles, masking, morphing effects | 6 |
 | `src/components/`, `src/layouts/`, `src/sections/` | Reusable UI building blocks | 2-6 |
 | `automation/asset-search/` | Pexels/Pixabay/Unsplash/Poly Haven/Sketchfab search clients | 4 |
 | `automation/asset-download/` | Permitted-download logic + licence capture | 4 |
