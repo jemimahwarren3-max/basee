@@ -3,6 +3,10 @@
 This repo is built in phases. This file tracks what is real versus reserved, so nothing in the
 folder tree is mistaken for a working feature before it exists.
 
+`media-library/*` isn't listed under Reserved below — it's active storage, populated at runtime
+by the Phase 4/5 scripts (`manifest.json`, downloaded assets, extracted frame sequences). Its
+contents are gitignored; only `.gitkeep` is tracked.
+
 ## Built (Phase 1-3): foundation, animation, 3D
 
 - `src/` — React 19 + TypeScript app, Vite dev/build, Tailwind CSS v4 via `@tailwindcss/vite`.
@@ -41,17 +45,33 @@ folder tree is mistaken for a working feature before it exists.
 - `automation/env.ts` — loads `.env.local` for these Node-side scripts only; never imported by
   `src/`.
 
+## Built (Phase 5): media processing
+
+- `automation/video-processing/` — `probeVideo()` (ffprobe metadata), `transcodeVideo()` /
+  `trimVideo()` (resize, fps conversion, MP4/H.264 or WebM/VP9, mute), `generatePoster()`
+  (still-frame extraction), `extractFrameSequence()` (WebP frame sequence for scroll-controlled
+  video, matching the master spec's exact ffmpeg recipe). FFmpeg/ffprobe are bundled via
+  `ffmpeg-static`/`ffprobe-static` — no system install required, per your earlier choice.
+- `automation/image-processing/` — Sharp-based `optimizeImage()`, `generateResponsiveSet()`,
+  `inspectImage()`. Output format is chosen by the output file's extension.
+- `scripts/process-video.ts`, `scripts/extract-frames.ts`, `scripts/optimise-images.ts` — the
+  CLI entry points (`npm run process-video`, `npm run extract-frames`,
+  `npm run optimise-images`).
+- `automation/cli.ts` — shared argv parser used by every script in `scripts/`.
+- **Verified end-to-end**, not just type-checked: every command above was run against a
+  synthetic `ffmpeg testsrc` clip and the outputs were re-probed to confirm duration,
+  resolution, fps, codec, and mute state actually changed as requested. See
+  [docs/MEDIA_PROCESSING.md](MEDIA_PROCESSING.md).
+
 ## Reserved (later phases, currently empty — `.gitkeep` only)
 
 | Path | Will hold | Phase |
 | --- | --- | --- |
-| `src/video/` | Scroll-controlled video/canvas sequence components | 5 |
+| `src/video/` | Scroll-controlled video/canvas sequence components | 6 |
 | `src/effects/` | Shaders, particles, masking, morphing effects | 6 |
 | `src/components/`, `src/layouts/`, `src/sections/` | Reusable UI building blocks | 2-6 |
-| `automation/video-processing/`, `automation/image-processing/` | FFmpeg/Sharp pipelines | 5 |
 | `automation/project-generation/` | `npm run create-project` scaffolding logic | 7 |
 | `templates/*` | Starting points per art direction (cinematic, luxury, editorial, ecommerce, creative, immersive) | 6 |
-| `media-library/*` | Per-project downloaded/processed assets (gitignored contents) | 4-5 |
 | `.claude/skills/*` | Creative-direction, asset-research, video-processing, motion-design, threejs-development, frontend-development, quality-assurance skills | 7 |
 | `.claude/commands/` | Slash commands (e.g. project init) | 7 |
 | `tests/` | Playwright test suites | 8 |
