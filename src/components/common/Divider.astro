@@ -1,0 +1,9 @@
+---
+interface Props { style?: 'line' | 'space' | 'dots'; spacing?: 'sm' | 'md' | 'lg' }
+const { style = 'line', spacing = 'md' } = Astro.props;
+const py = { sm: 'py-8', md: 'py-16', lg: 'py-24' };
+---
+<div class:list={[py[spacing]]} data-component="divider">
+  {style === 'line' && <hr class="container-site border-t border-[var(--color-border,#e5e5e5)]" />}
+  {style === 'dots' && <div class="flex items-center justify-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border,#ddd)]"></span><span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border,#ddd)]"></span><span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border,#ddd)]"></span></div>}
+</div>

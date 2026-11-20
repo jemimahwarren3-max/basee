@@ -1,0 +1,34 @@
+---
+interface Props {
+  videoSrc: string;
+  posterSrc?: string;
+  title: string;
+  subtitle?: string;
+  cta?: { label: string; href: string };
+}
+
+const { videoSrc, posterSrc, title, subtitle, cta } = Astro.props;
+---
+
+<section class="relative h-screen min-h-[600px] overflow-hidden" data-component="hero-video">
+  <video
+    class="absolute inset-0 w-full h-full object-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    poster={posterSrc}
+  >
+    <source src={videoSrc} type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 bg-black/40" />
+  <div class="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-6">
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-light leading-[1.05] tracking-tight max-w-4xl">
+      <Fragment set:html={title} />
+    </h1>
+    {subtitle && <p class="mt-6 text-lg text-white/70 max-w-lg">{subtitle}</p>}
+    {cta && (
+      <a href={cta.href} class="mt-10 text-sm uppercase tracking-[0.2em] border border-white/50 px-8 py-4 hover:bg-white hover:text-black transition-all duration-500">{cta.label}</a>
+    )}
+  </div>
+</section>

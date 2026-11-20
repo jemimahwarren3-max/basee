@@ -1,0 +1,26 @@
+---
+interface Props { title: string; plans: { name: string; price: string; period?: string; features: string[]; cta: { label: string; href: string }; featured?: boolean }[] }
+const { title, plans } = Astro.props;
+---
+<section class="py-24 md:py-32 bg-[#09090B] text-white" data-component="pricing-dark">
+  <div class="container-site">
+    <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-16">{title}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      {plans.map((p) => (
+        <div class:list={['rounded-xl p-8', p.featured ? 'bg-white text-black ring-2 ring-indigo-500' : 'bg-white/5 border border-white/10']}>
+          <h3 class="font-semibold text-lg">{p.name}</h3>
+          <div class="mt-4 flex items-baseline gap-1">
+            <span class="text-4xl font-light">{p.price}</span>
+            {p.period && <span class:list={['text-sm', p.featured ? 'text-black/50' : 'text-white/50']}>/{p.period}</span>}
+          </div>
+          <ul class="mt-8 space-y-3">
+            {p.features.map((f) => (
+              <li class:list={['flex items-center gap-2 text-sm', p.featured ? 'text-black/70' : 'text-white/60']}>✓ {f}</li>
+            ))}
+          </ul>
+          <a href={p.cta.href} class:list={['mt-8 block text-center text-sm font-medium py-3 rounded-lg', p.featured ? 'bg-black text-white' : 'bg-white/10 text-white hover:bg-white/20']}>{p.cta.label}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

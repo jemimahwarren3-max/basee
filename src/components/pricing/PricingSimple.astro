@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  plans: { name: string; price: string; description: string; features: string[]; cta: { label: string; href: string } }[];
+}
+
+const { title, subtitle, plans } = Astro.props;
+---
+
+<section class="py-24 md:py-32" data-component="pricing-simple">
+  <div class="container-site max-w-4xl">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">{title}</h2>
+      {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)]">{subtitle}</p>}
+    </div>
+    <div class="divide-y divide-[var(--color-border,#e5e5e5)]">
+      {plans.map((plan) => (
+        <div class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-3">
+            <h3 class="font-semibold text-lg">{plan.name}</h3>
+            <p class="text-2xl font-light mt-1">{plan.price}</p>
+          </div>
+          <div class="md:col-span-6">
+            <p class="text-[var(--color-muted-fg,#666)] mb-3">{plan.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {plan.features.map((f) => (
+                <span class="text-xs px-3 py-1 bg-[var(--color-muted,#f5f5f5)] rounded-full">{f}</span>
+              ))}
+            </div>
+          </div>
+          <div class="md:col-span-3 text-right">
+            <a href={plan.cta.href} class="inline-block text-sm font-medium px-6 py-2.5 border border-current hover:bg-[var(--color-fg,#111)] hover:text-[var(--color-bg,#fff)] transition-all">
+              {plan.cta.label}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

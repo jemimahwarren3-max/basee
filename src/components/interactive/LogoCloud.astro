@@ -1,0 +1,20 @@
+---
+interface Props {
+  title?: string;
+  logos: { src: string; alt: string; href?: string }[];
+}
+
+const { title, logos } = Astro.props;
+---
+
+<section class="py-16 md:py-20" data-component="logo-cloud">
+  <div class="container-site">
+    {title && <p class="text-sm text-center text-[var(--color-muted-fg,#999)] uppercase tracking-widest mb-10">{title}</p>}
+    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
+      {logos.map((logo) => {
+        const img = <img src={logo.src} alt={logo.alt} class="h-8 md:h-10 w-auto opacity-40 hover:opacity-70 transition-opacity grayscale" loading="lazy" />;
+        return logo.href ? <a href={logo.href} target="_blank" rel="noopener noreferrer">{img}</a> : img;
+      })}
+    </div>
+  </div>
+</section>

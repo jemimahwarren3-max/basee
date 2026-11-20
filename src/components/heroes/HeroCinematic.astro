@@ -1,0 +1,47 @@
+---
+interface Props {
+  image: string;
+  title: string;
+  subtitle?: string;
+  cta?: { label: string; href: string };
+  overlay?: boolean;
+  align?: 'center' | 'left' | 'bottom-left';
+}
+
+const { image, title, subtitle, cta, overlay = true, align = 'center' } = Astro.props;
+
+const alignClasses = {
+  center: 'items-center justify-center text-center',
+  left: 'items-start justify-center text-left pl-[var(--spacing-gutter)]',
+  'bottom-left': 'items-start justify-end text-left pl-[var(--spacing-gutter)] pb-24',
+};
+---
+
+<section class="relative h-screen min-h-[600px] overflow-hidden" data-component="hero-cinematic">
+  <img
+    src={image}
+    alt=""
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="eager"
+  />
+  {overlay && <div class="absolute inset-0 bg-black/40" />}
+
+  <div class:list={['relative z-10 h-full flex flex-col max-w-4xl', alignClasses[align]]}>
+    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white font-light leading-[1.05] tracking-tight">
+      <Fragment set:html={title} />
+    </h1>
+    {subtitle && (
+      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-xl leading-relaxed">
+        {subtitle}
+      </p>
+    )}
+    {cta && (
+      <a
+        href={cta.href}
+        class="mt-10 inline-block text-sm uppercase tracking-[0.2em] text-white border border-white/60 px-8 py-4 hover:bg-white hover:text-black transition-all duration-500"
+      >
+        {cta.label}
+      </a>
+    )}
+  </div>
+</section>

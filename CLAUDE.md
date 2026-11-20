@@ -1,77 +1,86 @@
-# Yonah Creative Engine
+# Yonah Website Engine
 
-A reusable, AI-assisted website production engine for Yonah Studio. Clone it per client, open it
-in Claude Code, and describe the website — the engine researches assets, builds the site, tests
-it, and reports what it actually did.
+A premium website production base for Yonah Studio. Clone it, open it in Claude Code, describe
+the website you want — Claude picks from 159 pre-built components and 20 design families to
+assemble a production site in minutes.
 
-## Current status
+## How to use this base
 
-All 10 phases of the master spec are built, verified, and published (private GitHub repo
-`yonah-creative-engine`). See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what
-each phase actually delivered — it's still the source of truth for new work, since everything
-from here is per-client or follow-up to the engine itself (see
-[CONTRIBUTING.md](CONTRIBUTING.md)).
+1. Clone the repo for a new client project
+2. Open in Claude Code
+3. Describe the website (industry, style, pages needed)
+4. Claude selects a design family from `src/design-families/`, picks matching components from
+   `src/components/`, wires them into pages under `src/pages/`, and applies the design tokens
 
-## How the skills fit together
+## Component library (159 components, 15 categories)
 
-Seven skills in `.claude/skills/` cover the production pipeline end to end, roughly in this
-order for a new client brief:
+All components live in `src/components/` as `.astro` files with TypeScript props interfaces.
+They use CSS custom properties (`--color-*`) for theming, Tailwind CSS classes for layout, and
+are fully responsive.
 
-1. **creative-direction** — brief → design spec, picks/adapts one of `templates/`'s six
-   directions, writes `docs/DESIGN_BRIEF.md`.
-2. **asset-research** — design spec → real, specific footage/images/3D assets via
-   `npm run search-assets` / `download-asset`, licensed and manifested.
-3. **video-processing** — raw downloaded assets → processed deliverables via
-   `npm run process-video` / `extract-frames` / `optimise-images`.
-4. **motion-design** and **threejs-development** — wire up the animation/3D components
-   (`src/animations/`, `src/effects/`, `src/video/`, `src/3d/`) against the processed assets.
-5. **frontend-development** — compose the actual pages in `src/components/`, `src/layouts/`,
-   `src/sections/` out of all of the above.
-6. **quality-assurance** — `npm run test:report` (type-check, build, lint, and the Playwright
-   suite) before calling anything done.
+| Category     | Count | Path                          |
+|-------------|-------|-------------------------------|
+| Heroes       | 20    | `src/components/heroes/`      |
+| Interactive  | 22    | `src/components/interactive/` |
+| Services     | 16    | `src/components/services/`    |
+| About        | 12    | `src/components/about/`       |
+| Galleries    | 12    | `src/components/galleries/`   |
+| Navigation   | 10    | `src/components/navigation/`  |
+| Footers      | 10    | `src/components/footers/`     |
+| Products     | 10    | `src/components/products/`    |
+| Testimonials | 8     | `src/components/testimonials/`|
+| Statistics   | 8     | `src/components/statistics/`  |
+| Contact      | 8     | `src/components/contact/`     |
+| CTA          | 8     | `src/components/cta/`         |
+| Pricing      | 7     | `src/components/pricing/`     |
+| FAQ          | 5     | `src/components/faq/`         |
+| Common       | 3     | `src/components/common/`      |
 
-Each skill's `SKILL.md` names the exact files/scripts it uses — if a skill describes something
-that no longer matches `docs/ARCHITECTURE.md`, trust the architecture doc and fix the skill.
+## Design families (20 families)
 
-`npm run create-project -- --name "..." --template <name>` (or `/create-project` in
-`.claude/commands/`) scaffolds a new, isolated client project from the current foundation —
-never the previous client's downloaded assets, manifest, or `.env.local`.
+Each family in `src/design-families/` defines typography, colors, spacing, layout preferences,
+imagery treatment, navigation style, animation intensity, and button styling. Use
+`getFamily(id)` or `findFamiliesForIndustry(industry)` from `src/design-families/index.ts`.
 
-## Ground rules for this repo
+Families: editorial-luxury, swiss-minimalism, modern-brutalism, dark-technology,
+warm-hospitality, fashion-commerce, property-editorial, professional-healthcare,
+corporate-institutional, contemporary-african, premium-automotive, architecture-interiors,
+minimalist-portfolio, creative-photography, restaurant-editorial, beauty-cosmetics,
+education-institution, finance-consulting, industrial-manufacturing, modern-ecommerce
 
-- **Never fabricate.** Don't claim an asset was downloaded, a test passed, or a build succeeded
-  without actually running it.
-- **Ask before anything irreversible or costly.** Paid API calls, purchasing assets, publishing
-  the repo, or touching a private account all need explicit approval first.
-- **No placeholder modules presented as working.** An empty folder is fine (it's in
-  `docs/ARCHITECTURE.md` as reserved); a file that pretends to implement a feature it doesn't is
-  not.
-- **Each client project gets its own art direction.** Don't default to a generic AI-website look,
-  and don't carry one client's confidential assets or content into another client's project.
-- **Secrets live in `.env.local`**, never in source or commits. `.env.example` documents what's
-  needed.
+## Stack
 
-## Stack (as installed so far)
+Astro 7, React 19 (islands), TypeScript, Tailwind CSS v4 (via `@tailwindcss/vite`),
+Motion 14, Lucide React, clsx, Playwright, oxlint.
 
-React 19, TypeScript, Vite, Tailwind CSS v4, GSAP + ScrollTrigger, Lenis, Framer Motion (no demo
-component yet), Three.js + React Three Fiber + Drei, FFmpeg/ffprobe (bundled via
-`ffmpeg-static`/`ffprobe-static`), Sharp, Zod, Lucide React, Playwright. Keep each client
-project loading only what it actually uses — see each template's `suggestedLibraries`/`avoid`
-in `templates/`.
+## Ground rules
+
+- **Never fabricate.** Don't claim a build succeeded without running it.
+- **Ask before anything irreversible or costly.** Publishing, paid APIs, or touching accounts
+  need approval.
+- **No placeholder modules presented as working.**
+- **Each client project gets its own art direction.** Don't default to generic AI-website looks.
+- **Secrets live in `.env.local`**, never in source or commits.
 
 ## Commands
 
 ```
-npm run dev              # start the Vite dev server
-npm run build             # type-check + production build
-npm run preview           # preview the production build
-npm run lint               # oxlint
-npm run search-assets      # research assets (Pexels/Pixabay/Unsplash/Poly Haven/Sketchfab)
-npm run download-asset     # download one chosen asset + record it in the manifest
-npm run process-video      # probe / trim / transcode / poster
-npm run extract-frames     # WebP frame sequence for ScrollSequence
-npm run optimise-images    # resize/convert images, or generate a responsive set
-npm run create-project     # scaffold a new, isolated client project
-npm run test                # run the Playwright suite
-npm run test:report         # tsc -b + build + lint + Playwright, writes test-results/REPORT.md
+npm run dev       # Astro dev server
+npm run build     # production build
+npm run preview   # preview production build
+npm run lint      # oxlint
 ```
+
+## Assembling a website from a brief
+
+When given a client brief:
+
+1. **Pick a design family** — match the client's industry and aesthetic to one of the 20
+   families using `findFamiliesForIndustry()` or manual selection
+2. **Set design tokens** — apply the family's colors, typography, and spacing as CSS custom
+   properties in `src/styles/global.css` or a page-level `<style>` block
+3. **Choose components** — select components from each category that match the family's
+   `layout.preferredSections` and avoid its `layout.avoidSections`
+4. **Create pages** — wire components into Astro pages under `src/pages/`, passing appropriate
+   props with real client content
+5. **Build and verify** — run `npm run build` to confirm everything compiles cleanly

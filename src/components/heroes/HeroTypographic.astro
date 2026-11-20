@@ -1,0 +1,36 @@
+---
+interface Props {
+  lines: string[];
+  subtitle?: string;
+  cta?: { label: string; href: string };
+}
+
+const { lines, subtitle, cta } = Astro.props;
+---
+
+<section class="min-h-screen flex items-center" data-component="hero-typographic">
+  <div class="container-site py-24">
+    <div class="space-y-2 md:space-y-4">
+      {lines.map((line, i) => (
+        <h1
+          class="text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] font-bold leading-[0.95] tracking-tighter"
+          style={i % 2 === 1 ? 'margin-left: 10vw;' : ''}
+        >
+          {line}
+        </h1>
+      ))}
+    </div>
+    <div class="mt-12 flex flex-col sm:flex-row items-start gap-8">
+      {subtitle && (
+        <p class="text-lg text-[var(--color-muted-fg,#666)] max-w-md leading-relaxed">
+          {subtitle}
+        </p>
+      )}
+      {cta && (
+        <a href={cta.href} class="text-sm uppercase tracking-[0.15em] border border-current px-8 py-4 hover:bg-[var(--color-fg,#111)] hover:text-[var(--color-bg,#fff)] transition-all">
+          {cta.label}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

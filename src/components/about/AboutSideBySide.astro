@@ -1,0 +1,23 @@
+---
+interface Props { title: string; content: string; image: string; imageLeft?: boolean; stats?: { value: string; label: string }[] }
+const { title, content, image, imageLeft = false, stats } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="about-side-by-side">
+  <div class:list={['container-site grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center', imageLeft ? '' : 'md:[&>:first-child]:order-2']}>
+    <img src={image} alt="" class="w-full aspect-[4/5] object-cover rounded-xl" loading="lazy" />
+    <div>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight leading-tight">{title}</h2>
+      <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{content}</p>
+      {stats && (
+        <div class="mt-10 grid grid-cols-2 gap-6">
+          {stats.map(s => (
+            <div>
+              <p class="text-3xl font-bold">{s.value}</p>
+              <p class="text-sm text-[var(--color-muted-fg,#999)] mt-1">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

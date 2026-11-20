@@ -1,0 +1,21 @@
+---
+interface Props { brand: string; links?: { label: string; href: string }[]; socials?: { label: string; href: string }[] }
+const { brand, links = [], socials = [] } = Astro.props;
+const year = new Date().getFullYear();
+---
+<footer class="py-16 text-center" data-component="footer-centered">
+  <div class="container-site">
+    <a href="/" class="text-xl font-semibold">{brand}</a>
+    {links.length > 0 && (
+      <nav class="mt-6 flex flex-wrap items-center justify-center gap-6">
+        {links.map((l) => <a href={l.href} class="text-sm text-[var(--color-muted-fg,#888)] hover:text-[var(--color-fg,#111)] transition-colors">{l.label}</a>)}
+      </nav>
+    )}
+    {socials.length > 0 && (
+      <div class="mt-6 flex justify-center gap-4">
+        {socials.map((s) => <a href={s.href} target="_blank" rel="noopener noreferrer" class="text-sm text-[var(--color-muted-fg,#999)] hover:text-[var(--color-fg,#111)] transition-colors">{s.label}</a>)}
+      </div>
+    )}
+    <p class="mt-8 text-sm text-[var(--color-muted-fg,#999)]">© {year} {brand}. All rights reserved.</p>
+  </div>
+</footer>

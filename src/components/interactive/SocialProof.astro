@@ -1,0 +1,16 @@
+---
+interface Props { logos: { src: string; alt: string; href?: string }[]; title?: string }
+const { logos, title = 'Trusted By' } = Astro.props;
+---
+<section class="py-16 border-y border-[var(--color-border,#e5e5e5)]" data-component="social-proof">
+  <div class="container-site">
+    <p class="text-xs font-medium uppercase tracking-widest text-[var(--color-muted-fg,#999)] text-center mb-8">{title}</p>
+    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+      {logos.map(l => l.href ? (
+        <a href={l.href} target="_blank" rel="noopener"><img src={l.src} alt={l.alt} class="h-8 md:h-10 object-contain opacity-40 hover:opacity-100 transition-opacity" loading="lazy" /></a>
+      ) : (
+        <img src={l.src} alt={l.alt} class="h-8 md:h-10 object-contain opacity-40" loading="lazy" />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  stats: { value: string; label: string; description?: string }[];
+}
+
+const { stats } = Astro.props;
+---
+
+<section class="py-24 md:py-32 border-y border-[var(--color-border,#e5e5e5)]" data-component="stats-minimal">
+  <div class="container-site">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-[var(--color-border,#e5e5e5)]">
+      {stats.map((s, i) => (
+        <div class:list={['text-center', i > 0 ? 'pt-12 md:pt-0' : '']}>
+          <span class="text-5xl md:text-6xl font-light tracking-tight">{s.value}</span>
+          <p class="mt-2 text-sm font-semibold uppercase tracking-widest">{s.label}</p>
+          {s.description && <p class="mt-2 text-sm text-[var(--color-muted-fg,#888)]">{s.description}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+interface Props {
+  images: { src: string; alt?: string }[];
+}
+
+const { images } = Astro.props;
+---
+
+<section class="py-24 md:py-32 overflow-hidden" data-component="gallery-fullwidth">
+  <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 px-[var(--spacing-gutter)]">
+    {images.map((img) => (
+      <div class="flex-none w-[80vw] md:w-[60vw] lg:w-[40vw] snap-center">
+        <img src={img.src} alt={img.alt || ''} class="w-full aspect-[3/2] object-cover" loading="lazy" />
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>

@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  features: { title: string; description: string; image?: string; span?: 'wide' | 'tall' | 'normal' }[];
+}
+
+const { title, subtitle, features } = Astro.props;
+---
+
+<section class="py-24 md:py-32" data-component="features-bento">
+  <div class="container-site">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">{title}</h2>
+      {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)]">{subtitle}</p>}
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[280px]">
+      {features.map((f) => (
+        <div
+          class:list={[
+            'group relative overflow-hidden rounded-2xl bg-[var(--color-muted,#f5f5f5)] p-8 flex flex-col justify-end',
+            f.span === 'wide' ? 'md:col-span-2' : '',
+            f.span === 'tall' ? 'md:row-span-2' : '',
+          ]}
+        >
+          {f.image && (
+            <img src={f.image} alt="" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity" loading="lazy" />
+          )}
+          <div class="relative z-10">
+            <h3 class="text-lg font-semibold">{f.title}</h3>
+            <p class="mt-2 text-sm text-[var(--color-muted-fg,#666)] leading-relaxed">{f.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

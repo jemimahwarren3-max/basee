@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  products: { name: string; price?: string; image: string; href?: string; tag?: string }[];
+  columns?: 2 | 3 | 4;
+}
+
+const { title, subtitle, products, columns = 3 } = Astro.props;
+const colClass = { 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-2 lg:grid-cols-3', 4: 'sm:grid-cols-2 lg:grid-cols-4' };
+---
+
+<section class="py-24 md:py-32" data-component="products-grid">
+  <div class="container-site">
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">{title}</h2>
+        {subtitle && <p class="mt-2 text-lg text-[var(--color-muted-fg,#666)]">{subtitle}</p>}
+      </div>
+    </div>
+    <div class:list={['grid grid-cols-1 gap-6', colClass[columns]]}>
+      {products.map((p) => (
+        <a href={p.href || '#'} class="group block">
+          <div class="relative overflow-hidden bg-[var(--color-muted,#f5f5f5)]">
+            <img src={p.image} alt={p.name} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+            {p.tag && <span class="absolute top-4 left-4 text-xs uppercase tracking-widest bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)] px-3 py-1">{p.tag}</span>}
+          </div>
+          <div class="mt-4 flex items-baseline justify-between">
+            <h3 class="font-medium">{p.name}</h3>
+            {p.price && <span class="text-[var(--color-muted-fg,#666)]">{p.price}</span>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

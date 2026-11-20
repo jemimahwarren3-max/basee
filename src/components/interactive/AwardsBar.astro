@@ -1,0 +1,14 @@
+---
+interface Props { awards: { title: string; year?: string; org?: string }[] }
+const { awards } = Astro.props;
+---
+<section class="py-12 bg-[var(--color-surface,#f9f9f9)]" data-component="awards-bar">
+  <div class="container-site flex flex-wrap items-center justify-center gap-8 md:gap-16">
+    {awards.map(a => (
+      <div class="text-center">
+        <p class="text-sm font-semibold">{a.title}</p>
+        <p class="text-xs text-[var(--color-muted-fg,#999)]">{[a.org, a.year].filter(Boolean).join(' · ')}</p>
+      </div>
+    ))}
+  </div>
+</section>

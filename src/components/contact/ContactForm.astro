@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  fields?: ('name' | 'email' | 'phone' | 'company' | 'message' | 'subject')[];
+  submitLabel?: string;
+  action?: string;
+}
+
+const { title, subtitle, fields = ['name', 'email', 'message'], submitLabel = 'Send message', action = '#' } = Astro.props;
+
+const fieldConfig: Record<string, { label: string; type: string; required: boolean; full?: boolean }> = {
+  name: { label: 'Full name', type: 'text', required: true },
+  email: { label: 'Email address', type: 'email', required: true },
+  phone: { label: 'Phone number', type: 'tel', required: false },
+  company: { label: 'Company', type: 'text', required: false },
+  subject: { label: 'Subject', type: 'text', required: false, full: true },
+  message: { label: 'Message', type: 'textarea', required: true, full: true },
+};
+---
+
+<section class="py-24 md:py-32" data-component="contact-form">
+  <div class="container-site max-w-2xl">
+    <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">{title}</h2>
+    {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)]">{subtitle}</p>}
+
+    <form action={action} method="post" class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {fields.map((key) => {
+        const f = fieldConfig[key];
+        if (!f) return null;
+        const isTextarea = f.type === 'textarea';
+        return (
+          <div class:list={[f.full || isTextarea ? 'md:col-span-2' : '']}>
+            <label for={key} class="block text-sm font-medium mb-2">{f.label}{f.required && ' *'}</label>
+            {isTextarea ? (
+              <textarea
+                id={key}
+                name={key}
+                rows={5}
+                required={f.required}
+                class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors resize-none"
+              />
+            ) : (
+              <input
+                type={f.type}
+                id={key}
+                name={key}
+                required={f.required}
+                class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors"
+              />
+            )}
+          </div>
+        );
+      })}
+      <div class="md:col-span-2">
+        <button type="submit" class="px-8 py-3.5 bg-[var(--color-primary,#111)] text-[var(--color-bg,#fff)] text-sm font-medium hover:opacity-90 transition-opacity">
+          {submitLabel}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

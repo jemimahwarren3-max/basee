@@ -1,0 +1,46 @@
+---
+interface Props {
+  brand: string;
+  links: { label: string; href: string }[];
+  cta?: { label: string; href: string };
+}
+
+const { brand, links, cta } = Astro.props;
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg,#fff)] border-b border-[var(--color-border,#e5e5e5)]" data-nav="solid">
+  <div class="container-site flex items-center justify-between h-16">
+    <a href="/" class="text-lg font-semibold tracking-tight">{brand}</a>
+    <div class="hidden md:flex items-center gap-6">
+      {links.map((link) => (
+        <a href={link.href} class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors">{link.label}</a>
+      ))}
+      {cta && (
+        <a href={cta.href} class="text-sm px-5 py-2 bg-[var(--color-primary,#111)] text-[var(--color-bg,#fff)] rounded-md hover:opacity-90 transition-opacity">
+          {cta.label}
+        </a>
+      )}
+    </div>
+    <button class="md:hidden p-2" aria-label="Open menu" data-menu-toggle>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h16M4 16h16" /></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="fixed inset-0 z-[60] bg-[var(--color-bg,#fff)] text-[var(--color-fg,#111)] flex flex-col items-center justify-center gap-6 opacity-0 pointer-events-none transition-opacity duration-300" data-menu-overlay>
+  <button class="absolute top-6 right-6 p-2" aria-label="Close menu" data-menu-close>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12" /></svg>
+  </button>
+  {links.map((link) => <a href={link.href} class="text-2xl">{link.label}</a>)}
+</div>
+
+<script>
+  document.querySelectorAll('[data-menu-toggle]').forEach(b => b.addEventListener('click', () => {
+    const o = document.querySelector('[data-menu-overlay]');
+    if (o) { o.classList.remove('opacity-0','pointer-events-none'); o.classList.add('opacity-100'); }
+  }));
+  document.querySelectorAll('[data-menu-close]').forEach(b => b.addEventListener('click', () => {
+    const o = document.querySelector('[data-menu-overlay]');
+    if (o) { o.classList.add('opacity-0','pointer-events-none'); o.classList.remove('opacity-100'); }
+  }));
+</script>

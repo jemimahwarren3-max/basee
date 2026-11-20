@@ -1,0 +1,39 @@
+---
+interface Props {
+  image: string;
+  title: string;
+  subtitle?: string;
+  cta?: { label: string; href: string };
+  scrollIndicator?: boolean;
+}
+
+const { image, title, subtitle, cta, scrollIndicator = true } = Astro.props;
+---
+
+<section class="relative h-screen min-h-[700px]" data-component="hero-fullscreen">
+  <img src={image} alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+  <div class="relative z-10 h-full flex flex-col justify-end pb-24 lg:pb-32">
+    <div class="container-site">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-light leading-[1.1] tracking-tight max-w-4xl">
+        <Fragment set:html={title} />
+      </h1>
+      {subtitle && (
+        <p class="mt-5 text-lg text-white/70 max-w-lg leading-relaxed">{subtitle}</p>
+      )}
+      {cta && (
+        <a href={cta.href} class="mt-8 inline-block text-sm uppercase tracking-[0.15em] text-white border border-white/50 px-8 py-4 hover:bg-white hover:text-black transition-all duration-500">
+          {cta.label}
+        </a>
+      )}
+    </div>
+  </div>
+
+  {scrollIndicator && (
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/50">
+      <span class="text-xs uppercase tracking-[0.2em]">Scroll</span>
+      <div class="w-px h-8 bg-white/30 animate-pulse" />
+    </div>
+  )}
+</section>

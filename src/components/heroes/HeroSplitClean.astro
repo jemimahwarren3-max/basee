@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: string;
+  cta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  reversed?: boolean;
+}
+
+const { title, subtitle, image, cta, secondaryCta, reversed = false } = Astro.props;
+---
+
+<section class="pt-28 pb-16 md:pt-32 md:pb-24" data-component="hero-split-clean">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class:list={[reversed ? 'lg:order-2' : '']}>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-tight">{title}</h1>
+        {subtitle && <p class="mt-5 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{subtitle}</p>}
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          {cta && (
+            <a href={cta.href} class="px-7 py-3 bg-[var(--color-primary,#111)] text-[var(--color-bg,#fff)] text-sm font-medium rounded-md hover:opacity-90 transition-opacity">{cta.label}</a>
+          )}
+          {secondaryCta && (
+            <a href={secondaryCta.href} class="px-7 py-3 text-sm font-medium border border-[var(--color-border,#e5e5e5)] rounded-md hover:border-[var(--color-fg,#111)] transition-colors">{secondaryCta.label}</a>
+          )}
+        </div>
+      </div>
+      <div class:list={[reversed ? 'lg:order-1' : '']}>
+        <img src={image} alt="" class="w-full rounded-xl" loading="eager" />
+      </div>
+    </div>
+  </div>
+</section>

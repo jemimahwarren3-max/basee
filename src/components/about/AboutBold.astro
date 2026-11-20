@@ -1,0 +1,23 @@
+---
+interface Props {
+  statement: string;
+  description: string;
+  cta?: { label: string; href: string };
+}
+
+const { statement, description, cta } = Astro.props;
+---
+
+<section class="py-24 md:py-40" data-component="about-bold">
+  <div class="container-site">
+    <p class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight max-w-5xl">{statement}</p>
+    <div class="mt-12 flex flex-col md:flex-row items-start gap-8 md:gap-16">
+      <p class="text-lg text-[var(--color-muted-fg,#666)] leading-relaxed max-w-lg">{description}</p>
+      {cta && (
+        <a href={cta.href} class="text-sm uppercase tracking-[0.1em] font-medium border border-current px-8 py-4 hover:bg-[var(--color-fg,#111)] hover:text-[var(--color-bg,#fff)] transition-all whitespace-nowrap">
+          {cta.label}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

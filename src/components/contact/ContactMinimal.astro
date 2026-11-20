@@ -1,0 +1,11 @@
+---
+interface Props { email: string; phone?: string }
+const { email, phone } = Astro.props;
+---
+<section class="py-24 md:py-32 text-center" data-component="contact-minimal">
+  <div class="container-site">
+    <p class="text-sm uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-4">Get in touch</p>
+    <a href={`mailto:${email}`} class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight hover:opacity-70 transition-opacity">{email}</a>
+    {phone && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)]"><a href={`tel:${phone}`} class="hover:opacity-70 transition-opacity">{phone}</a></p>}
+  </div>
+</section>

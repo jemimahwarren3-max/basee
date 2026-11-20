@@ -1,0 +1,21 @@
+---
+interface Props { name: string; role: string; bio: string; image: string; quote?: string; socials?: { platform: string; url: string }[] }
+const { name, role, bio, image, quote, socials } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="about-founder">
+  <div class="container-site grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+    <img src={image} alt={name} class="w-full aspect-[3/4] object-cover rounded-xl" loading="lazy" />
+    <div>
+      <span class="text-xs font-medium uppercase tracking-widest text-[var(--color-muted-fg,#999)]">Meet the Founder</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-bold tracking-tight">{name}</h2>
+      <p class="text-lg text-[var(--color-accent,#6366F1)] mt-1">{role}</p>
+      <p class="mt-6 text-[var(--color-muted-fg,#666)] leading-relaxed">{bio}</p>
+      {quote && <blockquote class="mt-8 pl-6 border-l-2 border-[var(--color-accent,#6366F1)] italic text-lg">&ldquo;{quote}&rdquo;</blockquote>}
+      {socials && (
+        <div class="mt-8 flex gap-4">
+          {socials.map(s => <a href={s.url} class="text-sm text-[var(--color-muted-fg,#999)] hover:text-[var(--color-fg,#111)] transition-colors" target="_blank" rel="noopener">{s.platform}</a>)}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

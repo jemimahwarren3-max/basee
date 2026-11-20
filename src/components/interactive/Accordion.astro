@@ -1,0 +1,22 @@
+---
+interface Props { items: { title: string; content: string; image?: string }[] }
+const { items } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="accordion">
+  <div class="container-site max-w-4xl">
+    <div class="divide-y divide-[var(--color-border,#e5e5e5)]">
+      {items.map((item) => (
+        <details class="group">
+          <summary class="py-6 flex items-center justify-between cursor-pointer list-none">
+            <h3 class="text-xl font-semibold pr-8">{item.title}</h3>
+            <svg class="w-5 h-5 flex-none group-open:rotate-45 transition-transform" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 4v12M4 10h12"/></svg>
+          </summary>
+          <div class="pb-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            <p class="text-[var(--color-muted-fg,#666)] leading-relaxed">{item.content}</p>
+            {item.image && <img src={item.image} alt="" class="w-full aspect-[4/3] object-cover" loading="lazy" />}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

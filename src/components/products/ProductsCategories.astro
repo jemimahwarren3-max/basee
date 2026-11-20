@@ -1,0 +1,21 @@
+---
+interface Props { title?: string; categories: { name: string; image: string; href: string; count?: number }[] }
+const { title = 'Shop by Category', categories } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="products-categories">
+  <div class="container-site">
+    {title && <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>}
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {categories.map(c => (
+        <a href={c.href} class="group relative aspect-[3/4] overflow-hidden rounded-xl">
+          <img src={c.image} alt={c.name} class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent" />
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <h3 class="text-lg font-semibold text-white">{c.name}</h3>
+            {c.count !== undefined && <p class="text-sm text-white/60">{c.count} items</p>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

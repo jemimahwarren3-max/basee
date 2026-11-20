@@ -1,0 +1,18 @@
+---
+interface Props { title?: string; images: { src: string; alt?: string; caption?: string }[] }
+const { title, images } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="gallery-lookbook">
+  <div class="container-site">
+    {title && <h2 class="text-3xl sm:text-4xl font-light tracking-tight mb-16 text-center">{title}</h2>}
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+      {images.map((img, i) => (
+        <figure class:list={['group overflow-hidden', i % 5 === 0 ? 'col-span-2 row-span-2' : '']}>
+          <div class="overflow-hidden h-full">
+            <img src={img.src} alt={img.alt || ''} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

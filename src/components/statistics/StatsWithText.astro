@@ -1,0 +1,22 @@
+---
+interface Props { title: string; text: string; stats: { value: string; label: string }[] }
+const { title, text, stats } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="stats-with-text">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">{title}</h2>
+        <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{text}</p>
+      </div>
+      <div class="grid grid-cols-2 gap-8">
+        {stats.map((s) => (
+          <div>
+            <span class="text-4xl md:text-5xl font-light">{s.value}</span>
+            <p class="text-sm text-[var(--color-muted-fg,#888)] mt-2">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

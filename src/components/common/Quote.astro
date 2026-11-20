@@ -1,0 +1,12 @@
+---
+interface Props { text: string; author?: string; large?: boolean }
+const { text, author, large = false } = Astro.props;
+---
+<section class="py-20 md:py-28" data-component="quote">
+  <div class="container-site max-w-3xl text-center">
+    <blockquote>
+      <p class:list={['font-light leading-relaxed italic', large ? 'text-3xl md:text-4xl' : 'text-xl md:text-2xl']}>"{text}"</p>
+    </blockquote>
+    {author && <p class="mt-6 text-sm text-[var(--color-muted-fg,#999)] uppercase tracking-widest">— {author}</p>}
+  </div>
+</section>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  image: string;
+  title: string;
+  subtitle?: string;
+  cta?: { label: string; href: string };
+  reversed?: boolean;
+}
+
+const { image, title, subtitle, cta, reversed = false } = Astro.props;
+---
+
+<section class="min-h-screen flex flex-col lg:flex-row" data-component="hero-split">
+  <div class:list={[
+    'flex-1 flex items-center px-8 lg:px-16 xl:px-24 py-24 lg:py-0',
+    reversed ? 'lg:order-2' : 'lg:order-1',
+  ]}>
+    <div class="max-w-lg">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight">
+        <Fragment set:html={title} />
+      </h1>
+      {subtitle && (
+        <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">
+          {subtitle}
+        </p>
+      )}
+      {cta && (
+        <a
+          href={cta.href}
+          class="mt-8 inline-block text-sm uppercase tracking-[0.15em] border border-current px-8 py-4 hover:bg-[var(--color-fg,#111)] hover:text-[var(--color-bg,#fff)] transition-all duration-300"
+        >
+          {cta.label}
+        </a>
+      )}
+    </div>
+  </div>
+
+  <div class:list={[
+    'flex-1 min-h-[50vh] lg:min-h-0',
+    reversed ? 'lg:order-1' : 'lg:order-2',
+  ]}>
+    <img
+      src={image}
+      alt=""
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+  </div>
+</section>

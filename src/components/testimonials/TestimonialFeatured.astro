@@ -1,0 +1,21 @@
+---
+interface Props { quote: string; author: string; role?: string; image: string; logo?: string }
+const { quote, author, role, image, logo } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="testimonial-featured">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <img src={image} alt={author} class="w-full aspect-[4/5] object-cover" loading="lazy" />
+      <div>
+        {logo && <img src={logo} alt="" class="h-8 mb-8 opacity-50" loading="lazy" />}
+        <blockquote>
+          <p class="text-2xl md:text-3xl font-light leading-relaxed italic">"{quote}"</p>
+        </blockquote>
+        <div class="mt-8">
+          <p class="font-semibold text-lg">{author}</p>
+          {role && <p class="text-[var(--color-muted-fg,#888)] mt-1">{role}</p>}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

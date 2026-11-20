@@ -1,0 +1,31 @@
+---
+interface Props { title: string; items: { question: string; answer: string }[]; contactTitle?: string; email?: string; phone?: string }
+const { title, items, contactTitle = 'Still have questions?', email, phone } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="faq-with-contact">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <div>
+        <h2 class="text-3xl font-semibold tracking-tight">{title}</h2>
+        <div class="mt-8 p-6 bg-[var(--color-muted,#f7f7f7)] rounded-lg">
+          <h3 class="font-semibold">{contactTitle}</h3>
+          {email && <p class="mt-3 text-sm"><a href={`mailto:${email}`} class="hover:opacity-70 transition-opacity">{email}</a></p>}
+          {phone && <p class="mt-1 text-sm"><a href={`tel:${phone}`} class="hover:opacity-70 transition-opacity">{phone}</a></p>}
+        </div>
+      </div>
+      <div class="lg:col-span-2">
+        <div class="divide-y divide-[var(--color-border,#e5e5e5)]">
+          {items.map((item) => (
+            <details class="group py-6">
+              <summary class="flex items-center justify-between cursor-pointer list-none">
+                <h3 class="font-medium pr-8">{item.question}</h3>
+                <svg class="w-5 h-5 flex-none text-[var(--color-muted-fg,#999)] group-open:rotate-45 transition-transform" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 4v12M4 10h12"/></svg>
+              </summary>
+              <p class="mt-3 text-[var(--color-muted-fg,#666)] leading-relaxed">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

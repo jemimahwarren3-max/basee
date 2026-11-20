@@ -1,0 +1,25 @@
+---
+interface Props { title?: string; categories: { name: string; faqs: { question: string; answer: string }[] }[] }
+const { title = 'FAQ', categories } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="faq-categorized">
+  <div class="container-site max-w-4xl">
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>
+    {categories.map(cat => (
+      <div class="mb-12 last:mb-0">
+        <h3 class="text-sm font-medium uppercase tracking-widest text-[var(--color-accent,#6366F1)] mb-6">{cat.name}</h3>
+        <div class="divide-y divide-[var(--color-border,#e5e5e5)]">
+          {cat.faqs.map(f => (
+            <details class="group">
+              <summary class="py-5 flex items-center justify-between cursor-pointer list-none">
+                <span class="font-medium pr-8">{f.question}</span>
+                <svg class="w-4 h-4 flex-none group-open:rotate-45 transition-transform" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 4v12M4 10h12"/></svg>
+              </summary>
+              <p class="pb-5 text-[var(--color-muted-fg,#666)] leading-relaxed">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

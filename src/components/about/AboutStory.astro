@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  lead: string;
+  body: string;
+  image: string;
+  signature?: { name: string; role: string };
+}
+
+const { title, lead, body, image, signature } = Astro.props;
+---
+
+<section class="py-24 md:py-32" data-component="about-story">
+  <div class="container-site max-w-4xl">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-light leading-[1.15] tracking-tight text-center">{title}</h2>
+    <p class="mt-8 text-xl md:text-2xl text-[var(--color-muted-fg,#555)] leading-relaxed text-center font-light italic">{lead}</p>
+  </div>
+  <div class="mt-16 md:mt-24">
+    <img src={image} alt="" class="w-full h-[50vh] md:h-[60vh] object-cover" loading="lazy" />
+  </div>
+  <div class="container-site max-w-3xl mt-16">
+    <p class="text-lg text-[var(--color-muted-fg,#555)] leading-[1.9]">{body}</p>
+    {signature && (
+      <div class="mt-12 pt-8 border-t border-[var(--color-border,#e5e5e5)]">
+        <p class="font-semibold">{signature.name}</p>
+        <p class="text-sm text-[var(--color-muted-fg,#888)] mt-1">{signature.role}</p>
+      </div>
+    )}
+  </div>
+</section>

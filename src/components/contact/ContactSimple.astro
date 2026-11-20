@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  whatsapp?: string;
+  hours?: string;
+}
+
+const { title, subtitle, email, phone, address, whatsapp, hours } = Astro.props;
+---
+
+<section class="py-24 md:py-32" data-component="contact-simple">
+  <div class="container-site max-w-2xl text-center">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight">{title}</h2>
+    {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)]">{subtitle}</p>}
+
+    <div class="mt-12 space-y-6">
+      {email && <p><a href={`mailto:${email}`} class="text-lg hover:opacity-70 transition-opacity">{email}</a></p>}
+      {phone && <p><a href={`tel:${phone}`} class="text-lg hover:opacity-70 transition-opacity">{phone}</a></p>}
+      {address && <p class="text-lg text-[var(--color-muted-fg,#666)]">{address}</p>}
+      {hours && <p class="text-sm text-[var(--color-muted-fg,#888)]">{hours}</p>}
+      {whatsapp && (
+        <a
+          href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-sm font-medium px-6 py-3 bg-[#25D366] text-white rounded-lg hover:opacity-90 transition-opacity"
+        >
+          WhatsApp us
+        </a>
+      )}
+    </div>
+  </div>
+</section>

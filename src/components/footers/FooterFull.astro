@@ -1,0 +1,28 @@
+---
+interface Props { brand: string; description?: string; columns: { title: string; links: { label: string; href: string }[] }[]; socials?: { platform: string; url: string }[]; copyright?: string }
+const { brand, description, columns, socials, copyright } = Astro.props;
+---
+<footer class="bg-[var(--color-fg,#111)] text-white pt-20 pb-8" data-component="footer-full">
+  <div class="container-site">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+      <div class="lg:col-span-2">
+        <a href="/" class="text-xl font-bold">{brand}</a>
+        {description && <p class="mt-4 text-sm text-white/50 max-w-sm leading-relaxed">{description}</p>}
+        {socials && (
+          <div class="mt-6 flex gap-4">
+            {socials.map(s => <a href={s.url} class="text-sm text-white/40 hover:text-white transition-colors" target="_blank" rel="noopener">{s.platform}</a>)}
+          </div>
+        )}
+      </div>
+      {columns.map(col => (
+        <div>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">{col.title}</h4>
+          <ul class="space-y-2">
+            {col.links.map(l => <li><a href={l.href} class="text-sm text-white/40 hover:text-white transition-colors">{l.label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="border-t border-white/10 pt-8 text-xs text-white/30">{copyright || `© ${new Date().getFullYear()} ${brand}. All rights reserved.`}</div>
+  </div>
+</footer>

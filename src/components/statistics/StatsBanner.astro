@@ -1,0 +1,14 @@
+---
+interface Props { stats: { value: string; label: string }[]; dark?: boolean }
+const { stats, dark = false } = Astro.props;
+---
+<section class:list={['py-12 md:py-16', dark ? 'bg-[var(--color-fg,#111)] text-white' : 'bg-[var(--color-muted,#f7f7f7)]']} data-component="stats-banner">
+  <div class="container-site flex flex-wrap items-center justify-center md:justify-between gap-8">
+    {stats.map((s) => (
+      <div class="text-center px-4">
+        <span class="text-3xl md:text-4xl font-light">{s.value}</span>
+        <p class:list={['text-xs uppercase tracking-widest mt-1', dark ? 'text-white/50' : 'text-[var(--color-muted-fg,#999)]']}>{s.label}</p>
+      </div>
+    ))}
+  </div>
+</section>

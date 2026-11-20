@@ -1,0 +1,10 @@
+---
+interface Props { text: string; cta: { label: string; href: string } }
+const { text, cta } = Astro.props;
+---
+<section class="py-16 border-y border-[var(--color-border,#e5e5e5)]" data-component="cta-minimal">
+  <div class="container-site flex flex-col sm:flex-row items-center justify-between gap-6">
+    <p class="text-xl font-semibold">{text}</p>
+    <a href={cta.href} class="flex-none px-8 py-3 bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)] font-medium rounded-md">{cta.label}</a>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+---
+interface Props { items: string[]; speed?: 'slow' | 'normal' | 'fast'; separator?: string }
+const { items, speed = 'normal', separator = '·' } = Astro.props;
+const dur = { slow: '60s', normal: '40s', fast: '20s' };
+---
+<section class="py-6 overflow-hidden border-y border-[var(--color-border,#e5e5e5)]" data-component="marquee">
+  <div class="flex whitespace-nowrap" style={`animation: marquee ${dur[speed]} linear infinite`}>
+    {[...items, ...items, ...items].map(item => (
+      <span class="text-lg md:text-2xl font-bold tracking-tight mx-4">{item} <span class="text-[var(--color-muted-fg,#ccc)] mx-4">{separator}</span></span>
+    ))}
+  </div>
+</section>
+<style>
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-33.33%); } }
+</style>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  services: { icon: string; title: string; description: string }[];
+}
+
+const { title, subtitle, services } = Astro.props;
+---
+
+<section class="py-24 md:py-32" data-component="services-icon-grid">
+  <div class="container-site">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">{title}</h2>
+      {subtitle && <p class="mt-4 text-[var(--color-muted-fg,#666)] text-lg">{subtitle}</p>}
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {services.map((s) => (
+        <div class="text-center p-6">
+          <div class="text-4xl mb-4">{s.icon}</div>
+          <h3 class="font-semibold mb-2">{s.title}</h3>
+          <p class="text-sm text-[var(--color-muted-fg,#666)] leading-relaxed">{s.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

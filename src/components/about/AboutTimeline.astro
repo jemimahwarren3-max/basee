@@ -1,0 +1,20 @@
+---
+interface Props { title?: string; events: { year: string; title: string; description: string }[] }
+const { title = 'Our Journey', events } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="about-timeline">
+  <div class="container-site max-w-3xl">
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>
+    <div class="relative">
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-[var(--color-border,#e5e5e5)]" />
+      {events.map((e, i) => (
+        <div class:list={['relative pl-12 md:pl-0 pb-12 last:pb-0', i % 2 === 0 ? 'md:pr-[calc(50%+2rem)] md:text-right' : 'md:pl-[calc(50%+2rem)]']}>
+          <div class="absolute left-2.5 md:left-1/2 md:-translate-x-1/2 top-1 w-3 h-3 rounded-full bg-[var(--color-accent,#6366F1)] border-2 border-[var(--color-bg,#fff)]" />
+          <span class="text-sm font-mono text-[var(--color-accent,#6366F1)]">{e.year}</span>
+          <h3 class="text-lg font-semibold mt-1">{e.title}</h3>
+          <p class="text-[var(--color-muted-fg,#666)] mt-1">{e.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

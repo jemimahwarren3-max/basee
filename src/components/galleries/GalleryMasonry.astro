@@ -1,0 +1,37 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  images: { src: string; alt?: string; tall?: boolean }[];
+}
+
+const { title, subtitle, images } = Astro.props;
+---
+
+<section class="py-24 md:py-32" data-component="gallery-masonry">
+  <div class="container-site">
+    {title && (
+      <div class="mb-16 max-w-2xl">
+        <h2 class="text-3xl sm:text-4xl font-light tracking-tight">{title}</h2>
+        {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)]">{subtitle}</p>}
+      </div>
+    )}
+    <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+      {images.map((img) => (
+        <figure class="break-inside-avoid group overflow-hidden">
+          <div class="overflow-hidden">
+            <img
+              src={img.src}
+              alt={img.alt || ''}
+              class:list={[
+                'w-full object-cover group-hover:scale-105 transition-transform duration-700',
+                img.tall ? 'aspect-[2/3]' : 'aspect-[4/3]',
+              ]}
+              loading="lazy"
+            />
+          </div>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

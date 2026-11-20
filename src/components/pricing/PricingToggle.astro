@@ -1,0 +1,38 @@
+---
+interface Props { title?: string; plans: { name: string; monthlyPrice: string; yearlyPrice: string; features: string[]; cta: { label: string; href: string }; featured?: boolean }[] }
+const { title = 'Simple Pricing', plans } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="pricing-toggle">
+  <div class="container-site">
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center">{title}</h2>
+    <div class="flex items-center justify-center gap-3 mt-6 mb-16">
+      <span class="text-sm" data-pricing-label="monthly">Monthly</span>
+      <button class="relative w-12 h-6 bg-[var(--color-fg,#111)] rounded-full" data-pricing-toggle>
+        <span class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform" data-pricing-dot />
+      </button>
+      <span class="text-sm text-[var(--color-muted-fg,#999)]" data-pricing-label="yearly">Yearly</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {plans.map(p => (
+        <div class:list={['border rounded-xl p-8', p.featured ? 'border-[var(--color-accent,#6366F1)] ring-1 ring-[var(--color-accent,#6366F1)]' : 'border-[var(--color-border,#e5e5e5)]']}>
+          <h3 class="text-lg font-semibold">{p.name}</h3>
+          <p class="mt-4"><span class="text-4xl font-bold" data-monthly-price>{p.monthlyPrice}</span><span class="text-4xl font-bold hidden" data-yearly-price>{p.yearlyPrice}</span><span class="text-sm text-[var(--color-muted-fg,#999)]"> / mo</span></p>
+          <ul class="mt-8 space-y-2">
+            {p.features.map(f => <li class="flex items-center gap-2 text-sm"><span class="text-[var(--color-accent,#6366F1)]">✓</span> {f}</li>)}
+          </ul>
+          <a href={p.cta.href} class="mt-8 block text-center py-3 bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)] rounded-md font-medium text-sm">{p.cta.label}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<script>
+  let yearly = false;
+  document.querySelector('[data-pricing-toggle]')?.addEventListener('click', () => {
+    yearly = !yearly;
+    const dot = document.querySelector('[data-pricing-dot]') as HTMLElement;
+    if (dot) dot.style.transform = yearly ? 'translateX(1.5rem)' : '';
+    document.querySelectorAll('[data-monthly-price]').forEach(e => e.classList.toggle('hidden', yearly));
+    document.querySelectorAll('[data-yearly-price]').forEach(e => e.classList.toggle('hidden', !yearly));
+  });
+</script>

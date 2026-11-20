@@ -1,0 +1,18 @@
+---
+interface Props { images: { src: string; alt?: string }[] }
+const { images } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="gallery-grid-irregular">
+  <div class="container-site">
+    <div class="grid grid-cols-12 gap-4">
+      {images.map((img, i) => {
+        const spans = ['col-span-12 md:col-span-8', 'col-span-12 md:col-span-4', 'col-span-6 md:col-span-4', 'col-span-6 md:col-span-4', 'col-span-12 md:col-span-4', 'col-span-12 md:col-span-6', 'col-span-12 md:col-span-6'];
+        return (
+          <div class:list={[spans[i % spans.length], 'overflow-hidden group']}>
+            <img src={img.src} alt={img.alt || ''} class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

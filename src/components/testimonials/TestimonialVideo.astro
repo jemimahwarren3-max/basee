@@ -1,0 +1,19 @@
+---
+interface Props { title?: string; videoUrl: string; quote: string; name: string; role?: string; poster?: string }
+const { title, videoUrl, quote, name, role, poster } = Astro.props;
+---
+<section class="py-24 md:py-32" data-component="testimonial-video">
+  <div class="container-site grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div class="relative aspect-video rounded-xl overflow-hidden bg-black">
+      <video src={videoUrl} poster={poster} controls class="w-full h-full object-cover" preload="none" />
+    </div>
+    <div>
+      {title && <span class="text-xs font-medium uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-4 block">{title}</span>}
+      <blockquote class="text-2xl sm:text-3xl font-light leading-relaxed italic">"{quote}"</blockquote>
+      <div class="mt-8">
+        <p class="font-semibold">{name}</p>
+        {role && <p class="text-sm text-[var(--color-muted-fg,#999)]">{role}</p>}
+      </div>
+    </div>
+  </div>
+</section>

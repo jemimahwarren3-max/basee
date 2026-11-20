@@ -1,0 +1,36 @@
+---
+interface Props { title?: string; date: string; subtitle?: string; cta?: { label: string; href: string } }
+const { title = 'Coming Soon', date, subtitle, cta } = Astro.props;
+---
+<section class="py-24 md:py-32 bg-[var(--color-fg,#111)]" data-component="countdown">
+  <div class="container-site text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">{title}</h2>
+    {subtitle && <p class="mt-4 text-white/60">{subtitle}</p>}
+    <div class="mt-10 flex justify-center gap-6 md:gap-10" data-countdown={date}>
+      {['Days', 'Hours', 'Minutes', 'Seconds'].map(label => (
+        <div>
+          <span class="block text-4xl md:text-6xl font-bold text-white tabular-nums" data-countdown-unit={label.toLowerCase()}>00</span>
+          <span class="text-xs text-white/40 uppercase tracking-wider mt-2 block">{label}</span>
+        </div>
+      ))}
+    </div>
+    {cta && <a href={cta.href} class="mt-10 inline-flex px-8 py-3 bg-white text-[var(--color-fg,#111)] font-medium rounded-md">{cta.label}</a>}
+  </div>
+</section>
+<script>
+  const el = document.querySelector('[data-countdown]');
+  if (el) {
+    const target = new Date(el.getAttribute('data-countdown') || '').getTime();
+    function update() {
+      const diff = Math.max(0, target - Date.now());
+      const d = Math.floor(diff / 86400000); const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000); const s = Math.floor((diff % 60000) / 1000);
+      const u = el!.querySelectorAll.bind(el!);
+      u('[data-countdown-unit="days"]').forEach((e: Element) => e.textContent = String(d).padStart(2,'0'));
+      u('[data-countdown-unit="hours"]').forEach((e: Element) => e.textContent = String(h).padStart(2,'0'));
+      u('[data-countdown-unit="minutes"]').forEach((e: Element) => e.textContent = String(m).padStart(2,'0'));
+      u('[data-countdown-unit="seconds"]').forEach((e: Element) => e.textContent = String(s).padStart(2,'0'));
+    }
+    update(); setInterval(update, 1000);
+  }
+</script>
