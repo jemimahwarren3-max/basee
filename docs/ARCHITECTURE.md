@@ -125,6 +125,20 @@ contents are gitignored; only `.gitkeep` is tracked.
 - No visual-regression (pixel-diff) testing — deliberately not added, see docs/TESTING.md for
   why.
 
+## Built (Phase 9): documentation
+
+- [docs/WINDOWS_SETUP.md](WINDOWS_SETUP.md), [docs/ENVIRONMENT.md](ENVIRONMENT.md),
+  [docs/ANIMATION.md](ANIMATION.md), [docs/DEPLOYMENT.md](DEPLOYMENT.md) — the four guides the
+  master spec asked for that didn't already exist from earlier phases (asset sourcing, FFmpeg,
+  and testing guides were written in Phases 4/5/8 respectively).
+- [CONTRIBUTING.md](../CONTRIBUTING.md) — how to extend the engine itself (new component,
+  template, or skill) without drifting from `docs/ARCHITECTURE.md`.
+- `README.md` rewritten as the actual entry point: quickstart, `create-project` usage, every
+  `npm run` command, and a link to every doc below instead of three bare commands.
+- Every claim in the new docs was checked against the actual code before being written (e.g.
+  `docs/ENVIRONMENT.md`'s claim that `UNSPLASH_SECRET_KEY` isn't read anywhere was verified by
+  grepping for it, not assumed).
+
 ## Reserved (later phases, currently empty — `.gitkeep` only)
 
 | Path | Will hold | Phase |

@@ -6,8 +6,10 @@ it, and reports what it actually did.
 
 ## Current status
 
-Phase 1-8 of 10. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what's built
-versus reserved. Don't claim a later-phase feature works — check that file first.
+Phase 1-9 of 10. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for exactly what's built
+versus reserved — only Phase 10 (final checks + GitHub publish) is left, and publishing needs
+your explicit go-ahead on repo name/visibility first. Don't claim a later-phase feature works —
+check that file first.
 
 ## How the skills fit together
 
