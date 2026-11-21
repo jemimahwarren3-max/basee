@@ -1,0 +1,65 @@
+---
+import { getFamily } from '../design-families';
+import { googleFontsHref, themeCss } from '../design-families/theme';
+
+interface Props {
+  title: string;
+  description?: string;
+  family: string;
+}
+const { title, description = '', family: familyId } = Astro.props;
+const family = getFamily(familyId);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={googleFontsHref(family)} />
+    <style is:inline set:html={themeCss(family)} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+  <script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll<HTMLElement>('body section, [data-reveal]').forEach((el) => {
+        gsap.from(el, {
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        });
+      });
+    }
+  </script>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+
+  body {
+    font-family: var(--font-body);
+    font-weight: var(--body-weight);
+    line-height: var(--body-leading);
+    color: var(--color-fg);
+    background: var(--color-bg);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--heading-weight);
+    letter-spacing: var(--heading-tracking);
+    line-height: 1.15;
+  }
+</style>
