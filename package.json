@@ -15,7 +15,8 @@
     "test": "playwright test",
     "check-tools": "node scripts/check-tools.mjs",
     "registry": "node scripts/build-registry.mjs",
-    "extract-frames": "node scripts/extract-frames.mjs"
+    "extract-frames": "node scripts/extract-frames.mjs",
+    "optimise-images": "node scripts/optimise-images.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.9",
@@ -37,6 +38,7 @@
     "ffmpeg-static": "^5.3.0",
     "ffprobe-static": "^3.1.0",
     "oxlint": "^1.1.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3"
   }

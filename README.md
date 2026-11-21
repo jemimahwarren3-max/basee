@@ -33,6 +33,8 @@ This writes `public/frames/frame_0001.webp`, `frame_0002.webp`, and so on, for `
 | `npm run check` | Type check, build and lint |
 | `npm run check-tools` | Verify FFmpeg binaries |
 | `npm run extract-frames` | Video to WebP frame sequence |
+| `npm run optimise-images` | Photos to responsive WebP sizes |
+| `npm test` | Browser smoke tests for every page |
 
 ## Design families
 
