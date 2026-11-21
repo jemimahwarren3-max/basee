@@ -1,0 +1,119 @@
+---
+import Site from '../layouts/Site.astro';
+import NavSplit from '../components/navigation/NavSplit.astro';
+import HeroSplit from '../components/heroes/HeroSplit.astro';
+import AboutMission from '../components/about/AboutMission.astro';
+import ServicesIconGrid from '../components/services/ServicesIconGrid.astro';
+import GalleryGridIrregular from '../components/galleries/GalleryGridIrregular.astro';
+import TestimonialQuote from '../components/testimonials/TestimonialQuote.astro';
+import CtaSimple from '../components/cta/CtaSimple.astro';
+import ContactForm from '../components/contact/ContactForm.astro';
+import FooterFull from '../components/footers/FooterFull.astro';
+
+// Stand-in frames until the client's photography is supplied. Replace with real image URLs or /public paths.
+const frame = (label: string, w = 1200, h = 1500) =>
+  `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect width="100%" height="100%" fill="#d8cdc4"/><text x="50%" y="50%" font-family="sans-serif" font-size="${Math.round(w / 24)}" fill="#6b5b53" text-anchor="middle" dominant-baseline="middle">${label}</text></svg>`,
+  )}`;
+---
+<Site title="[Brand name] — Art Direction & Fashion" description="[One-line description of the brand]" family="fashion-commerce">
+
+  <NavSplit
+    brand="[Brand]"
+    leftLinks={[
+      { label: 'Work', href: '#work' },
+      { label: 'About', href: '#about' },
+      { label: 'Services', href: '#services' },
+    ]}
+    rightLinks={[
+      { label: 'Journal', href: '#journal' },
+      { label: 'Contact', href: '#contact' },
+    ]}
+    cta={{ label: 'Enquire', href: '#contact' }}
+  />
+
+  <HeroSplit
+    image={frame('Hero campaign image', 1200, 1500)}
+    title="Vision.<br />Instinct.<br />Impact."
+    subtitle="[One-line positioning statement for the brand.]"
+    cta={{ label: 'View the work', href: '#work' }}
+  />
+
+  <div id="about">
+    <AboutMission
+      mission="[Mission statement in the client's own words.]"
+      vision="[Vision statement in the client's own words.]"
+      image={frame('About image', 800, 1000)}
+    />
+  </div>
+
+  <div id="services">
+    <ServicesIconGrid
+      title="Expertise"
+      subtitle="[What the studio offers.]"
+      services={[
+        { icon: '◆', title: '[Service one]', description: '[Describe this service.]' },
+        { icon: '◆', title: '[Service two]', description: '[Describe this service.]' },
+        { icon: '◆', title: '[Service three]', description: '[Describe this service.]' },
+        { icon: '◆', title: '[Service four]', description: '[Describe this service.]' },
+      ]}
+    />
+  </div>
+
+  <div id="work">
+    <GalleryGridIrregular
+      images={[
+        { src: frame('Campaign 01', 1200, 900), alt: '[Campaign 01]' },
+        { src: frame('Campaign 02', 800, 800), alt: '[Campaign 02]' },
+        { src: frame('Campaign 03', 800, 800), alt: '[Campaign 03]' },
+        { src: frame('Campaign 04', 800, 800), alt: '[Campaign 04]' },
+        { src: frame('Campaign 05', 1200, 900), alt: '[Campaign 05]' },
+        { src: frame('Campaign 06', 1200, 900), alt: '[Campaign 06]' },
+        { src: frame('Campaign 07', 1200, 900), alt: '[Campaign 07]' },
+      ]}
+    />
+  </div>
+
+  <TestimonialQuote
+    quote="[Client quote.]"
+    author="[Name]"
+    role="[Role or company]"
+    large={true}
+  />
+
+  <CtaSimple
+    title="Let's create something extraordinary."
+    subtitle="[Short invitation to get in touch.]"
+    cta={{ label: 'Start a project', href: '#contact' }}
+  />
+
+  <div id="contact">
+    <ContactForm
+      title="Get in touch"
+      subtitle="[Where enquiries go and what happens next.]"
+      fields={['name', 'email', 'company', 'message']}
+      submitLabel="Send enquiry"
+    />
+  </div>
+
+  <FooterFull
+    brand="[Brand]"
+    description="[Short line about the brand.]"
+    columns={[
+      { title: 'Work', links: [
+        { label: 'Campaigns', href: '#work' },
+        { label: 'Services', href: '#services' },
+      ]},
+      { title: 'Studio', links: [
+        { label: 'About', href: '#about' },
+        { label: 'Journal', href: '#journal' },
+      ]},
+      { title: 'Contact', links: [
+        { label: '[Email]', href: '#' },
+        { label: '[Phone]', href: '#' },
+      ]},
+    ]}
+    copyright="© [Brand]. All rights reserved."
+  />
+
+</Site>
