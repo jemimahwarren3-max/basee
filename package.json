@@ -13,6 +13,7 @@
     "check": "tsc --noEmit && npm run build && npm run lint",
     "lint": "oxlint .",
     "check-tools": "node scripts/check-tools.mjs",
+    "registry": "node scripts/build-registry.mjs",
     "extract-frames": "node scripts/extract-frames.mjs"
   },
   "dependencies": {

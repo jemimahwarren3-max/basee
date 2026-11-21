@@ -41,7 +41,7 @@ export const darkTechnology: DesignFamily = {
   layout: {
     grid: 'symmetric',
     maxWidth: '1280px',
-    preferredHero: ['hero-gradient', 'hero-centered-dark', 'hero-product'],
+    preferredHero: ['hero-gradient', 'hero-gradient', 'hero-product'],
     preferredSections: ['features-bento', 'stats-glow', 'pricing-dark'],
     avoidSections: ['gallery-masonry', 'testimonial-quote'],
   },

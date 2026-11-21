@@ -34,7 +34,7 @@ export const creativePhotography: DesignFamily = {
   layout: {
     grid: 'masonry',
     maxWidth: '1600px',
-    preferredHero: ['hero-fullscreen-image', 'hero-cinematic', 'hero-parallax'],
+    preferredHero: ['hero-fullscreen', 'hero-cinematic', 'hero-parallax'],
     preferredSections: ['gallery-masonry', 'gallery-fullwidth', 'about-minimal'],
     avoidSections: ['pricing-cards', 'services-grid', 'stats-counter', 'faq-accordion'],
   },

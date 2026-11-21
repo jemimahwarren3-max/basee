@@ -34,7 +34,7 @@ export const minimalistPortfolio: DesignFamily = {
   layout: {
     grid: 'masonry',
     maxWidth: '1400px',
-    preferredHero: ['hero-minimal', 'hero-typographic', 'hero-fullscreen-image'],
+    preferredHero: ['hero-minimal', 'hero-typographic', 'hero-fullscreen'],
     preferredSections: ['gallery-masonry', 'gallery-grid', 'about-minimal', 'contact-minimal'],
     avoidSections: ['pricing-cards', 'testimonial-cards', 'stats-counter', 'faq-accordion'],
   },

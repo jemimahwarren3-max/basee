@@ -35,7 +35,7 @@ export const contemporaryAfrican: DesignFamily = {
   layout: {
     grid: 'asymmetric',
     maxWidth: '1400px',
-    preferredHero: ['hero-fullscreen-image', 'hero-asymmetric', 'hero-editorial'],
+    preferredHero: ['hero-fullscreen', 'hero-asymmetric', 'hero-editorial'],
     preferredSections: ['gallery-editorial', 'about-story', 'testimonial-quote', 'cta-image'],
     avoidSections: ['pricing-cards', 'features-bento'],
   },

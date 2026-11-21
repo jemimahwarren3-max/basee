@@ -35,7 +35,7 @@ export const restaurantEditorial: DesignFamily = {
   layout: {
     grid: 'editorial',
     maxWidth: '1300px',
-    preferredHero: ['hero-fullscreen-image', 'hero-split', 'hero-editorial'],
+    preferredHero: ['hero-fullscreen', 'hero-split', 'hero-editorial'],
     preferredSections: ['gallery-editorial', 'about-story', 'contact-simple', 'cta-image'],
     avoidSections: ['pricing-cards', 'features-bento', 'stats-counter'],
   },

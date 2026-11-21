@@ -41,7 +41,7 @@ export const warmHospitality: DesignFamily = {
   layout: {
     grid: 'editorial',
     maxWidth: '1440px',
-    preferredHero: ['hero-cinematic', 'hero-parallax', 'hero-fullscreen-image'],
+    preferredHero: ['hero-cinematic', 'hero-parallax', 'hero-fullscreen'],
     preferredSections: ['gallery-editorial', 'about-story', 'testimonial-quote', 'cta-image'],
     avoidSections: ['pricing-cards', 'features-bento', 'stats-counter'],
   },

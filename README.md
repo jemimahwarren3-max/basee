@@ -1,6 +1,6 @@
 # Yonah Website Engine
 
-Premium website base: 159 Astro components, 20 design families, and bundled FFmpeg for video.
+Premium website base: 162 Astro components, 20 design families, and bundled FFmpeg for video.
 
 ## New client project
 

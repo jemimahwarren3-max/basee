@@ -34,7 +34,7 @@ export const premiumAutomotive: DesignFamily = {
   layout: {
     grid: 'fullbleed',
     maxWidth: '1600px',
-    preferredHero: ['hero-cinematic', 'hero-fullscreen-image', 'hero-parallax'],
+    preferredHero: ['hero-cinematic', 'hero-fullscreen', 'hero-parallax'],
     preferredSections: ['gallery-fullwidth', 'stats-counter', 'about-bold', 'cta-dark'],
     avoidSections: ['faq-accordion', 'pricing-cards', 'testimonial-cards'],
   },

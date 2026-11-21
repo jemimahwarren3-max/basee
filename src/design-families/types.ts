@@ -78,10 +78,7 @@ export interface ComponentMeta {
   id: string;
   name: string;
   category: string;
-  description: string;
-  families: string[];
-  industries: string[];
-  layout: string;
+  path: string;
+  props: string[];
   hasAnimation: boolean;
-  props: Record<string, string>;
 }

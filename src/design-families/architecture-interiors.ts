@@ -34,7 +34,7 @@ export const architectureInteriors: DesignFamily = {
   layout: {
     grid: 'asymmetric',
     maxWidth: '1440px',
-    preferredHero: ['hero-fullscreen-image', 'hero-split', 'hero-minimal'],
+    preferredHero: ['hero-fullscreen', 'hero-split', 'hero-minimal'],
     preferredSections: ['gallery-grid', 'about-editorial', 'services-list'],
     avoidSections: ['testimonial-cards', 'pricing-cards', 'stats-counter'],
   },

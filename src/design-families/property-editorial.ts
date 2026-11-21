@@ -40,7 +40,7 @@ export const propertyEditorial: DesignFamily = {
   layout: {
     grid: 'asymmetric',
     maxWidth: '1440px',
-    preferredHero: ['hero-fullscreen-image', 'hero-split', 'hero-parallax'],
+    preferredHero: ['hero-fullscreen', 'hero-split', 'hero-parallax'],
     preferredSections: ['gallery-grid', 'about-columns', 'contact-map', 'stats-minimal'],
     avoidSections: ['pricing-cards', 'testimonial-cards'],
   },

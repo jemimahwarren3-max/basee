@@ -34,7 +34,7 @@ export const industrialManufacturing: DesignFamily = {
   layout: {
     grid: 'symmetric',
     maxWidth: '1280px',
-    preferredHero: ['hero-split-clean', 'hero-fullscreen-image', 'hero-text-centered'],
+    preferredHero: ['hero-split-clean', 'hero-fullscreen', 'hero-text-centered'],
     preferredSections: ['services-grid', 'stats-counter', 'about-columns', 'gallery-grid', 'contact-form'],
     avoidSections: ['gallery-masonry', 'testimonial-quote', 'hero-typographic'],
   },

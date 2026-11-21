@@ -40,7 +40,7 @@ export const fashionCommerce: DesignFamily = {
   layout: {
     grid: 'editorial',
     maxWidth: '1400px',
-    preferredHero: ['hero-split', 'hero-editorial', 'hero-fullscreen-image'],
+    preferredHero: ['hero-split', 'hero-editorial', 'hero-fullscreen'],
     preferredSections: ['products-editorial', 'gallery-lookbook', 'about-brand'],
     avoidSections: ['stats-counter', 'pricing-cards', 'faq-accordion'],
   },
