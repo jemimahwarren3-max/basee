@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "check": "tsc --noEmit && npm run build && npm run lint",
     "lint": "oxlint .",
+    "test": "playwright test",
     "check-tools": "node scripts/check-tools.mjs",
     "registry": "node scripts/build-registry.mjs",
     "extract-frames": "node scripts/extract-frames.mjs"
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@playwright/test": "^1.52.0",
     "@tailwindcss/vite": "^4.1.8",
+    "@types/node": "^22.20.5",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
     "ffmpeg-static": "^5.3.0",
