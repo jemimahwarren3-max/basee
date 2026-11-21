@@ -20,21 +20,15 @@ import BackToTop from '../components/interactive/BackToTop.astro';
 import CookieBanner from '../components/interactive/CookieBanner.astro';
 import SmoothScroll from '../components/effects/SmoothScroll.astro';
 import TextMask from '../components/effects/TextMask.astro';
+import { site } from '../site.config';
 ---
-<Site title="Serenité Spa — Luxury Wellness & Beauty" description="Escape into tranquility. Bespoke spa treatments, therapeutic massage, and holistic wellness in the heart of the city." family="beauty-cosmetics">
+<Site title={site.title} description={site.description} family={site.family}>
 
-  <AnnouncementBar text="New guest offer: 20% off your first treatment — Book today" href="#booking" />
+  <AnnouncementBar text={site.announcement.text} href={site.announcement.href} />
 
   <NavCentered
-    brand="Serenité"
-    links={[
-      { label: 'Treatments', href: '#treatments' },
-      { label: 'Experience', href: '#experience' },
-      { label: 'Gallery', href: '#gallery' },
-      { label: 'Pricing', href: '#pricing' },
-      { label: 'Reviews', href: '#reviews' },
-      { label: 'FAQ', href: '#faq' },
-    ]}
+    brand={site.name}
+    links={site.nav}
     cta={{ label: 'Book Now', href: '#booking' }}
   />
 
@@ -166,7 +160,7 @@ import TextMask from '../components/effects/TextMask.astro';
     <BookingEnquiry
       title="Book your treatment"
       subtitle="Reserve your time of stillness."
-      whatsapp="[WhatsApp number]"
+      whatsapp={site.contact.whatsapp}
       fields={[
         { name: 'name', label: 'Full name', type: 'text', required: true },
         { name: 'email', label: 'Email', type: 'email', required: true },
@@ -181,13 +175,13 @@ import TextMask from '../components/effects/TextMask.astro';
   <ContactWhatsApp
     title="Prefer to chat?"
     subtitle="Message us on WhatsApp for quick bookings and questions."
-    whatsapp="[WhatsApp number]"
+    whatsapp={site.contact.whatsapp}
     message="Hello, I'd like to book a treatment."
   />
 
   <FooterFull
-    brand="Serenité Spa"
-    description="A luxury wellness destination. Bespoke treatments and an unwavering commitment to your wellbeing."
+    brand={site.name}
+    description={site.description}
     columns={[
       { title: 'Treatments', links: [
         { label: 'Massage', href: '#treatments' },
@@ -202,12 +196,14 @@ import TextMask from '../components/effects/TextMask.astro';
         { label: 'Book', href: '#booking' },
       ]},
       { title: 'Contact', links: [
-        { label: '[Address]', href: '#' },
-        { label: '[Email]', href: '#' },
-        { label: '[Phone]', href: '#' },
+        { label: site.contact.address, href: '#' },
+        { label: site.contact.hours, href: '#' },
+        { label: site.contact.email, href: `mailto:${site.contact.email}` },
+        { label: site.contact.phone, href: `tel:${site.contact.phone}` },
       ]},
     ]}
-    copyright="© Serenité Spa. All rights reserved."
+    socials={site.social}
+    copyright={site.copyright}
   />
 
   <BackToTop />
