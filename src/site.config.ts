@@ -44,6 +44,13 @@ export const site = {
     booking: '', // e.g. a Cal.com booking link or your own endpoint
   },
 
+  // Snipcart commerce. Leave snipcartApiKey empty to disable all commerce
+  // components. Default (sandbox) API key only works on localhost.
+  commerce: {
+    snipcartApiKey: '', // Snipcart dashboard → API Keys → Public key
+    currency: 'USD',
+  },
+
   // Footer copyright. {year} is replaced at build.
   copyright: '© {year} {name}. All rights reserved.',
 };

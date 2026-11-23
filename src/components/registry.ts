@@ -171,6 +171,22 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: true,
   },
   {
+    id: 'buy-button',
+    name: 'BuyButton',
+    category: 'commerce',
+    path: 'components/commerce/BuyButton.astro',
+    props: ['id', 'name', 'price', 'url', 'image', 'description', 'class', 'label'],
+    hasAnimation: true,
+  },
+  {
+    id: 'cart-link',
+    name: 'CartLink',
+    category: 'commerce',
+    path: 'components/commerce/CartLink.astro',
+    props: ['class'],
+    hasAnimation: false,
+  },
+  {
     id: 'chart-card',
     name: 'ChartCard',
     category: 'admin',
@@ -1208,6 +1224,14 @@ export const COMPONENTS: ComponentMeta[] = [
     category: 'effects',
     path: 'components/effects/SmoothScroll.astro',
     props: ['duration', 'smoothWheel', 'touchMultiplier'],
+    hasAnimation: true,
+  },
+  {
+    id: 'snipcart-script',
+    name: 'SnipcartScript',
+    category: 'commerce',
+    path: 'components/commerce/SnipcartScript.astro',
+    props: [],
     hasAnimation: true,
   },
   {

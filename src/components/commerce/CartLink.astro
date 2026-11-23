@@ -1,0 +1,20 @@
+---
+// Cart icon for the nav. Shows the live item count when Snipcart has loaded.
+// Click opens the Snipcart drawer.
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+<a
+  href="#"
+  class:list={['snipcart-checkout inline-flex items-center gap-2 text-sm', className]}
+  aria-label="Cart"
+>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <path d="M6 2l1.5 4M19 7l-2 10a2 2 0 0 1-2 1.6H9a2 2 0 0 1-2-1.6L5 7h14z" />
+    <circle cx="9" cy="21" r="1" />
+    <circle cx="16" cy="21" r="1" />
+  </svg>
+  <span class="snipcart-items-count tabular-nums">0</span>
+</a>

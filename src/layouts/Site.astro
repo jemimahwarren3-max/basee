@@ -2,6 +2,7 @@
 import { getFamily } from '../design-families';
 import { googleFontsHref, themeCss } from '../design-families/theme';
 import { site } from '../site.config';
+import SnipcartScript from '../components/commerce/SnipcartScript.astro';
 
 interface Props {
   title: string;
@@ -66,6 +67,7 @@ const ogImage = new URL(image ?? '/og.png', Astro.site ?? 'https://example.com')
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href={googleFontsHref(family)} />
     <style is:inline set:html={themeCss(family)} />
+    <SnipcartScript />
   </head>
   <body>
     <slot />

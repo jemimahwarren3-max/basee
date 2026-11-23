@@ -1,0 +1,44 @@
+---
+// A Snipcart buy button. Snipcart reads the data-item-* attributes when
+// clicked and adds the product to the cart.
+//
+// `url` must point to a page that contains the same product markup so
+// Snipcart can crawl it to verify the price (the "product validation" step).
+// The simplest pattern: give every product its own page at /shop/[slug]
+// and pass that URL as `url`.
+interface Props {
+  id: string;
+  name: string;
+  price: number;
+  url: string;
+  image?: string;
+  description?: string;
+  class?: string;
+  label?: string;
+}
+const {
+  id,
+  name,
+  price,
+  url,
+  image,
+  description,
+  class: className = '',
+  label = 'Add to cart',
+} = Astro.props;
+---
+<button
+  type="button"
+  class:list={[
+    'snipcart-add-item px-6 py-3 bg-[var(--color-primary,#111)] text-[var(--color-bg,#fff)] text-sm font-medium hover:opacity-90 transition-opacity',
+    className,
+  ]}
+  data-item-id={id}
+  data-item-name={name}
+  data-item-price={price}
+  data-item-url={url}
+  data-item-image={image}
+  data-item-description={description}
+>
+  {label}
+</button>

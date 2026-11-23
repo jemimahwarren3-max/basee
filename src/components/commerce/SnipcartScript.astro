@@ -1,0 +1,22 @@
+---
+// Loads Snipcart for an entire page. Drop into the site layout, a specific
+// page, or anywhere a buy button is used. Reads the public API key from
+// site.config.commerce.snipcartApiKey; renders nothing if unset.
+//
+// Setup:
+//   1. Sign up at https://snipcart.com
+//   2. Copy your public API key into site.config.ts
+//   3. Add your production domain to Snipcart's allowed domains
+import { site } from '../../site.config';
+
+const apiKey = site.commerce.snipcartApiKey;
+---
+{apiKey && (
+  <>
+    <link rel="preconnect" href="https://app.snipcart.com" />
+    <link rel="preconnect" href="https://cdn.snipcart.com" />
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <div id="snipcart" data-api-key={apiKey} hidden></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+  </>
+)}
