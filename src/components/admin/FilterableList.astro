@@ -1,0 +1,84 @@
+---
+interface Props {
+  title?: string;
+  items: { title: string; subtitle?: string; meta?: string; tag?: string }[];
+  placeholder?: string;
+  empty?: string;
+}
+const { title, items, placeholder = 'Search…', empty = 'No matches.' } = Astro.props;
+const tags = Array.from(new Set(items.map((i) => i.tag).filter(Boolean))) as string[];
+const id = `fl-${Math.random().toString(36).slice(2, 8)}`;
+---
+<div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg overflow-hidden" id={id} data-filterable-list>
+  <div class="p-4 border-b border-[var(--color-border,#e5e5e5)] flex flex-col sm:flex-row gap-3">
+    {title && <h3 class="text-sm font-medium mr-auto">{title}</h3>}
+    <input
+      type="search"
+      placeholder={placeholder}
+      data-filter-input
+      class="w-full sm:w-64 px-3 py-1.5 text-sm border border-[var(--color-border,#e5e5e5)] rounded focus:outline-none focus:border-[var(--color-fg,#111)]"
+    />
+    {tags.length > 0 && (
+      <select
+        data-filter-tag
+        class="px-3 py-1.5 text-sm border border-[var(--color-border,#e5e5e5)] rounded bg-transparent"
+      >
+        <option value="">All</option>
+        {tags.map((t) => <option value={t}>{t}</option>)}
+      </select>
+    )}
+  </div>
+  <ul data-filter-items class="divide-y divide-[var(--color-border,#e5e5e5)]">
+    {items.map((item) => (
+      <li
+        class="px-4 py-3 flex items-center justify-between gap-4"
+        data-title={item.title.toLowerCase()}
+        data-tag={item.tag ?? ''}
+      >
+        <div class="min-w-0">
+          <p class="text-sm font-medium truncate">{item.title}</p>
+          {item.subtitle && <p class="text-xs text-[var(--color-muted-fg,#999)] truncate">{item.subtitle}</p>}
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          {item.tag && (
+            <span class="text-xs px-2 py-0.5 bg-[var(--color-muted,#f5f5f5)] text-[var(--color-muted-fg,#666)] rounded">
+              {item.tag}
+            </span>
+          )}
+          {item.meta && <span class="text-xs text-[var(--color-muted-fg,#999)] tabular-nums">{item.meta}</span>}
+        </div>
+      </li>
+    ))}
+  </ul>
+  <p class="hidden px-4 py-8 text-center text-sm text-[var(--color-muted-fg,#999)]" data-filter-empty>{empty}</p>
+</div>
+
+<script define:vars={{ id }}>
+  const root = document.getElementById(id);
+  if (root) {
+    const input = root.querySelector('[data-filter-input]');
+    const tagEl = root.querySelector('[data-filter-tag]');
+    const items = root.querySelectorAll('[data-filter-items] > li');
+    const empty = root.querySelector('[data-filter-empty]');
+    const list = root.querySelector('[data-filter-items]');
+
+    function apply() {
+      const q = (input?.value ?? '').toLowerCase().trim();
+      const tag = (tagEl?.value ?? '');
+      let shown = 0;
+      items.forEach((li) => {
+        const matchQ = !q || li.getAttribute('data-title')?.includes(q);
+        const matchTag = !tag || li.getAttribute('data-tag') === tag;
+        const show = matchQ && matchTag;
+        li.style.display = show ? '' : 'none';
+        if (show) shown++;
+      });
+      if (empty && list) {
+        empty.classList.toggle('hidden', shown > 0);
+        list.classList.toggle('hidden', shown === 0);
+      }
+    }
+    input?.addEventListener('input', apply);
+    tagEl?.addEventListener('change', apply);
+  }
+</script>

@@ -3,6 +3,10 @@ import Admin from '../../layouts/Admin.astro';
 import KpiTile from '../../components/admin/KpiTile.astro';
 import DataTable from '../../components/admin/DataTable.astro';
 import ChartCard from '../../components/admin/ChartCard.astro';
+import LineChart from '../../components/admin/LineChart.astro';
+import DonutChart from '../../components/admin/DonutChart.astro';
+import StatusBadge from '../../components/admin/StatusBadge.astro';
+import LogTimeline from '../../components/admin/LogTimeline.astro';
 
 // Placeholder data. Replace with real feeds once bookings/enquiries have a backend.
 const kpis = [
@@ -12,9 +16,28 @@ const kpis = [
   { label: 'Published posts', value: 1, trend: '—', trendDirection: 'flat' as const },
 ];
 
-const chart = {
+const bars = {
+  title: 'Enquiries by source',
+  points: [
+    { label: 'Direct', value: 0 },
+    { label: 'Instagram', value: 0 },
+    { label: 'Search', value: 0 },
+    { label: 'Referral', value: 0 },
+  ],
+};
+
+const trend = {
   title: 'Bookings — last 7 days',
   points: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((label) => ({ label, value: 0 })),
+};
+
+const traffic = {
+  title: 'Traffic by device',
+  segments: [
+    { label: 'Mobile', value: 0 },
+    { label: 'Desktop', value: 0 },
+    { label: 'Tablet', value: 0 },
+  ],
 };
 ---
 <Admin title="Dashboard" active="dashboard">
@@ -24,13 +47,39 @@ const chart = {
 
   <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
     <div class="lg:col-span-2">
-      <ChartCard title={chart.title} points={chart.points} />
+      <LineChart title={trend.title} points={trend.points} />
     </div>
-    <DataTable
-      caption="Latest activity"
-      columns={['Time', 'Event']}
-      rows={[]}
-      empty="Hook up a backend (Formspree, Cal.com, etc.) to see events here."
+    <DonutChart title={traffic.title} segments={traffic.segments} centerLabel="0" />
+  </div>
+
+  <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="lg:col-span-2">
+      <ChartCard title={bars.title} points={bars.points} />
+    </div>
+    <LogTimeline
+      title="Recent activity"
+      events={[]}
+      empty="No events. Connect a backend to see activity here."
     />
+  </div>
+
+  <div class="mt-6">
+    <DataTable
+      caption="System status"
+      columns={['Service', 'Status', 'Latency']}
+      rows={[
+        ['Form backend', 'Not configured', '—'],
+        ['Journal CMS', 'Not configured', '—'],
+        ['Deploy', 'Static build', '—'],
+      ]}
+    />
+  </div>
+
+  <div class="mt-6 flex flex-wrap gap-2">
+    <StatusBadge status="ok" label="Example OK" />
+    <StatusBadge status="warn" label="Example warning" />
+    <StatusBadge status="error" label="Example error" />
+    <StatusBadge status="info" label="Example info" />
+    <StatusBadge status="neutral" label="Example neutral" />
   </div>
 </Admin>

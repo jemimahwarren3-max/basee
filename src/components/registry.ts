@@ -347,6 +347,14 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: false,
   },
   {
+    id: 'donut-chart',
+    name: 'DonutChart',
+    category: 'admin',
+    path: 'components/admin/DonutChart.astro',
+    props: ['title', 'segments', 'centerLabel'],
+    hasAnimation: false,
+  },
+  {
     id: 'faq-accordion',
     name: 'FaqAccordion',
     category: 'faq',
@@ -401,6 +409,14 @@ export const COMPONENTS: ComponentMeta[] = [
     path: 'components/interactive/FeaturesIcons.astro',
     props: ['title', 'subtitle', 'features', 'columns'],
     hasAnimation: false,
+  },
+  {
+    id: 'filterable-list',
+    name: 'FilterableList',
+    category: 'admin',
+    path: 'components/admin/FilterableList.astro',
+    props: ['title', 'items', 'placeholder', 'empty'],
+    hasAnimation: true,
   },
   {
     id: 'footer-brand',
@@ -752,6 +768,22 @@ export const COMPONENTS: ComponentMeta[] = [
     category: 'admin',
     path: 'components/admin/KpiTile.astro',
     props: ['label', 'value', 'trend', 'trendDirection'],
+    hasAnimation: false,
+  },
+  {
+    id: 'line-chart',
+    name: 'LineChart',
+    category: 'admin',
+    path: 'components/admin/LineChart.astro',
+    props: ['title', 'points', 'unit', 'height'],
+    hasAnimation: false,
+  },
+  {
+    id: 'log-timeline',
+    name: 'LogTimeline',
+    category: 'admin',
+    path: 'components/admin/LogTimeline.astro',
+    props: ['title', 'events', 'empty'],
     hasAnimation: false,
   },
   {
@@ -1224,6 +1256,14 @@ export const COMPONENTS: ComponentMeta[] = [
     category: 'statistics',
     path: 'components/statistics/StatsWithText.astro',
     props: ['title', 'text', 'stats'],
+    hasAnimation: false,
+  },
+  {
+    id: 'status-badge',
+    name: 'StatusBadge',
+    category: 'admin',
+    path: 'components/admin/StatusBadge.astro',
+    props: ['status', 'label'],
     hasAnimation: false,
   },
   {

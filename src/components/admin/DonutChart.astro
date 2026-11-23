@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+  segments: { label: string; value: number; color?: string }[];
+  centerLabel?: string;
+}
+const { title, segments, centerLabel } = Astro.props;
+const total = segments.reduce((sum, s) => sum + s.value, 0) || 1;
+const palette = ['#111827', '#6366F1', '#EC4899', '#10B981', '#F59E0B', '#06B6D4', '#EF4444', '#8B5CF6'];
+const r = 60;
+const circumference = 2 * Math.PI * r;
+let offset = 0;
+const arcs = segments.map((s, i) => {
+  const dash = (s.value / total) * circumference;
+  const strokeDasharray = `${dash} ${circumference - dash}`;
+  const strokeDashoffset = -offset;
+  offset += dash;
+  return {
+    ...s,
+    color: s.color ?? palette[i % palette.length],
+    strokeDasharray,
+    strokeDashoffset,
+    percent: Math.round((s.value / total) * 100),
+  };
+});
+---
+<div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg p-5">
+  <p class="text-sm font-medium">{title}</p>
+  <div class="mt-4 flex items-center gap-6">
+    <div class="relative shrink-0">
+      <svg width="160" height="160" viewBox="-80 -80 160 160" role="img" aria-label={title}>
+        <circle r={r} fill="none" stroke="var(--color-muted,#f0f0f0)" stroke-width="20" />
+        {arcs.map((a) => (
+          <circle
+            r={r}
+            fill="none"
+            stroke={a.color}
+            stroke-width="20"
+            stroke-dasharray={a.strokeDasharray}
+            stroke-dashoffset={a.strokeDashoffset}
+            transform="rotate(-90)"
+          >
+            <title>{`${a.label}: ${a.value} (${a.percent}%)`}</title>
+          </circle>
+        ))}
+      </svg>
+      {centerLabel && (
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="text-xl font-semibold tabular-nums">{centerLabel}</span>
+        </div>
+      )}
+    </div>
+    <ul class="flex-1 text-sm space-y-2 min-w-0">
+      {arcs.map((a) => (
+        <li class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full shrink-0" style={`background: ${a.color}`}></span>
+          <span class="truncate">{a.label}</span>
+          <span class="ml-auto tabular-nums text-[var(--color-muted-fg,#666)]">{a.percent}%</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
