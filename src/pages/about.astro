@@ -1,0 +1,13 @@
+---
+// Starter about page. Replace content with the client's own story.
+import Site from '../layouts/Site.astro';
+import { site } from '../site.config';
+---
+<Site title={`About — ${site.name || 'Site'}`} description={site.description} family={site.family}>
+  <main class="container-site py-24 md:py-32 max-w-3xl">
+    <h1 class="text-4xl md:text-5xl leading-tight">About</h1>
+    <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)]">
+      Replace this file with the client's story. See src/components/about/ for layout options.
+    </p>
+  </main>
+</Site>
