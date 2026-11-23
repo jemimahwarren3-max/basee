@@ -20,7 +20,16 @@
     "extract-frames": "node scripts/extract-frames.mjs",
     "optimise-images": "node scripts/optimise-images.mjs",
     "hash-password": "node scripts/hash-password.mjs",
-    "brand-kit": "node scripts/brand-kit.mjs"
+    "brand-kit": "node scripts/brand-kit.mjs",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,mjs,astro,css,json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.{ts,tsx,js,mjs,astro}": [
+      "oxlint"
+    ]
   },
   "dependencies": {
     "@astrojs/react": "^7.1.9",
@@ -44,6 +53,8 @@
     "@types/react-dom": "^19.1.6",
     "ffmpeg-static": "^5.3.0",
     "ffprobe-static": "^3.1.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.2",
     "oxlint": "^1.1.0",
     "prettier": "^3.10.1",
     "prettier-plugin-astro": "^1.1.2",
