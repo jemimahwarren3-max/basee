@@ -11,6 +11,6 @@ const { title, subtitle, email, phone, whatsapp, cta } = Astro.props;
       {email && <a href={`mailto:${email}`} class="px-8 py-3 border border-white/20 text-white font-medium rounded-md hover:bg-white/10 transition-colors">{email}</a>}
       {whatsapp && <a href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`} class="px-8 py-3 bg-[#25D366] text-white font-medium rounded-md" target="_blank" rel="noopener">WhatsApp</a>}
     </div>
-    {phone && <p class="mt-6 text-white/40 text-sm">{phone}</p>}
+    {phone && <p class="mt-6 text-white/70 text-sm">{phone}</p>}
   </div>
 </section>

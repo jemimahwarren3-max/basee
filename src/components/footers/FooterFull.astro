@@ -10,7 +10,7 @@ const { brand, description, columns, socials, copyright } = Astro.props;
         {description && <p class="mt-4 text-sm text-white/50 max-w-sm leading-relaxed">{description}</p>}
         {socials && (
           <div class="mt-6 flex gap-4">
-            {socials.map(s => <a href={s.url} class="text-sm text-white/40 hover:text-white transition-colors" target="_blank" rel="noopener">{s.platform}</a>)}
+            {socials.map(s => <a href={s.url} class="text-sm text-white/70 hover:text-white transition-colors" target="_blank" rel="noopener">{s.platform}</a>)}
           </div>
         )}
       </div>
@@ -18,11 +18,11 @@ const { brand, description, columns, socials, copyright } = Astro.props;
         <div>
           <h4 class="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">{col.title}</h4>
           <ul class="space-y-2">
-            {col.links.map(l => <li><a href={l.href} class="text-sm text-white/40 hover:text-white transition-colors">{l.label}</a></li>)}
+            {col.links.map(l => <li><a href={l.href} class="text-sm text-white/70 hover:text-white transition-colors">{l.label}</a></li>)}
           </ul>
         </div>
       ))}
     </div>
-    <div class="border-t border-white/10 pt-8 text-xs text-white/30">{copyright || `© ${new Date().getFullYear()} ${brand}. All rights reserved.`}</div>
+    <div class="border-t border-white/10 pt-8 text-xs text-white/70">{copyright || `© ${new Date().getFullYear()} ${brand}. All rights reserved.`}</div>
   </div>
 </footer>

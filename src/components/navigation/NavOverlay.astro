@@ -30,7 +30,7 @@ const { brand, links, cta } = Astro.props;
   <div class="flex-1 flex flex-col items-start justify-center container-site gap-6">
     {links.map((link, i) => (
       <a href={link.href} class="text-4xl md:text-6xl font-light hover:translate-x-4 transition-transform duration-300">
-        <span class="text-sm text-white/30 mr-4 font-mono">{String(i + 1).padStart(2, '0')}</span>
+        <span class="text-sm text-white/60 mr-4 font-mono">{String(i + 1).padStart(2, '0')}</span>
         {link.label}
       </a>
     ))}

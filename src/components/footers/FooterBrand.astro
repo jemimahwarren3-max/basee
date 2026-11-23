@@ -8,9 +8,9 @@ const { brand, tagline, socials, copyright } = Astro.props;
     {tagline && <p class="mt-4 text-white/50">{tagline}</p>}
     {socials && (
       <div class="mt-8 flex justify-center gap-6">
-        {socials.map(s => <a href={s.url} class="text-sm text-white/40 hover:text-white transition-colors" target="_blank" rel="noopener">{s.platform}</a>)}
+        {socials.map(s => <a href={s.url} class="text-sm text-white/70 hover:text-white transition-colors" target="_blank" rel="noopener">{s.platform}</a>)}
       </div>
     )}
-    <p class="mt-12 text-xs text-white/20">{copyright || `© ${new Date().getFullYear()} ${brand}`}</p>
+    <p class="mt-12 text-xs text-white/60">{copyright || `© ${new Date().getFullYear()} ${brand}`}</p>
   </div>
 </footer>
