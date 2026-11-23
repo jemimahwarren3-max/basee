@@ -155,6 +155,14 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: true,
   },
   {
+    id: 'brand',
+    name: 'Brand',
+    category: 'common',
+    path: 'components/common/Brand.astro',
+    props: ['href', 'size', 'class'],
+    hasAnimation: false,
+  },
+  {
     id: 'breadcrumbs',
     name: 'Breadcrumbs',
     category: 'interactive',

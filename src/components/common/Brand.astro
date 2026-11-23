@@ -1,0 +1,31 @@
+---
+// Brand mark. Reads from site.config and renders, in priority:
+//   1. logoSvg (inline SVG markup)
+//   2. logoImage (file in /public)
+//   3. site.name (wordmark text)
+//
+// The size prop controls height — SVG and image scale, text sets font-size.
+// Nav components can pass a `brand` string instead (backward-compatible);
+// swap <Brand /> inside them when you want a real logo.
+import { site } from '../../site.config';
+
+interface Props {
+  href?: string;
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+const { href = '/', size = 'md', class: className = '' } = Astro.props;
+
+const imgHeight = { sm: 20, md: 28, lg: 40 }[size];
+const textSize = { sm: 'text-sm', md: 'text-lg', lg: 'text-2xl' }[size];
+const label = site.name || 'Home';
+---
+<a href={href} class:list={['inline-flex items-center', className]} aria-label={label}>
+  {site.logoSvg ? (
+    <span class="block" style={`height: ${imgHeight}px`} set:html={site.logoSvg} />
+  ) : site.logoImage ? (
+    <img src={site.logoImage} alt={label} height={imgHeight} style={`height: ${imgHeight}px; width: auto`} />
+  ) : (
+    <span class:list={[textSize, 'font-semibold tracking-tight']}>{label}</span>
+  )}
+</a>

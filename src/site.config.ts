@@ -4,6 +4,12 @@ export const site = {
   // The brand name shown in the nav and footer.
   name: '',
 
+  // Optional brand assets. If set, <Brand> renders these instead of the name.
+  // logoImage: path to an image in /public (e.g. '/brand/logo.svg').
+  // logoSvg: inline SVG markup. Takes precedence over logoImage when both are set.
+  logoImage: '',
+  logoSvg: '',
+
   // One of the ids in src/design-families/. Drives the colours, fonts and corners.
   family: 'swiss-minimalism',
 
