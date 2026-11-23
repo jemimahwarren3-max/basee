@@ -1,29 +1,47 @@
-// Everything that changes per client lives here. Bracketed values are placeholders
-// the client must replace before launch.
+// Fill this file in for each new site. Every page reads from `site`.
+// Leave a field as '' if it doesn't apply.
 export const site = {
-  name: 'Serenité',
-  family: 'beauty-cosmetics',
-  title: 'Serenité Spa — Luxury Wellness & Beauty',
-  description: 'Escape into tranquility. Bespoke spa treatments, therapeutic massage, and holistic wellness.',
-  announcement: { text: 'New guest offer: [offer details]', href: '#booking' },
-  nav: [
-    { label: 'Treatments', href: '#treatments' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Gallery', href: '#gallery' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'Reviews', href: '#reviews' },
-    { label: 'FAQ', href: '#faq' },
-  ],
+  // The brand name shown in the nav and footer.
+  name: '',
+
+  // One of the ids in src/design-families/. Drives the colours, fonts and corners.
+  family: 'swiss-minimalism',
+
+  // The browser tab title and the meta description.
+  title: '',
+  description: '',
+
+  // Shown as a thin bar above the nav. Leave text empty to hide it.
+  announcement: { text: '', href: '' },
+
+  // Top-level navigation. hrefs can be in-page anchors or routes.
+  nav: [] as { label: string; href: string }[],
+
+  // Shown in the nav and in CTAs. Leave undefined to hide the nav button.
+  primaryCta: undefined as { label: string; href: string } | undefined,
+
+  // Contact details. Used by contact, booking and footer components.
   contact: {
-    whatsapp: '[WhatsApp number]',
-    email: '[Email]',
-    phone: '[Phone]',
-    address: '[Address]',
-    hours: '[Opening hours]',
+    whatsapp: '', // digits only, no + or spaces
+    email: '',
+    phone: '',
+    address: '',
+    hours: '',
   },
-  social: [
-    { platform: 'Instagram', url: '[Instagram URL]' },
-    { platform: 'Facebook', url: '[Facebook URL]' },
-  ],
-  copyright: `© ${new Date().getFullYear()} Serenité. All rights reserved.`,
+
+  // Social links shown in footers. Omit any that don't apply.
+  social: [] as { platform: string; url: string }[],
+
+  // Where forms post to. Change per client; see src/components/contact for shape.
+  forms: {
+    enquiry: '', // e.g. a Formspree or Web3Forms endpoint
+    booking: '', // e.g. a Cal.com booking link or your own endpoint
+  },
+
+  // Footer copyright. {year} is replaced at build.
+  copyright: '© {year} {name}. All rights reserved.',
 };
+
+export function copyright(): string {
+  return site.copyright.replace('{year}', String(new Date().getFullYear())).replace('{name}', site.name);
+}

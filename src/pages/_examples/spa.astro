@@ -1,34 +1,46 @@
 ---
-import Site from '../layouts/Site.astro';
-import NavCentered from '../components/navigation/NavCentered.astro';
-import HeroCinematic from '../components/heroes/HeroCinematic.astro';
-import Marquee from '../components/interactive/Marquee.astro';
-import AboutSideBySide from '../components/about/AboutSideBySide.astro';
-import ServicesHover from '../components/services/ServicesHover.astro';
-import ServicesPricing from '../components/services/ServicesPricing.astro';
-import GalleryFullwidth from '../components/galleries/GalleryFullwidth.astro';
-import TestimonialQuote from '../components/testimonials/TestimonialQuote.astro';
-import TestimonialGrid from '../components/testimonials/TestimonialGrid.astro';
-import BookingEnquiry from '../components/interactive/BookingEnquiry.astro';
-import StepsProcess from '../components/interactive/StepsProcess.astro';
-import CtaFullscreen from '../components/cta/CtaFullscreen.astro';
-import FaqAccordion from '../components/faq/FaqAccordion.astro';
-import ContactWhatsApp from '../components/contact/ContactWhatsApp.astro';
-import FooterFull from '../components/footers/FooterFull.astro';
-import AnnouncementBar from '../components/interactive/AnnouncementBar.astro';
-import BackToTop from '../components/interactive/BackToTop.astro';
-import CookieBanner from '../components/interactive/CookieBanner.astro';
-import SmoothScroll from '../components/effects/SmoothScroll.astro';
-import TextMask from '../components/effects/TextMask.astro';
-import { site } from '../site.config';
----
-<Site title={site.title} description={site.description} family={site.family}>
+// Demo page — not part of the shipping build. Shows how to compose the components.
+import Site from '../../layouts/Site.astro';
+import NavCentered from '../../components/navigation/NavCentered.astro';
+import HeroCinematic from '../../components/heroes/HeroCinematic.astro';
+import Marquee from '../../components/interactive/Marquee.astro';
+import AboutSideBySide from '../../components/about/AboutSideBySide.astro';
+import ServicesHover from '../../components/services/ServicesHover.astro';
+import ServicesPricing from '../../components/services/ServicesPricing.astro';
+import GalleryFullwidth from '../../components/galleries/GalleryFullwidth.astro';
+import TestimonialQuote from '../../components/testimonials/TestimonialQuote.astro';
+import TestimonialGrid from '../../components/testimonials/TestimonialGrid.astro';
+import BookingEnquiry from '../../components/interactive/BookingEnquiry.astro';
+import StepsProcess from '../../components/interactive/StepsProcess.astro';
+import CtaFullscreen from '../../components/cta/CtaFullscreen.astro';
+import FaqAccordion from '../../components/faq/FaqAccordion.astro';
+import ContactWhatsApp from '../../components/contact/ContactWhatsApp.astro';
+import FooterFull from '../../components/footers/FooterFull.astro';
+import AnnouncementBar from '../../components/interactive/AnnouncementBar.astro';
+import BackToTop from '../../components/interactive/BackToTop.astro';
+import CookieBanner from '../../components/interactive/CookieBanner.astro';
+import SmoothScroll from '../../components/effects/SmoothScroll.astro';
+import TextMask from '../../components/effects/TextMask.astro';
 
-  <AnnouncementBar text={site.announcement.text} href={site.announcement.href} />
+const demo = {
+  name: 'Serenité',
+  whatsapp: '[WhatsApp number]',
+};
+---
+<Site title="Serenité Spa — Luxury Wellness (demo)" description="Demo spa page built from the component library." family="beauty-cosmetics">
+
+  <AnnouncementBar text="New guest offer: [offer details]" href="#booking" />
 
   <NavCentered
-    brand={site.name}
-    links={site.nav}
+    brand={demo.name}
+    links={[
+      { label: 'Treatments', href: '#treatments' },
+      { label: 'Experience', href: '#experience' },
+      { label: 'Gallery', href: '#gallery' },
+      { label: 'Pricing', href: '#pricing' },
+      { label: 'Reviews', href: '#reviews' },
+      { label: 'FAQ', href: '#faq' },
+    ]}
     cta={{ label: 'Book Now', href: '#booking' }}
   />
 
@@ -160,7 +172,7 @@ import { site } from '../site.config';
     <BookingEnquiry
       title="Book your treatment"
       subtitle="Reserve your time of stillness."
-      whatsapp={site.contact.whatsapp}
+      whatsapp={demo.whatsapp}
       fields={[
         { name: 'name', label: 'Full name', type: 'text', required: true },
         { name: 'email', label: 'Email', type: 'email', required: true },
@@ -175,13 +187,13 @@ import { site } from '../site.config';
   <ContactWhatsApp
     title="Prefer to chat?"
     subtitle="Message us on WhatsApp for quick bookings and questions."
-    whatsapp={site.contact.whatsapp}
+    whatsapp={demo.whatsapp}
     message="Hello, I'd like to book a treatment."
   />
 
   <FooterFull
-    brand={site.name}
-    description={site.description}
+    brand={demo.name}
+    description="A luxury wellness destination. Bespoke treatments and an unwavering commitment to your wellbeing."
     columns={[
       { title: 'Treatments', links: [
         { label: 'Massage', href: '#treatments' },
@@ -196,14 +208,12 @@ import { site } from '../site.config';
         { label: 'Book', href: '#booking' },
       ]},
       { title: 'Contact', links: [
-        { label: site.contact.address, href: '#' },
-        { label: site.contact.hours, href: '#' },
-        { label: site.contact.email, href: `mailto:${site.contact.email}` },
-        { label: site.contact.phone, href: `tel:${site.contact.phone}` },
+        { label: '[Address]', href: '#' },
+        { label: '[Hours]', href: '#' },
+        { label: '[Email]', href: '#' },
       ]},
     ]}
-    socials={site.social}
-    copyright={site.copyright}
+    copyright="© Serenité (demo)"
   />
 
   <BackToTop />

@@ -1,86 +1,98 @@
 # Yonah Website Engine
 
-A premium website production base for Yonah Studio. Clone it, open it in Claude Code, describe
-the website you want — Claude picks from 159 pre-built components and 20 design families to
-assemble a production site in minutes.
+A toolkit base for building client websites. Clone it, fill in the config, and compose pages from the component library. This repo is not a specific site — spa or otherwise. It's the starting point for any site.
 
-## How to use this base
+## What's in the box
 
-1. Clone the repo for a new client project
-2. Open in Claude Code
-3. Describe the website (industry, style, pages needed)
-4. Claude selects a design family from `src/design-families/`, picks matching components from
-   `src/components/`, wires them into pages under `src/pages/`, and applies the design tokens
+- **162 Astro components** across 15 categories in `src/components/`. The registry in `src/components/registry.ts` is generated from the files by `npm run registry`.
+- **20 design families** in `src/design-families/`. Each is a typed token set — typography, colours, spacing, imagery, navigation, animation, buttons. A family drives the look with one attribute.
+- **A theme layer** in `src/design-families/theme.ts`. Turns a family into CSS variables and a Google Fonts link.
+- **A site layout** at `src/layouts/Site.astro`. Takes a family id and applies its tokens.
+- **A per-client config** at `src/site.config.ts`. One file for name, nav, contact, forms, socials.
+- **Effect components** in `src/components/effects/`: smooth scrolling (Lenis), scroll-driven image sequences (GSAP), text with image masked through letters.
+- **Media tools**: bundled FFmpeg (`npm run extract-frames`), sharp (`npm run optimise-images`).
+- **Browser smoke tests** (`npm test`) and a launch-readiness gate for bracketed placeholders.
 
-## Component library (159 components, 15 categories)
+## Building a client site
 
-All components live in `src/components/` as `.astro` files with TypeScript props interfaces.
-They use CSS custom properties (`--color-*`) for theming, Tailwind CSS classes for layout, and
-are fully responsive.
+1. **Clone and install.**
+   ```sh
+   git clone https://github.com/jemimahwarren3-max/basee.git my-client
+   cd my-client
+   npm install
+   npm run check-tools
+   npm run dev
+   ```
 
-| Category     | Count | Path                          |
-|-------------|-------|-------------------------------|
-| Heroes       | 20    | `src/components/heroes/`      |
-| Interactive  | 22    | `src/components/interactive/` |
-| Services     | 16    | `src/components/services/`    |
-| About        | 12    | `src/components/about/`       |
-| Galleries    | 12    | `src/components/galleries/`   |
-| Navigation   | 10    | `src/components/navigation/`  |
-| Footers      | 10    | `src/components/footers/`     |
-| Products     | 10    | `src/components/products/`    |
-| Testimonials | 8     | `src/components/testimonials/`|
-| Statistics   | 8     | `src/components/statistics/`  |
-| Contact      | 8     | `src/components/contact/`     |
-| CTA          | 8     | `src/components/cta/`         |
-| Pricing      | 7     | `src/components/pricing/`     |
-| FAQ          | 5     | `src/components/faq/`         |
-| Common       | 3     | `src/components/common/`      |
+2. **Fill in `src/site.config.ts`.** Brand name, design family, navigation, contact details. Leave a field empty to hide it.
 
-## Design families (20 families)
+3. **Pick a design family.** Browse `src/design-families/*.ts` and set `site.family`. The family's `preferredSections` and `preferredHero` are suggestions; the page can use anything.
 
-Each family in `src/design-families/` defines typography, colors, spacing, layout preferences,
-imagery treatment, navigation style, animation intensity, and button styling. Use
-`getFamily(id)` or `findFamiliesForIndustry(industry)` from `src/design-families/index.ts`.
+4. **Build the home page.** Replace `src/pages/index.astro` with your own composition. Look at `src/pages/_examples/spa.astro` and `_examples/fashion.astro` for how to compose components.
 
-Families: editorial-luxury, swiss-minimalism, modern-brutalism, dark-technology,
-warm-hospitality, fashion-commerce, property-editorial, professional-healthcare,
-corporate-institutional, contemporary-african, premium-automotive, architecture-interiors,
-minimalist-portfolio, creative-photography, restaurant-editorial, beauty-cosmetics,
-education-institution, finance-consulting, industrial-manufacturing, modern-ecommerce
+5. **Add images and video.** Put real files under `public/`. Run `npm run optimise-images -- public/raw public/images` to produce WebP at 480, 960 and 1600px. For a scroll sequence, run `npm run extract-frames -- clip.mp4 public/frames 30 1920` and point `ScrollSequence` at `/frames/frame_{n}.webp`.
 
-## Stack
+6. **Wire forms.** `BookingEnquiry` and `ContactForm` do not submit anywhere by default. Set `site.forms.enquiry` or `site.forms.booking` to an endpoint. Options: Cal.com embed for time slots, Formspree or Web3Forms for free email enquiries, or a custom endpoint. See each form component for the shape.
 
-Astro 7, React 19 (islands), TypeScript, Tailwind CSS v4 (via `@tailwindcss/vite`),
-Motion 14, Lucide React, clsx, Playwright, oxlint.
+7. **Verify before launch.**
+   ```sh
+   npm run check          # type check, build, lint
+   npm test               # smoke-test every page
+   LAUNCH_CHECK=1 npm test  # also fail on [placeholder] text
+   ```
 
 ## Ground rules
 
-- **Never fabricate.** Don't claim a build succeeded without running it.
-- **Ask before anything irreversible or costly.** Publishing, paid APIs, or touching accounts
-  need approval.
-- **No placeholder modules presented as working.**
-- **Each client project gets its own art direction.** Don't default to generic AI-website looks.
-- **Secrets live in `.env.local`**, never in source or commits.
+- **Never fabricate.** Do not invent testimonials, prices, awards, press coverage, or contact details. Use bracketed placeholders like `[Guest quote]` until the client supplies the real thing. The launch gate fails while any remain.
+- **Ask before anything costly.** Paid API calls, publishing, or touching an account need approval.
+- **Each client gets their own art direction.** The design families are starting points, not stencils. Don't reuse one client's confidential assets in another's project.
+- **Secrets live in `.env.local`**, never in source.
 
 ## Commands
 
 ```
-npm run dev       # Astro dev server
-npm run build     # production build
-npm run preview   # preview production build
-npm run lint      # oxlint
+npm run dev              Astro dev server
+npm run build            Production build
+npm run preview          Preview the build
+npm run check            tsc, build, lint
+npm run check-tools      Verify FFmpeg binaries
+npm run registry         Rebuild src/components/registry.ts
+npm run extract-frames   Video to WebP frame sequence
+npm run optimise-images  Photos to responsive WebP sizes
+npm test                 Playwright smoke tests
+npm run lint             oxlint
 ```
 
-## Assembling a website from a brief
+## Layout
 
-When given a client brief:
+```
+src/
+  components/            162 Astro components, grouped by category
+    registry.ts          generated — do not edit by hand
+    index.ts             lookups: getComponent, familiesPreferring, etc.
+  design-families/       20 typed token sets
+    types.ts
+    theme.ts             family → CSS variables + fonts
+    index.ts             getFamily, findFamiliesForIndustry
+  layouts/
+    Base.astro           barebones HTML skeleton
+    Site.astro           takes a family id, applies tokens, imports fonts
+  pages/
+    index.astro          starter page — replace per client
+    _examples/           reference demos, not shipped
+  styles/global.css      base utilities and reduced-motion handling
+  site.config.ts         per-client config
+scripts/
+  build-registry.mjs
+  check-tools.mjs
+  extract-frames.mjs
+  optimise-images.mjs
+tests/
+  pages.spec.ts          smoke + launch gate
+```
 
-1. **Pick a design family** — match the client's industry and aesthetic to one of the 20
-   families using `findFamiliesForIndustry()` or manual selection
-2. **Set design tokens** — apply the family's colors, typography, and spacing as CSS custom
-   properties in `src/styles/global.css` or a page-level `<style>` block
-3. **Choose components** — select components from each category that match the family's
-   `layout.preferredSections` and avoid its `layout.avoidSections`
-4. **Create pages** — wire components into Astro pages under `src/pages/`, passing appropriate
-   props with real client content
-5. **Build and verify** — run `npm run build` to confirm everything compiles cleanly
+## Known gaps
+
+- No components for data-heavy sites yet: tables, chart cards, KPI tiles, log timelines. Add them under a new category when first needed.
+- Forms have no built-in backend; each project chooses one.
+- The design families are fonts and colours only, not full pattern languages. If a site needs a very specific visual identity, build custom sections for it rather than forcing a family.
