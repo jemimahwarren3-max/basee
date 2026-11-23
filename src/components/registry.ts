@@ -155,6 +155,14 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: true,
   },
   {
+    id: 'chart-card',
+    name: 'ChartCard',
+    category: 'admin',
+    path: 'components/admin/ChartCard.astro',
+    props: ['title', 'points', 'unit'],
+    hasAnimation: false,
+  },
+  {
     id: 'comparison-table',
     name: 'ComparisonTable',
     category: 'interactive',
@@ -313,6 +321,14 @@ export const COMPONENTS: ComponentMeta[] = [
     path: 'components/cta/CtaSplit.astro',
     props: ['title', 'text', 'cta', 'image'],
     hasAnimation: true,
+  },
+  {
+    id: 'data-table',
+    name: 'DataTable',
+    category: 'admin',
+    path: 'components/admin/DataTable.astro',
+    props: ['columns', 'rows', 'caption', 'empty'],
+    hasAnimation: false,
   },
   {
     id: 'divider',
@@ -713,6 +729,14 @@ export const COMPONENTS: ComponentMeta[] = [
     path: 'components/heroes/HeroVideo.astro',
     props: ['videoSrc', 'posterSrc', 'title', 'subtitle', 'cta'],
     hasAnimation: true,
+  },
+  {
+    id: 'kpi-tile',
+    name: 'KpiTile',
+    category: 'admin',
+    path: 'components/admin/KpiTile.astro',
+    props: ['label', 'value', 'trend', 'trendDirection'],
+    hasAnimation: false,
   },
   {
     id: 'logo-cloud',

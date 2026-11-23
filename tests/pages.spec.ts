@@ -1,12 +1,28 @@
-import { readdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { readdirSync, statSync } from 'node:fs';
+import { join, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test, expect } from '@playwright/test';
 
 const pagesDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'pages');
-const routes = readdirSync(pagesDir)
-  .filter((f) => f.endsWith('.astro'))
-  .map((f) => (f === 'index.astro' ? '/' : `/${f.replace('.astro', '')}`));
+
+function walk(dir: string): string[] {
+  return readdirSync(dir).flatMap((name) => {
+    if (name.startsWith('_')) return [];
+    const p = join(dir, name);
+    if (statSync(p).isDirectory()) return walk(p);
+    return p.endsWith('.astro') ? [p] : [];
+  });
+}
+
+const routes = walk(pagesDir)
+  // dynamic routes like [slug].astro can't be tested without params, so skip
+  .filter((f) => !f.includes('['))
+  .map((f) => {
+    const rel = relative(pagesDir, f).replace(/\\/g, '/').replace('.astro', '');
+    if (rel === 'index') return '/';
+    if (rel.endsWith('/index')) return '/' + rel.slice(0, -'/index'.length);
+    return '/' + rel;
+  });
 
 for (const route of routes) {
   test(`${route} loads without JavaScript errors`, async ({ page }) => {

@@ -9,7 +9,12 @@ const SITE = process.env.SITE_URL || 'https://example.com';
 
 export default defineConfig({
   site: SITE,
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.includes('/admin'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

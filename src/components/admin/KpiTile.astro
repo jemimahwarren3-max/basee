@@ -1,0 +1,19 @@
+---
+interface Props {
+  label: string;
+  value: string | number;
+  trend?: string; // e.g. "+12% WoW"
+  trendDirection?: 'up' | 'down' | 'flat';
+}
+const { label, value, trend, trendDirection } = Astro.props;
+const trendColour = {
+  up: 'text-green-700',
+  down: 'text-red-700',
+  flat: 'text-[var(--color-muted-fg,#999)]',
+}[trendDirection ?? 'flat'];
+---
+<div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg p-5">
+  <p class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)]">{label}</p>
+  <p class="mt-2 text-3xl font-semibold tabular-nums">{value}</p>
+  {trend && <p class={`mt-1 text-xs ${trendColour}`}>{trend}</p>}
+</div>

@@ -1,0 +1,16 @@
+---
+import Admin from '../../layouts/Admin.astro';
+import DataTable from '../../components/admin/DataTable.astro';
+---
+<Admin title="Enquiries" active="enquiries">
+  <p class="text-sm text-[var(--color-muted-fg,#666)] mb-6">
+    Shows submissions to the contact form. Point site.forms.enquiry at a provider
+    (Formspree, Web3Forms, Netlify Forms) and read their inbox or API here.
+  </p>
+
+  <DataTable
+    columns={['Received', 'Name', 'Email', 'Subject', 'Message']}
+    rows={[]}
+    empty="No enquiries yet."
+  />
+</Admin>

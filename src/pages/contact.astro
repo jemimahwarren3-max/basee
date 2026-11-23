@@ -6,6 +6,9 @@ import { enquiryAction } from '../lib/forms';
 ---
 <Site title={`Contact — ${site.name || 'Site'}`} description={site.description} family={site.family}>
   <main>
+    <section class="container-site pt-24 md:pt-32">
+      <h1 class="text-4xl md:text-5xl leading-tight">Contact</h1>
+    </section>
     <ContactForm
       title="Get in touch"
       subtitle={site.name ? `Send ${site.name} a message.` : 'Send us a message.'}

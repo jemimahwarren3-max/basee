@@ -1,0 +1,36 @@
+---
+import Admin from '../../layouts/Admin.astro';
+import KpiTile from '../../components/admin/KpiTile.astro';
+import DataTable from '../../components/admin/DataTable.astro';
+import ChartCard from '../../components/admin/ChartCard.astro';
+
+// Placeholder data. Replace with real feeds once bookings/enquiries have a backend.
+const kpis = [
+  { label: 'Bookings this week', value: 0, trend: 'No data yet', trendDirection: 'flat' as const },
+  { label: 'Enquiries this week', value: 0, trend: 'No data yet', trendDirection: 'flat' as const },
+  { label: 'Subscribers', value: 0, trend: '—', trendDirection: 'flat' as const },
+  { label: 'Published posts', value: 1, trend: '—', trendDirection: 'flat' as const },
+];
+
+const chart = {
+  title: 'Bookings — last 7 days',
+  points: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((label) => ({ label, value: 0 })),
+};
+---
+<Admin title="Dashboard" active="dashboard">
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    {kpis.map((k) => <KpiTile {...k} />)}
+  </div>
+
+  <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="lg:col-span-2">
+      <ChartCard title={chart.title} points={chart.points} />
+    </div>
+    <DataTable
+      caption="Latest activity"
+      columns={['Time', 'Event']}
+      rows={[]}
+      empty="Hook up a backend (Formspree, Cal.com, etc.) to see events here."
+    />
+  </div>
+</Admin>

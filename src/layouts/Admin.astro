@@ -1,0 +1,79 @@
+---
+// Admin layout. IMPORTANT: static Astro pages can't enforce login.
+// Any URL under /admin/ is publicly reachable unless you add hosting-level
+// password protection (Netlify, Cloudflare Access) or move the admin to a
+// server with real auth. The noindex tag below asks search engines to skip it.
+import { getFamily } from '../design-families';
+import { themeCss } from '../design-families/theme';
+import { site } from '../site.config';
+
+interface Props {
+  title: string;
+  active?: string; // nav key of the current page
+}
+const { title, active } = Astro.props;
+const family = getFamily(site.family);
+const nav = [
+  { key: 'dashboard', label: 'Dashboard', href: '/admin/' },
+  { key: 'bookings', label: 'Bookings', href: '/admin/bookings/' },
+  { key: 'enquiries', label: 'Enquiries', href: '/admin/enquiries/' },
+  { key: 'journal', label: 'Journal', href: '/admin/journal/' },
+  { key: 'settings', label: 'Settings', href: '/admin/settings/' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <style is:inline set:html={themeCss(family)} />
+    <title>{title} — Admin</title>
+  </head>
+  <body class="bg-[var(--color-muted,#f7f7f7)]">
+    <div class="min-h-screen flex">
+      <aside class="hidden md:flex md:w-60 flex-col bg-[var(--color-surface,#fff)] border-r border-[var(--color-border,#e5e5e5)] p-6">
+        <a href="/admin/" class="text-lg font-semibold">
+          {site.name || 'Admin'}
+        </a>
+        <p class="mt-1 text-xs text-[var(--color-muted-fg,#999)]">Control panel</p>
+        <nav class="mt-10 flex flex-col gap-1">
+          {nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'px-3 py-2 rounded text-sm',
+                active === item.key
+                  ? 'bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)]'
+                  : 'text-[var(--color-muted-fg,#666)] hover:bg-[var(--color-muted,#f5f5f5)]',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <div class="mt-auto pt-6 border-t border-[var(--color-border,#e5e5e5)]">
+          <a href="/" class="text-sm text-[var(--color-muted-fg,#999)] hover:text-[var(--color-fg,#111)]">
+            ← Back to site
+          </a>
+        </div>
+      </aside>
+
+      <main class="flex-1 min-w-0">
+        <header class="bg-[var(--color-surface,#fff)] border-b border-[var(--color-border,#e5e5e5)] px-6 md:px-10 py-4 flex items-center justify-between">
+          <h1 class="text-xl font-semibold">{title}</h1>
+          <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded">
+            Unprotected preview
+          </span>
+        </header>
+        <div class="p-6 md:p-10">
+          <slot />
+        </div>
+      </main>
+    </div>
+
+    <style is:global>
+      :where(body) { font-family: system-ui, -apple-system, sans-serif; color: var(--color-fg, #111); }
+    </style>
+  </body>
+</html>

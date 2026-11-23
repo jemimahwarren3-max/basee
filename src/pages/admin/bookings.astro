@@ -1,0 +1,16 @@
+---
+import Admin from '../../layouts/Admin.astro';
+import DataTable from '../../components/admin/DataTable.astro';
+---
+<Admin title="Bookings" active="bookings">
+  <p class="text-sm text-[var(--color-muted-fg,#666)] mb-6">
+    Connect this view to your booking provider. Options: Cal.com API, a webhook from
+    the booking form endpoint, or a server route that reads a database.
+  </p>
+
+  <DataTable
+    columns={['Date', 'Name', 'Treatment', 'Contact', 'Status']}
+    rows={[]}
+    empty="No bookings. Wire site.forms.booking to an endpoint that records rows, then read them here."
+  />
+</Admin>

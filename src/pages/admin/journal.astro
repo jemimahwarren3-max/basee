@@ -1,0 +1,28 @@
+---
+import Admin from '../../layouts/Admin.astro';
+import DataTable from '../../components/admin/DataTable.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('journal')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const rows = posts.map((p) => [
+  p.data.date.toLocaleDateString('en-GB'),
+  p.data.title,
+  p.data.author ?? '—',
+  p.data.draft ? 'Draft' : 'Published',
+]);
+---
+<Admin title="Journal" active="journal">
+  <p class="text-sm text-[var(--color-muted-fg,#666)] mb-6">
+    Journal posts live under src/content/journal/ as Markdown files. To edit from
+    the browser, connect a Git-based CMS (Decap/Netlify CMS, Keystatic, Sveltia).
+  </p>
+
+  <DataTable
+    columns={['Date', 'Title', 'Author', 'Status']}
+    rows={rows}
+    empty="No posts yet."
+  />
+</Admin>

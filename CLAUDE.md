@@ -12,6 +12,10 @@ A toolkit base for building client websites. Clone it, fill in the config, and c
 - **Effect components** in `src/components/effects/`: smooth scrolling (Lenis), scroll-driven image sequences (GSAP), text with image masked through letters.
 - **Media tools**: bundled FFmpeg (`npm run extract-frames`), sharp (`npm run optimise-images`).
 - **Browser smoke tests** (`npm test`) and a launch-readiness gate for bracketed placeholders.
+- **SEO essentials:** canonical, Open Graph, Twitter Card, optional JSON-LD, plus a sitemap from `@astrojs/sitemap`. Set `SITE_URL` at build time.
+- **Journal (blog):** content collection at `src/content/journal/`, listing at `/journal`, post route at `/journal/[slug]`.
+- **Admin preview UI:** layout at `src/layouts/Admin.astro` with sidebar, plus dashboard components under `src/components/admin/`. **Unauthenticated**: any URL under `/admin/` is public unless you add Netlify or Cloudflare Access password protection, or move the admin to a server with real auth.
+- **Form backend adapter** (`src/lib/forms.ts`): `BookingEnquiry` and `ContactForm` post via `fetch` to the endpoint in `site.forms.{booking,enquiry}`. Works with Formspree, Web3Forms, Netlify Forms or a custom endpoint.
 
 ## Building a client site
 
@@ -93,6 +97,7 @@ tests/
 
 ## Known gaps
 
-- No components for data-heavy sites yet: tables, chart cards, KPI tiles, log timelines. Add them under a new category when first needed.
-- Forms have no built-in backend; each project chooses one.
+- Admin pages have no login. Use Netlify Password Protection, Cloudflare Access, or add a real backend for auth.
+- The admin dashboard reads from static data. Connect a backend (Formspree inbox API, Cal.com API, a database) before it shows anything real.
+- No e-commerce checkout glue yet. Product components exist; pick an adapter like Snipcart or Shopify Lite when a project needs to sell.
 - The design families are fonts and colours only, not full pattern languages. If a site needs a very specific visual identity, build custom sections for it rather than forcing a family.

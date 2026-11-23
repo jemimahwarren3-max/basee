@@ -1,0 +1,28 @@
+---
+// Minimal inline SVG bar chart. For richer charts, wire a React island with
+// Chart.js, Recharts or a server-rendered image.
+interface Props {
+  title: string;
+  points: { label: string; value: number }[];
+  unit?: string;
+}
+const { title, points, unit = '' } = Astro.props;
+const max = Math.max(1, ...points.map((p) => p.value));
+---
+<div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg p-5">
+  <p class="text-sm font-medium">{title}</p>
+  <div class="mt-6 flex items-end gap-2 h-40">
+    {points.map((p) => (
+      <div class="flex-1 flex flex-col items-center gap-2 min-w-0">
+        <div class="flex-1 w-full flex items-end">
+          <div
+            class="w-full bg-[var(--color-primary,#111)] rounded-t"
+            style={`height: ${(p.value / max) * 100}%`}
+            title={`${p.label}: ${p.value}${unit}`}
+          />
+        </div>
+        <span class="text-[10px] text-[var(--color-muted-fg,#999)] truncate w-full text-center">{p.label}</span>
+      </div>
+    ))}
+  </div>
+</div>
