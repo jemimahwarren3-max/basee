@@ -14,7 +14,7 @@ A toolkit base for building client websites. Clone it, fill in the config, and c
 - **Browser smoke tests** (`npm test`) and a launch-readiness gate for bracketed placeholders.
 - **SEO essentials:** canonical, Open Graph, Twitter Card, optional JSON-LD, plus a sitemap from `@astrojs/sitemap`. Set `SITE_URL` at build time.
 - **Journal (blog):** content collection at `src/content/journal/`, listing at `/journal`, post route at `/journal/[slug]`.
-- **Admin preview UI:** layout at `src/layouts/Admin.astro` with sidebar, plus dashboard components under `src/components/admin/`. **Unauthenticated**: any URL under `/admin/` is public unless you add Netlify or Cloudflare Access password protection, or move the admin to a server with real auth.
+- **Admin preview UI:** layout at `src/layouts/Admin.astro` with sidebar, plus dashboard components under `src/components/admin/`. Ships with a client-side password gate (`AuthGate.astro`) that hides the UI until the correct password is typed. **The gate is a deterrent, not real security — the HTML is still served.** See the Security section below for real options.
 - **Form backend adapter** (`src/lib/forms.ts`): `BookingEnquiry` and `ContactForm` post via `fetch` to the endpoint in `site.forms.{booking,enquiry}`. Works with Formspree, Web3Forms, Netlify Forms or a custom endpoint.
 
 ## Building a client site
@@ -94,6 +94,16 @@ scripts/
 tests/
   pages.spec.ts          smoke + launch gate
 ```
+
+## Admin security
+
+Three options, best first:
+
+1. **Hosting-level auth (recommended).**
+   - Netlify: Site settings → Access & security → Visitor access → protect `/admin/*` with a password or role.
+   - Cloudflare Pages: add a Zero Trust Access policy on `/admin/*`. Free tier is enough for most sites.
+2. **Astro server mode.** Switch `output: 'server'` in `astro.config.mjs`, pick an adapter (`@astrojs/node`, `@astrojs/netlify`, `@astrojs/cloudflare`), and add `src/middleware.ts` that checks a session cookie for `/admin/*` routes. Real auth, works anywhere.
+3. **The built-in UI gate.** The AuthGate component checks a SHA-256 hash against the typed password. It only hides the UI; anyone who inspects the page source sees the HTML. Set `ADMIN_PASSWORD_HASH` in `.env.local` via `npm run hash-password -- 'your password'`. Use this as a stop-gap, not a final answer.
 
 ## Known gaps
 

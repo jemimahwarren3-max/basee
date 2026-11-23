@@ -1,0 +1,19 @@
+# Netlify deploy config. Delete if you don't deploy to Netlify.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # SITE_URL is read by astro.config.mjs for canonical URLs and the sitemap.
+  # SITE_URL = "https://your-site.com"
+
+# Real admin auth lives in the Netlify dashboard:
+#   Site settings → Access & security → Visitor access → Protect by role or password
+# The AuthGate component is only a UI deterrent.
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

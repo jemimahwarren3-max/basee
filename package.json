@@ -16,7 +16,8 @@
     "check-tools": "node scripts/check-tools.mjs",
     "registry": "node scripts/build-registry.mjs",
     "extract-frames": "node scripts/extract-frames.mjs",
-    "optimise-images": "node scripts/optimise-images.mjs"
+    "optimise-images": "node scripts/optimise-images.mjs",
+    "hash-password": "node scripts/hash-password.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.9",

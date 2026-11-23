@@ -6,6 +6,7 @@
 import { getFamily } from '../design-families';
 import { themeCss } from '../design-families/theme';
 import { site } from '../site.config';
+import AuthGate from '../components/admin/AuthGate.astro';
 
 interface Props {
   title: string;
@@ -31,6 +32,7 @@ const nav = [
     <title>{title} — Admin</title>
   </head>
   <body class="bg-[var(--color-muted,#f7f7f7)]">
+    <AuthGate />
     <div class="min-h-screen flex">
       <aside class="hidden md:flex md:w-60 flex-col bg-[var(--color-surface,#fff)] border-r border-[var(--color-border,#e5e5e5)] p-6">
         <a href="/admin/" class="text-lg font-semibold">

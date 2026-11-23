@@ -115,6 +115,14 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: true,
   },
   {
+    id: 'auth-gate',
+    name: 'AuthGate',
+    category: 'admin',
+    path: 'components/admin/AuthGate.astro',
+    props: [],
+    hasAnimation: true,
+  },
+  {
     id: 'awards-bar',
     name: 'AwardsBar',
     category: 'interactive',
