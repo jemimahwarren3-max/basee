@@ -17,7 +17,7 @@ const { title = 'Pricing', plans } = Astro.props;
               </li>
             ))}
           </ul>
-          <a href={p.cta.href} class:list={['mt-8 block text-center py-3 rounded-md font-medium text-sm', p.featured ? 'bg-white text-[var(--color-fg,#111)]' : 'bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)]']}>{p.cta.label}</a>
+          <a href={p.cta.href} class:list={['mt-8 block text-center py-3 rounded-md font-medium text-sm', p.featured ? 'bg-white text-[var(--color-fg,#111)]' : 'bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)]']}>{p.cta.label}</a>
         </div>
       ))}
     </div>

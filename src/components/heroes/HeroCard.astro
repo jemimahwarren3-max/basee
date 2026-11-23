@@ -10,7 +10,7 @@ const { title, subtitle, image, cta, secondaryCta } = Astro.props;
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight">{title}</h1>
         {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)] max-w-xl mx-auto">{subtitle}</p>}
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-          {cta && <a href={cta.href} class="px-8 py-3 bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)] font-medium rounded-md">{cta.label}</a>}
+          {cta && <a href={cta.href} class="px-8 py-3 bg-[var(--color-dark-bg,#111)] text-[var(--color-dark-fg,#fff)] font-medium rounded-md">{cta.label}</a>}
           {secondaryCta && <a href={secondaryCta.href} class="px-8 py-3 border border-[var(--color-border,#e5e5e5)] font-medium rounded-md">{secondaryCta.label}</a>}
         </div>
       </div>

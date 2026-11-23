@@ -20,7 +20,7 @@ const { title = 'Simple Pricing', plans } = Astro.props;
           <ul class="mt-8 space-y-2">
             {p.features.map(f => <li class="flex items-center gap-2 text-sm"><span class="text-[var(--color-accent,#6366F1)]">✓</span> {f}</li>)}
           </ul>
-          <a href={p.cta.href} class="mt-8 block text-center py-3 bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)] rounded-md font-medium text-sm">{p.cta.label}</a>
+          <a href={p.cta.href} class="mt-8 block text-center py-3 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] rounded-md font-medium text-sm">{p.cta.label}</a>
         </div>
       ))}
     </div>

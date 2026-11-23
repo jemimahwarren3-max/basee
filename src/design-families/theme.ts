@@ -59,6 +59,8 @@ export function themeCss(family: DesignFamily): string {
   color-scheme: light dark;
   --color-bg: ${c.background};
   --color-fg: ${c.foreground};
+  --color-dark-bg: ${familyIsDark ? c.background : c.foreground};
+  --color-dark-fg: ${familyIsDark ? c.foreground : c.background};
   --color-primary: ${c.primary};
   --color-secondary: ${c.secondary};
   --color-accent: ${c.accent};

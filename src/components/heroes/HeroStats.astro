@@ -2,7 +2,7 @@
 interface Props { title: string; subtitle?: string; stats: { value: string; label: string }[]; cta?: { label: string; href: string } }
 const { title, subtitle, stats, cta } = Astro.props;
 ---
-<section class="py-32 md:py-44 bg-[var(--color-fg,#111)]" data-component="hero-stats">
+<section class="py-32 md:py-44 bg-[var(--color-dark-bg,#111)]" data-component="hero-stats">
   <div class="container-site text-center">
     <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight">{title}</h1>
     {subtitle && <p class="mt-6 text-lg text-white/60 max-w-2xl mx-auto">{subtitle}</p>}

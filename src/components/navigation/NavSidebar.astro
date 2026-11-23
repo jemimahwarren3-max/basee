@@ -7,5 +7,5 @@ const { brand, links, cta } = Astro.props;
   <ul class="flex flex-col gap-1 flex-1">
     {links.map(l => <li><a href={l.href} class="block py-2 px-3 rounded-md text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] hover:bg-[var(--color-surface,#f5f5f5)] transition-colors">{l.label}</a></li>)}
   </ul>
-  {cta && <a href={cta.href} class="mt-auto block text-center py-3 px-4 bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)] text-sm font-medium rounded-md">{cta.label}</a>}
+  {cta && <a href={cta.href} class="mt-auto block text-center py-3 px-4 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium rounded-md">{cta.label}</a>}
 </nav>

@@ -3,7 +3,7 @@ interface Props { brand: string; tagline?: string; columns: { title: string; lin
 const { brand, tagline, columns, newsletter = false } = Astro.props;
 const year = new Date().getFullYear();
 ---
-<footer class="py-20 bg-[var(--color-fg,#0a0a0a)] text-white" data-component="footer-split">
+<footer class="py-20 bg-[var(--color-dark-bg,#0a0a0a)] text-white" data-component="footer-split">
   <div class="container-site">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
       <div class="lg:col-span-5">

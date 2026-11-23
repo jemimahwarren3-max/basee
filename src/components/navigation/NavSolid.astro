@@ -16,7 +16,7 @@ const { brand, links, cta } = Astro.props;
         <a href={link.href} class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors">{link.label}</a>
       ))}
       {cta && (
-        <a href={cta.href} class="text-sm px-5 py-2 bg-[var(--color-primary,#111)] text-[var(--color-bg,#fff)] rounded-md hover:opacity-90 transition-opacity">
+        <a href={cta.href} class="text-sm px-5 py-2 bg-[var(--color-primary,#111)] text-[var(--color-dark-fg,#fff)] rounded-md hover:opacity-90 transition-opacity">
           {cta.label}
         </a>
       )}

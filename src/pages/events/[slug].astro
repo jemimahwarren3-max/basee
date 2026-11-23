@@ -41,7 +41,7 @@ const structuredData = {
   {site.nav.length > 0 && <SiteNav />}
   <main class="container-site py-24 md:py-32 max-w-2xl">
     <a href="/events" class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] hover:opacity-70">← Events</a>
-    <time class="mt-6 block text-sm text-[var(--color-accent,#999)] tabular-nums">
+    <time class="mt-6 block text-sm text-[var(--color-muted-fg,#999)] tabular-nums">
       {fmtDate(event.data.start)} · {fmtTime(event.data.start)}
       {event.data.end && ` — ${fmtTime(event.data.end)}`}
     </time>

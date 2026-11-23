@@ -19,7 +19,7 @@ const { title, subtitle, image, cta, secondaryCta, reversed = false } = Astro.pr
         {subtitle && <p class="mt-5 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{subtitle}</p>}
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
           {cta && (
-            <a href={cta.href} class="px-7 py-3 bg-[var(--color-primary,#111)] text-[var(--color-bg,#fff)] text-sm font-medium rounded-md hover:opacity-90 transition-opacity">{cta.label}</a>
+            <a href={cta.href} class="px-7 py-3 bg-[var(--color-primary,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium rounded-md hover:opacity-90 transition-opacity">{cta.label}</a>
           )}
           {secondaryCta && (
             <a href={secondaryCta.href} class="px-7 py-3 text-sm font-medium border border-[var(--color-border,#e5e5e5)] rounded-md hover:border-[var(--color-fg,#111)] transition-colors">{secondaryCta.label}</a>

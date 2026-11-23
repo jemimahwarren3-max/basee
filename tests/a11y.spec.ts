@@ -24,27 +24,35 @@ const routes = walk(pagesDir)
     return '/' + rel;
   });
 
+const themes = ['light', 'dark'] as const;
+
 for (const route of routes) {
-  test(`${route} has no critical or serious a11y violations`, async ({ page }) => {
-    await page.goto(route, { waitUntil: 'load' });
+  for (const theme of themes) {
+    test(`${route} has no critical or serious a11y violations (${theme})`, async ({ page }) => {
+      // Seed the theme in localStorage before the page loads so the inline
+      // init script in Site.astro picks it up and sets [data-theme] pre-paint.
+      await page.addInitScript((t) => {
+        try { localStorage.setItem('theme', t); } catch {}
+      }, theme);
 
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa'])
-      .analyze();
+      await page.goto(route, { waitUntil: 'load' });
 
-    // Fail only on critical and serious issues. Moderate/minor are warnings
-    // in the console but don't block — they should be fixed in a sweep.
-    const blockers = results.violations.filter(
-      (v) => v.impact === 'critical' || v.impact === 'serious',
-    );
+      const results = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa'])
+        .analyze();
 
-    if (blockers.length > 0) {
-      const summary = blockers
-        .map((v) => `  - ${v.id} (${v.impact}): ${v.help} — ${v.nodes.length} node(s)`)
-        .join('\n');
-      console.log(`\naxe violations on ${route}:\n${summary}`);
-    }
+      const blockers = results.violations.filter(
+        (v) => v.impact === 'critical' || v.impact === 'serious',
+      );
 
-    expect(blockers, `${blockers.length} critical/serious a11y violations on ${route}`).toEqual([]);
-  });
+      if (blockers.length > 0) {
+        const summary = blockers
+          .map((v) => `  - ${v.id} (${v.impact}): ${v.help} — ${v.nodes.length} node(s)`)
+          .join('\n');
+        console.log(`\naxe violations on ${route} (${theme}):\n${summary}`);
+      }
+
+      expect(blockers, `${blockers.length} critical/serious a11y violations on ${route} (${theme})`).toEqual([]);
+    });
+  }
 }

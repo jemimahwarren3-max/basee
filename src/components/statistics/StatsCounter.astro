@@ -8,7 +8,7 @@ const { stats, dark = false } = Astro.props;
 ---
 
 <section
-  class:list={['py-20 md:py-28', dark ? 'bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)]' : '']}
+  class:list={['py-20 md:py-28', dark ? 'bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)]' : '']}
   data-component="stats-counter"
 >
   <div class="container-site">

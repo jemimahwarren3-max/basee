@@ -2,7 +2,7 @@
 interface Props { text: string; cta: { label: string; href: string }; dark?: boolean }
 const { text, cta, dark = false } = Astro.props;
 ---
-<section class:list={['py-12 md:py-16', dark ? 'bg-[var(--color-fg,#111)] text-white' : 'bg-[var(--color-muted,#f7f7f7)]']} data-component="cta-banner">
+<section class:list={['py-12 md:py-16', dark ? 'bg-[var(--color-dark-bg,#111)] text-white' : 'bg-[var(--color-muted,#f7f7f7)]']} data-component="cta-banner">
   <div class="container-site flex flex-col sm:flex-row items-center justify-between gap-6">
     <p class="text-lg md:text-xl font-medium">{text}</p>
     <a href={cta.href} class:list={['px-6 py-3 text-sm font-medium whitespace-nowrap transition-opacity hover:opacity-90', dark ? 'bg-white text-black' : 'bg-[var(--color-primary,#111)] text-white']}>{cta.label}</a>

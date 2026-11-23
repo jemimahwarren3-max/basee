@@ -27,10 +27,10 @@ const { title, subtitle, plans } = Astro.props;
         <div class:list={[
           'relative p-8 md:p-10 border',
           plan.featured
-            ? 'border-[var(--color-primary,#111)] bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)]'
+            ? 'border-[var(--color-primary,#111)] bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)]'
             : 'border-[var(--color-border,#e5e5e5)]',
         ]}>
-          {plan.featured && <span class="absolute -top-3 left-8 text-xs uppercase tracking-widest bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)] px-3 py-1">Popular</span>}
+          {plan.featured && <span class="absolute -top-3 left-8 text-xs uppercase tracking-widest bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] px-3 py-1">Popular</span>}
           <h3 class="text-lg font-semibold">{plan.name}</h3>
           <div class="mt-4 flex items-baseline gap-1">
             <span class="text-4xl font-light">{plan.price}</span>
@@ -49,7 +49,7 @@ const { title, subtitle, plans } = Astro.props;
             href={plan.cta.href}
             class:list={[
               'mt-8 block text-center text-sm font-medium py-3 transition-opacity hover:opacity-90',
-              plan.featured ? 'bg-white text-black' : 'bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)]',
+              plan.featured ? 'bg-white text-black' : 'bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)]',
             ]}
           >
             {plan.cta.label}

@@ -29,7 +29,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { year: 'numeric', month:
           {upcoming.map((e) => (
             <li>
               <a href={`/events/${e.id}`} class="group block">
-                <time class="text-sm text-[var(--color-accent,#999)] tabular-nums">{fmt(e.data.start)}{e.data.end ? ` — ${fmt(e.data.end)}` : ''}</time>
+                <time class="text-sm text-[var(--color-muted-fg,#999)] tabular-nums">{fmt(e.data.start)}{e.data.end ? ` — ${fmt(e.data.end)}` : ''}</time>
                 <h3 class="mt-1 text-xl md:text-2xl leading-tight group-hover:opacity-70 transition-opacity">{e.data.title}</h3>
                 {e.data.venue && <p class="mt-1 text-sm text-[var(--color-muted-fg,#666)]">{e.data.venue}</p>}
                 <p class="mt-2 text-[var(--color-muted-fg,#666)]">{e.data.description}</p>

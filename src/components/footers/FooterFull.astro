@@ -2,7 +2,7 @@
 interface Props { brand: string; description?: string; columns: { title: string; links: { label: string; href: string }[] }[]; socials?: { platform: string; url: string }[]; copyright?: string }
 const { brand, description, columns, socials, copyright } = Astro.props;
 ---
-<footer class="bg-[var(--color-fg,#111)] text-white pt-20 pb-8" data-component="footer-full">
+<footer class="bg-[var(--color-dark-bg,#111)] text-white pt-20 pb-8" data-component="footer-full">
   <div class="container-site">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
       <div class="lg:col-span-2">
