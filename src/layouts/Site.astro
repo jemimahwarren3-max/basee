@@ -45,6 +45,7 @@ const ogImage = new URL(image ?? '/og.png', Astro.site ?? 'https://example.com')
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="Journal feed" href="/journal/rss.xml" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <meta property="og:type" content={ogType} />
