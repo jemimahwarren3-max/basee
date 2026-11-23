@@ -787,6 +787,14 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: true,
   },
   {
+    id: 'img',
+    name: 'Img',
+    category: 'common',
+    path: 'components/common/Img.astro',
+    props: ['src', 'alt', 'sizes', 'width', 'height', 'loading', 'class', 'widths'],
+    hasAnimation: false,
+  },
+  {
     id: 'kpi-tile',
     name: 'KpiTile',
     category: 'admin',

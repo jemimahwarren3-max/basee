@@ -1,0 +1,54 @@
+---
+// Responsive image wrapper. Expects `npm run optimise-images` to have
+// generated WebP variants at 480, 960 and 1600 widths next to the full-size
+// file — see the README. Falls back to the plain src if variants are missing.
+//
+// Usage:
+//   <Img src="/img/hero.webp" alt="Studio shot" sizes="(min-width: 1024px) 50vw, 100vw" />
+//
+// Expects these files on disk (produced by optimise-images):
+//   /img/hero.webp       full size
+//   /img/hero-480.webp   480px wide
+//   /img/hero-960.webp   960px wide
+//   /img/hero-1600.webp  1600px wide
+interface Props {
+  src: string;
+  alt: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
+  loading?: 'eager' | 'lazy';
+  class?: string;
+  widths?: number[];
+}
+
+const {
+  src,
+  alt,
+  sizes = '100vw',
+  width,
+  height,
+  loading = 'lazy',
+  class: className,
+  widths = [480, 960, 1600],
+} = Astro.props;
+
+function variant(w: number): string {
+  const ext = src.slice(src.lastIndexOf('.'));
+  const stem = src.slice(0, -ext.length);
+  return `${stem}-${w}${ext}`;
+}
+
+const srcset = widths.map((w) => `${variant(w)} ${w}w`).join(', ');
+---
+<img
+  src={src}
+  srcset={srcset}
+  sizes={sizes}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding="async"
+  class={className}
+/>

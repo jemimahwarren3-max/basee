@@ -12,6 +12,7 @@ A toolkit base for building client websites. Clone it, fill in the config, and c
 - **Effect components** in `src/components/effects/`: smooth scrolling (Lenis), scroll-driven image sequences (GSAP), text with image masked through letters.
 - **Media tools**: bundled FFmpeg (`npm run extract-frames`), sharp (`npm run optimise-images`).
 - **Brand mark** (`Brand.astro`): reads from `site.config.logoSvg`, `logoImage` or `name` (in that order) and renders. Drop into any layout; nav components still take a `brand` string for backward-compatibility.
+- **Responsive image** (`Img.astro`): emits a `srcset` pointing at the WebP variants that `optimise-images` produces. Set `sizes` to match the layout. Lazy by default; pass `loading="eager"` for the hero.
 - **Theme toggle** (`ThemeToggle.astro`): light/dark switch that flips `[data-theme]` on `<html>` and persists in localStorage. The Site layout sets the theme before paint (no flash) and respects `prefers-color-scheme` on first visit. Light families get a generic dark palette; already-dark families keep their own colours.
 - **Browser smoke tests and a11y scan** (`npm test`): loads every page, fails on JavaScript errors, and runs axe-core against each page with WCAG 2.0 AA rules. Fails on critical and serious violations. A launch-readiness gate (`LAUNCH_CHECK=1 npm test`) fails on remaining `[placeholder]` text.
 - **SEO essentials:** canonical, Open Graph, Twitter Card, optional JSON-LD, plus a sitemap from `@astrojs/sitemap`. Set `SITE_URL` at build time.
