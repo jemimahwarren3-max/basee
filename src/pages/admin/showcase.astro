@@ -1,0 +1,75 @@
+---
+import Admin from '../../layouts/Admin.astro';
+import { COMPONENTS } from '../../components/registry';
+import FilterableList from '../../components/admin/FilterableList.astro';
+import StatusBadge from '../../components/admin/StatusBadge.astro';
+
+const byCategory = new Map<string, typeof COMPONENTS>();
+for (const c of COMPONENTS) {
+  const arr = byCategory.get(c.category) ?? [];
+  arr.push(c);
+  byCategory.set(c.category, arr);
+}
+const categories = [...byCategory.keys()].sort();
+
+const items = COMPONENTS.map((c) => ({
+  title: c.name,
+  subtitle: c.props.length ? `Props: ${c.props.slice(0, 6).join(', ')}${c.props.length > 6 ? '…' : ''}` : 'No props',
+  meta: c.path,
+  tag: c.category,
+})).sort((a, b) => a.title.localeCompare(b.title));
+---
+<Admin title="Component gallery" active="showcase">
+  <p class="text-sm text-[var(--color-muted-fg,#666)] mb-6 max-w-2xl">
+    {COMPONENTS.length} components across {categories.length} categories. Search by name, filter by category, or open the source file to see the props in full.
+  </p>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
+    {categories.map((cat) => (
+      <a href={`#cat-${cat}`} class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg p-4 hover:border-[var(--color-fg,#111)] transition-colors">
+        <p class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)]">{cat}</p>
+        <p class="mt-1 text-2xl font-semibold tabular-nums">{byCategory.get(cat)!.length}</p>
+      </a>
+    ))}
+  </div>
+
+  <FilterableList
+    title="All components"
+    items={items}
+    placeholder="Search components…"
+  />
+
+  <div class="mt-10 space-y-10">
+    {categories.map((cat) => (
+      <section id={`cat-${cat}`}>
+        <div class="flex items-baseline justify-between mb-3">
+          <h2 class="text-lg font-semibold capitalize">{cat}</h2>
+          <span class="text-xs text-[var(--color-muted-fg,#999)]">{byCategory.get(cat)!.length} components</span>
+        </div>
+        <div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg overflow-hidden">
+          <ul class="divide-y divide-[var(--color-border,#e5e5e5)]">
+            {byCategory.get(cat)!.sort((a, b) => a.name.localeCompare(b.name)).map((c) => (
+              <li class="px-4 py-3 flex items-start gap-4">
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center gap-3 flex-wrap">
+                    <p class="font-medium text-sm">{c.name}</p>
+                    <code class="text-xs text-[var(--color-muted-fg,#999)]">{c.id}</code>
+                    {c.hasAnimation && <StatusBadge status="info" label="animated" />}
+                  </div>
+                  {c.props.length > 0 ? (
+                    <p class="mt-1 text-xs text-[var(--color-muted-fg,#666)]">
+                      <span class="text-[var(--color-muted-fg,#999)]">Props:</span> {c.props.join(', ')}
+                    </p>
+                  ) : (
+                    <p class="mt-1 text-xs text-[var(--color-muted-fg,#999)] italic">No props</p>
+                  )}
+                  <p class="mt-1 text-xs text-[var(--color-muted-fg,#999)] font-mono">{c.path}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+  </div>
+</Admin>
