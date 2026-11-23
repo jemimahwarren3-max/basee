@@ -1,0 +1,65 @@
+---
+import Site from '../../layouts/Site.astro';
+import SiteNav from '../../components/common/SiteNav.astro';
+import SiteFooter from '../../components/common/SiteFooter.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { site } from '../../site.config';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events', ({ data }) => !data.draft);
+  return events.map((event) => ({ params: { slug: event.id }, props: { event } }));
+}
+
+interface Props { event: CollectionEntry<'events'> }
+const { event } = Astro.props;
+const { Content } = await render(event);
+
+const fmtDate = (d: Date) => d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+const fmtTime = (d: Date) => d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: event.data.title,
+  description: event.data.description,
+  startDate: event.data.start.toISOString(),
+  endDate: event.data.end?.toISOString(),
+  location: event.data.venue
+    ? { '@type': 'Place', name: event.data.venue, address: event.data.address }
+    : undefined,
+  url: event.data.url,
+};
+---
+<Site
+  title={`${event.data.title} — ${site.name || 'Events'}`}
+  description={event.data.description}
+  family={site.family}
+  image={event.data.cover}
+  ogType="article"
+  structuredData={structuredData}
+>
+  {site.nav.length > 0 && <SiteNav />}
+  <main class="container-site py-24 md:py-32 max-w-2xl">
+    <a href="/events" class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] hover:opacity-70">← Events</a>
+    <time class="mt-6 block text-sm text-[var(--color-accent,#999)] tabular-nums">
+      {fmtDate(event.data.start)} · {fmtTime(event.data.start)}
+      {event.data.end && ` — ${fmtTime(event.data.end)}`}
+    </time>
+    <h1 class="mt-3 text-4xl md:text-5xl leading-tight">{event.data.title}</h1>
+    {event.data.venue && (
+      <p class="mt-4 text-[var(--color-muted-fg,#666)]">
+        {event.data.venue}{event.data.address ? ` · ${event.data.address}` : ''}
+      </p>
+    )}
+    <p class="mt-6 text-lg leading-relaxed">{event.data.description}</p>
+    <div class="prose mt-10 max-w-none">
+      <Content />
+    </div>
+    {event.data.url && (
+      <a href={event.data.url} class="mt-8 inline-block px-6 py-3 bg-[var(--color-fg,#111)] text-[var(--color-bg,#fff)] text-sm font-medium" target="_blank" rel="noopener">
+        Book or RSVP →
+      </a>
+    )}
+  </main>
+  <SiteFooter />
+</Site>

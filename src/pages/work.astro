@@ -1,17 +1,41 @@
 ---
-// Starter work/portfolio page. Replace with the client's own projects.
 import Site from '../layouts/Site.astro';
 import SiteNav from '../components/common/SiteNav.astro';
 import SiteFooter from '../components/common/SiteFooter.astro';
+import { getCollection } from 'astro:content';
 import { site } from '../site.config';
+
+const projects = (await getCollection('work', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order || (b.data.year ?? 0) - (a.data.year ?? 0));
 ---
 <Site title={`Work — ${site.name || 'Site'}`} description={site.description} family={site.family}>
   {site.nav.length > 0 && <SiteNav />}
   <main class="container-site py-24 md:py-32">
     <h1 class="text-4xl md:text-5xl leading-tight">Work</h1>
-    <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)] max-w-2xl">
-      Replace this file with the client's projects. See src/components/galleries/ and src/components/products/ for layouts.
-    </p>
+    {projects.length === 0 ? (
+      <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)] max-w-2xl">
+        No projects yet. Add one under src/content/work/.
+      </p>
+    ) : (
+      <ul class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {projects.map((p) => (
+          <li>
+            <a href={`/work/${p.id}`} class="group block">
+              {p.data.cover && (
+                <div class="aspect-[4/3] overflow-hidden bg-[var(--color-muted,#f5f5f5)] mb-4">
+                  <img src={p.data.cover} alt="" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" />
+                </div>
+              )}
+              <div class="flex items-baseline justify-between gap-4">
+                <h2 class="text-xl md:text-2xl leading-tight group-hover:opacity-70 transition-opacity">{p.data.title}</h2>
+                {p.data.year && <span class="text-sm text-[var(--color-muted-fg,#999)] tabular-nums shrink-0">{p.data.year}</span>}
+              </div>
+              {p.data.client && <p class="text-sm text-[var(--color-muted-fg,#666)] mt-1">{p.data.client}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
   </main>
   <SiteFooter />
 </Site>
