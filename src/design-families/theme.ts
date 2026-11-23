@@ -27,10 +27,36 @@ export function googleFontsHref(family: DesignFamily): string {
   return `https://fonts.googleapis.com/css2?${families.join('&')}&display=swap`;
 }
 
+// Light/dark values. If the family is already dark (bg is darker than fg),
+// the "dark" block becomes a no-op so colours don't invert twice.
+function isDark(hex: string): boolean {
+  const h = hex.replace('#', '');
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return 0.299 * r + 0.587 * g + 0.114 * b < 128;
+}
+
 export function themeCss(family: DesignFamily): string {
   const c = family.colors;
   const t = family.typography;
+
+  const familyIsDark = isDark(c.background);
+  // Default dark palette: swap bg/fg and darken supporting surfaces.
+  const dark = familyIsDark
+    ? c // already dark — keep the family's own values
+    : {
+        background: '#0b0b0d',
+        foreground: '#f4f4f5',
+        muted: '#18181b',
+        mutedForeground: '#a1a1aa',
+        border: '#27272a',
+        surface: '#111113',
+        surfaceForeground: '#f4f4f5',
+      };
+
   return `:root {
+  color-scheme: light dark;
   --color-bg: ${c.background};
   --color-fg: ${c.foreground};
   --color-primary: ${c.primary};
@@ -53,5 +79,14 @@ export function themeCss(family: DesignFamily): string {
   --section-gap: ${family.spacing.sectionGap};
   --component-gap: ${family.spacing.componentGap};
   --content-width: ${family.spacing.contentWidth};
+}
+[data-theme="dark"] {
+  --color-bg: ${dark.background};
+  --color-fg: ${dark.foreground};
+  --color-muted: ${dark.muted};
+  --color-muted-fg: ${dark.mutedForeground};
+  --color-border: ${dark.border};
+  --color-surface: ${dark.surface};
+  --color-surface-fg: ${dark.surfaceForeground};
 }`;
 }

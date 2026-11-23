@@ -1387,6 +1387,14 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: false,
   },
   {
+    id: 'theme-toggle',
+    name: 'ThemeToggle',
+    category: 'common',
+    path: 'components/common/ThemeToggle.astro',
+    props: ['class'],
+    hasAnimation: true,
+  },
+  {
     id: 'timeline',
     name: 'Timeline',
     category: 'interactive',
