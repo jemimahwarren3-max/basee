@@ -23,7 +23,7 @@ const {
 } = Astro.props;
 const family = getFamily(familyId);
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://example.com').toString();
-const ogImage = image ? new URL(image, Astro.site ?? 'https://example.com').toString() : undefined;
+const ogImage = new URL(image ?? '/og.png', Astro.site ?? 'https://example.com').toString();
 ---
 <!doctype html>
 <html lang="en">
@@ -41,12 +41,12 @@ const ogImage = image ? new URL(image, Astro.site ?? 'https://example.com').toSt
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={canonical} />
     {site.name && <meta property="og:site_name" content={site.name} />}
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:image" content={ogImage} />
 
-    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     {description && <meta name="twitter:description" content={description} />}
-    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <meta name="twitter:image" content={ogImage} />
 
     {structuredData && (
       <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
