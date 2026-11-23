@@ -41,6 +41,7 @@ function variant(w: number): string {
 
 const srcset = widths.map((w) => `${variant(w)} ${w}w`).join(', ');
 ---
+
 <img
   src={src}
   srcset={srcset}
