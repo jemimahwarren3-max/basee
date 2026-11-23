@@ -483,6 +483,14 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: true,
   },
   {
+    id: 'form-spam-guard',
+    name: 'FormSpamGuard',
+    category: 'interactive',
+    path: 'components/interactive/FormSpamGuard.astro',
+    props: [],
+    hasAnimation: false,
+  },
+  {
     id: 'gallery-before-after',
     name: 'GalleryBeforeAfter',
     category: 'galleries',

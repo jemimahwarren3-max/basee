@@ -1,0 +1,18 @@
+---
+// Honeypot + timing-based spam guard.
+// Place inside any <form data-ajax-form> block. The shared AJAX handler in
+// BookingEnquiry.astro and ContactForm.astro reads data-form-created and the
+// hidden `website` field and silently drops submissions that look automated.
+//
+// The guard adds a second layer on top of whatever your form provider already
+// does (Formspree, Web3Forms, Netlify Forms, Turnstile, reCAPTCHA).
+const created = Date.now();
+---
+{/* Honeypot — invisible to humans, obvious to bots that fill every input. */}
+<div style="position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden" aria-hidden="true">
+  <label>
+    Website
+    <input type="text" name="website" tabindex="-1" autocomplete="off" />
+  </label>
+</div>
+<input type="hidden" name="_created" value={created} data-form-created />

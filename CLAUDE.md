@@ -17,6 +17,7 @@ A toolkit base for building client websites. Clone it, fill in the config, and c
 - **Admin preview UI:** layout at `src/layouts/Admin.astro` with sidebar, plus dashboard components under `src/components/admin/`. Ships with a client-side password gate (`AuthGate.astro`) that hides the UI until the correct password is typed. **The gate is a deterrent, not real security — the HTML is still served.** See the Security section below for real options.
 - **Content editing (Decap CMS):** browser-based editor at `/cms/` for journal posts. Commits straight to the Git repo, so a post edit triggers a rebuild. Requires an OAuth backend — see `public/cms/config.yml` and the Content section below.
 - **Form backend adapter** (`src/lib/forms.ts`): `BookingEnquiry` and `ContactForm` post via `fetch` to the endpoint in `site.forms.{booking,enquiry}`. Works with Formspree, Web3Forms, Netlify Forms or a custom endpoint.
+- **Form spam guard** (`FormSpamGuard.astro`): honeypot field plus a 2-second minimum submit time, applied to both form components. Add Turnstile or reCAPTCHA on top for higher-value forms.
 
 ## Building a client site
 

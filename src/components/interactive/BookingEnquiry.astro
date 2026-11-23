@@ -1,4 +1,6 @@
 ---
+import FormSpamGuard from './FormSpamGuard.astro';
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -32,6 +34,7 @@ const {
       </div>
       <div class="hidden text-sm text-red-600" data-form-error></div>
       <div data-form-body>
+      <FormSpamGuard />
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {fields.includes('name') && (
           <div>
@@ -107,10 +110,24 @@ const {
       const success = form.querySelector<HTMLElement>('[data-form-success]');
       const error = form.querySelector<HTMLElement>('[data-form-error]');
       error?.classList.add('hidden');
+
+      // Spam checks
+      const data = new FormData(form);
+      const honey = (data.get('website') ?? '').toString();
+      const created = Number(data.get('_created') ?? 0);
+      if (honey.trim() !== '' || (created && Date.now() - created < 2000)) {
+        // Fake success: silently drop, so bots don't retry.
+        body?.classList.add('hidden');
+        success?.classList.remove('hidden');
+        return;
+      }
+      data.delete('website');
+      data.delete('_created');
+
       try {
         const res = await fetch(form.action, {
           method: 'POST',
-          body: new FormData(form),
+          body: data,
           headers: { Accept: 'application/json' },
         });
         if (!res.ok) throw new Error(`Server returned ${res.status}`);

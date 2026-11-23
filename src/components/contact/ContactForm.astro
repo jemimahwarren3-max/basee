@@ -1,4 +1,6 @@
 ---
+import FormSpamGuard from '../interactive/FormSpamGuard.astro';
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -31,6 +33,7 @@ const fieldConfig: Record<string, { label: string; type: string; required: boole
       </div>
       <div class="hidden md:col-span-2 text-sm text-red-600" data-form-error></div>
       <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6" data-form-body>
+      <FormSpamGuard />
       {fields.map((key) => {
         const f = fieldConfig[key];
         if (!f) return null;
@@ -79,10 +82,22 @@ const fieldConfig: Record<string, { label: string; type: string; required: boole
       const success = form.querySelector<HTMLElement>('[data-form-success]');
       const error = form.querySelector<HTMLElement>('[data-form-error]');
       error?.classList.add('hidden');
+
+      const data = new FormData(form);
+      const honey = (data.get('website') ?? '').toString();
+      const created = Number(data.get('_created') ?? 0);
+      if (honey.trim() !== '' || (created && Date.now() - created < 2000)) {
+        body?.classList.add('hidden');
+        success?.classList.remove('hidden');
+        return;
+      }
+      data.delete('website');
+      data.delete('_created');
+
       try {
         const res = await fetch(form.action, {
           method: 'POST',
-          body: new FormData(form),
+          body: data,
           headers: { Accept: 'application/json' },
         });
         if (!res.ok) throw new Error(`Server returned ${res.status}`);
