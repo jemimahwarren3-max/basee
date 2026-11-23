@@ -1,0 +1,28 @@
+---
+// Family-aware navigation wrapper. Reads from src/site.config and picks a nav
+// component from the family's navigation.style. Override by passing `variant`.
+import { getFamily } from '../../design-families';
+import { site } from '../../site.config';
+import NavCentered from '../navigation/NavCentered.astro';
+import NavMinimal from '../navigation/NavMinimal.astro';
+import NavSidebar from '../navigation/NavSidebar.astro';
+import NavOverlay from '../navigation/NavOverlay.astro';
+import NavTransparent from '../navigation/NavTransparent.astro';
+import NavSolid from '../navigation/NavSolid.astro';
+
+interface Props {
+  variant?: 'minimal' | 'centered' | 'sidebar' | 'overlay' | 'transparent' | 'solid';
+}
+const { variant } = Astro.props;
+const style = variant ?? getFamily(site.family).navigation.style;
+
+const brand = site.name || 'Site';
+const links = site.nav;
+const cta = site.primaryCta;
+---
+{style === 'centered' && <NavCentered brand={brand} links={links} cta={cta} />}
+{style === 'minimal' && <NavMinimal brand={brand} links={links} cta={cta} />}
+{style === 'sidebar' && <NavSidebar brand={brand} links={links} cta={cta} />}
+{style === 'overlay' && <NavOverlay brand={brand} links={links} cta={cta} />}
+{style === 'transparent' && <NavTransparent brand={brand} links={links} cta={cta} />}
+{style === 'solid' && <NavSolid brand={brand} links={links} cta={cta} />}

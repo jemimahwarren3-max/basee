@@ -1179,6 +1179,22 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: false,
   },
   {
+    id: 'site-footer',
+    name: 'SiteFooter',
+    category: 'common',
+    path: 'components/common/SiteFooter.astro',
+    props: ['variant'],
+    hasAnimation: false,
+  },
+  {
+    id: 'site-nav',
+    name: 'SiteNav',
+    category: 'common',
+    path: 'components/common/SiteNav.astro',
+    props: ['variant'],
+    hasAnimation: false,
+  },
+  {
     id: 'smooth-scroll',
     name: 'SmoothScroll',
     category: 'effects',

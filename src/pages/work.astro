@@ -1,13 +1,17 @@
 ---
 // Starter work/portfolio page. Replace with the client's own projects.
 import Site from '../layouts/Site.astro';
+import SiteNav from '../components/common/SiteNav.astro';
+import SiteFooter from '../components/common/SiteFooter.astro';
 import { site } from '../site.config';
 ---
 <Site title={`Work — ${site.name || 'Site'}`} description={site.description} family={site.family}>
+  {site.nav.length > 0 && <SiteNav />}
   <main class="container-site py-24 md:py-32">
     <h1 class="text-4xl md:text-5xl leading-tight">Work</h1>
     <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)] max-w-2xl">
       Replace this file with the client's projects. See src/components/galleries/ and src/components/products/ for layouts.
     </p>
   </main>
+  <SiteFooter />
 </Site>
