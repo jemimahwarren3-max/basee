@@ -34,7 +34,7 @@ const structuredData = {
   title={`${event.data.title} — ${site.name || 'Events'}`}
   description={event.data.description}
   family={site.family}
-  image={event.data.cover}
+  image={event.data.cover || `/og/events/${event.id}.png`}
   ogType="article"
   structuredData={structuredData}
 >

@@ -25,7 +25,7 @@ const structuredData = {
   title={`${post.data.title} — ${site.name || 'Journal'}`}
   description={post.data.description}
   family={site.family}
-  image={post.data.cover}
+  image={post.data.cover ?? `/og/journal/${post.id}.png`}
   ogType="article"
   structuredData={structuredData}
 >
