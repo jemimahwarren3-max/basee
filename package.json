@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "check": "tsc --noEmit && npm run build && npm run lint",
     "lint": "oxlint .",
@@ -56,6 +56,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^17.6.2",
     "oxlint": "^1.1.0",
+    "pagefind": "^1.6.0",
     "prettier": "^3.10.1",
     "prettier-plugin-astro": "^1.1.2",
     "sharp": "^0.35.5",
