@@ -13,7 +13,7 @@ const posts = (await getCollection('journal', ({ data }) => !data.draft)).sort(
   description="Articles and updates."
   family={site.family}
 >
-  <main class="container-site py-24 md:py-32 max-w-3xl">
+  <main id="main" class="container-site py-24 md:py-32 max-w-3xl">
     <h1 class="text-4xl md:text-5xl leading-tight">Journal</h1>
     {posts.length === 0 ? (
       <p class="mt-8 text-[var(--color-muted-fg,#666)]">

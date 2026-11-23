@@ -77,6 +77,9 @@ const ogImage = new URL(image ?? '/og.png', Astro.site ?? 'https://example.com')
     <SnipcartScript />
   </head>
   <body>
+    <a href="#main" class="skip-link">
+      Skip to main content
+    </a>
     <slot />
   </body>
   <script>

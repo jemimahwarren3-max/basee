@@ -7,7 +7,7 @@ import { site } from '../site.config';
 
 <Site title="Not found" description="This page doesn't exist." family={site.family} noindex={true}>
   {site.nav.length > 0 && <SiteNav />}
-  <main class="min-h-[70vh] flex items-center justify-center">
+  <main id="main" class="min-h-[70vh] flex items-center justify-center">
     <div class="container-site max-w-xl text-center py-32">
       <p class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)]">404</p>
       <h1 class="mt-4 text-5xl md:text-6xl leading-tight">Page not found</h1>

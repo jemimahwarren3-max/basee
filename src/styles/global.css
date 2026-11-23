@@ -54,3 +54,44 @@ video {
   margin-inline: auto;
   padding-inline: var(--spacing-gutter);
 }
+
+/*
+ * Keyboard focus styles.
+ *
+ * :focus-visible fires for keyboard navigation but not for mouse clicks,
+ * so there's no ring on buttons someone just clicked. Browsers' defaults
+ * are inconsistent and often invisible on dark backgrounds — this gives a
+ * consistent ring that uses the accent colour with a background-coloured
+ * halo so it stays visible on any surface.
+ */
+:where(a, button, input, select, textarea, [role='button'], [tabindex]):focus {
+  outline: none;
+}
+
+:where(a, button, input, select, textarea, [role='button'], [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent, #6366f1);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* On dark surfaces the accent can still be close to the background; add a
+   contrast halo via box-shadow so the ring reads on anything. */
+:where(a, button, input, select, textarea, [role='button'], [tabindex]):focus-visible {
+  box-shadow: 0 0 0 4px var(--color-bg, #fff);
+}
+
+/* Make the skip-link visible when focused. */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--color-fg, #111);
+  color: var(--color-bg, #fff);
+  border-radius: 0.25rem;
+  transition: top 0.15s;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
