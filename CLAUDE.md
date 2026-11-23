@@ -112,6 +112,18 @@ Journal posts live under `src/content/journal/` as Markdown. The client can edit
 
 The CMS has its own auth, independent of the admin gate. For real sites, keep both routes protected.
 
+## Deployment
+
+Three hosts are set up. Delete the files for the ones you don't use.
+
+- **Netlify** — `netlify.toml`. Admin auth: Site settings → Access & security → Visitor access.
+- **Vercel** — `vercel.json`. Admin auth: available on Pro or via middleware + env vars.
+- **Cloudflare Pages** — `wrangler.toml`. Pages auto-detects Astro; the toml is only needed for extra config. Admin auth: Zero Trust → Access → Policies on `/admin/*`.
+
+`public/_headers` applies to Netlify and Cloudflare Pages — security headers, OG cache, admin noindex. Vercel reads headers from `vercel.json`.
+
+Set `SITE_URL` in each host's env to the live origin so canonical URLs and the sitemap are correct.
+
 ## Admin security
 
 Three options, best first:

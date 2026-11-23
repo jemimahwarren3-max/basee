@@ -1,0 +1,16 @@
+# Cloudflare Pages config. Delete if you don't deploy to Cloudflare.
+#
+# Pages auto-detects Astro, so most sites don't need this file. Keep it for:
+#   - a custom build command
+#   - environment variables (set via dashboard for secrets)
+#   - route-level cache headers (configure in _headers instead)
+#
+# To deploy: Pages dashboard → connect this repo → framework preset: Astro.
+# For admin auth: Zero Trust → Access → Policies → protect /admin/*
+
+name = "yonah-website"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-11-23"
+
+[vars]
+SITE_URL = "https://example.com"
