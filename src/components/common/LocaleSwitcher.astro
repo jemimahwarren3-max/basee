@@ -1,0 +1,39 @@
+---
+// Locale switcher. Renders nothing when site.config.locales has one entry
+// or none. When there are multiple, links to the same path with the locale
+// prefix swapped.
+//
+// Only useful once Astro's i18n routing is enabled in astro.config.mjs —
+// see src/lib/i18n.ts for the config block.
+import { site } from '../../site.config';
+
+const locales = site.i18n?.locales ?? [];
+const current = Astro.url.pathname.split('/').filter(Boolean)[0];
+
+function pathFor(locale: string): string {
+  const parts = Astro.url.pathname.split('/').filter(Boolean);
+  if (parts[0] && locales.includes(parts[0])) parts[0] = locale;
+  else parts.unshift(locale);
+  return '/' + parts.join('/');
+}
+---
+
+{locales.length > 1 && (
+  <nav class="flex items-center gap-2 text-xs uppercase tracking-widest" aria-label="Language">
+    {locales.map((loc) => (
+      <a
+        href={pathFor(loc)}
+        class:list={[
+          'px-2 py-1 rounded',
+          loc === current
+            ? 'bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)]'
+            : 'text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)]',
+        ]}
+        lang={loc}
+        aria-current={loc === current ? 'true' : undefined}
+      >
+        {loc}
+      </a>
+    ))}
+  </nav>
+)}

@@ -51,6 +51,14 @@ export const site = {
     currency: 'USD',
   },
 
+  // Internationalisation. Leave locales as ['en'] for a single-language site.
+  // To add languages: add codes here AND copy the matching block into
+  // astro.config.mjs under `i18n`. See src/lib/i18n.ts for the config.
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'] as string[],
+  },
+
   // Footer copyright. {year} is replaced at build.
   copyright: '© {year} {name}. All rights reserved.',
 };

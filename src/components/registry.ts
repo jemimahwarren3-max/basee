@@ -811,6 +811,14 @@ export const COMPONENTS: ComponentMeta[] = [
     hasAnimation: false,
   },
   {
+    id: 'locale-switcher',
+    name: 'LocaleSwitcher',
+    category: 'common',
+    path: 'components/common/LocaleSwitcher.astro',
+    props: [],
+    hasAnimation: false,
+  },
+  {
     id: 'log-timeline',
     name: 'LogTimeline',
     category: 'admin',
