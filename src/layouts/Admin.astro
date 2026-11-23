@@ -21,6 +21,9 @@ const nav = [
   { key: 'journal', label: 'Journal', href: '/admin/journal/' },
   { key: 'settings', label: 'Settings', href: '/admin/settings/' },
 ];
+const cmsNav = [
+  { key: 'cms', label: 'Edit content ↗', href: '/cms/' },
+];
 ---
 <!doctype html>
 <html lang="en">
@@ -54,6 +57,19 @@ const nav = [
             </a>
           ))}
         </nav>
+
+        <div class="mt-8 pt-4 border-t border-[var(--color-border,#e5e5e5)]">
+          <p class="text-[10px] uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-2">Tools</p>
+          {cmsNav.map((item) => (
+            <a
+              href={item.href}
+              class="block px-3 py-2 rounded text-sm text-[var(--color-muted-fg,#666)] hover:bg-[var(--color-muted,#f5f5f5)]"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+
         <div class="mt-auto pt-6 border-t border-[var(--color-border,#e5e5e5)]">
           <a href="/" class="text-sm text-[var(--color-muted-fg,#999)] hover:text-[var(--color-fg,#111)]">
             ← Back to site

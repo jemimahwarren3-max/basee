@@ -1,0 +1,50 @@
+# Decap CMS config. See https://decapcms.org/docs/configuration-options/
+#
+# Before this works you must choose a backend. The simplest is GitHub:
+#   1. Create a GitHub OAuth app (Settings → Developer settings → OAuth Apps).
+#   2. Register an OAuth auth provider. Netlify provides one for free at:
+#        https://decapcms.org/docs/github-backend/
+#   3. Set backend.repo below to "owner/repo" of your site repo.
+#
+# Alternatives: gitlab, gitea, bitbucket, proxy (local dev), test-repo (demo).
+
+backend:
+  name: github
+  repo: jemimahwarren3-max/basee   # change per client
+  branch: master
+  # Use Netlify's OAuth provider so you don't have to host your own
+  base_url: https://api.netlify.com
+
+# Where uploaded images and files are stored and served from.
+media_folder: public/uploads
+public_folder: /uploads
+
+# The collections editors can see and edit.
+collections:
+  - name: journal
+    label: Journal
+    folder: src/content/journal
+    create: true
+    delete: true
+    slug: '{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: date, label: Date, widget: datetime }
+      - { name: author, label: Author, widget: string, required: false }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: cover, label: Cover image, widget: image, required: false }
+      - { name: draft, label: Draft, widget: boolean, default: false }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: config
+    label: Site settings
+    files:
+      - name: site
+        label: Site
+        file: src/site.config.ts
+        # Decap can't parse .ts; shown read-only. Edit in code or move to JSON.
+        fields:
+          - { name: note, label: Note, widget: string, default: "Edit src/site.config.ts in code — Decap can't parse TypeScript." }

@@ -15,6 +15,7 @@ A toolkit base for building client websites. Clone it, fill in the config, and c
 - **SEO essentials:** canonical, Open Graph, Twitter Card, optional JSON-LD, plus a sitemap from `@astrojs/sitemap`. Set `SITE_URL` at build time.
 - **Journal (blog):** content collection at `src/content/journal/`, listing at `/journal`, post route at `/journal/[slug]`.
 - **Admin preview UI:** layout at `src/layouts/Admin.astro` with sidebar, plus dashboard components under `src/components/admin/`. Ships with a client-side password gate (`AuthGate.astro`) that hides the UI until the correct password is typed. **The gate is a deterrent, not real security — the HTML is still served.** See the Security section below for real options.
+- **Content editing (Decap CMS):** browser-based editor at `/cms/` for journal posts. Commits straight to the Git repo, so a post edit triggers a rebuild. Requires an OAuth backend — see `public/cms/config.yml` and the Content section below.
 - **Form backend adapter** (`src/lib/forms.ts`): `BookingEnquiry` and `ContactForm` post via `fetch` to the endpoint in `site.forms.{booking,enquiry}`. Works with Formspree, Web3Forms, Netlify Forms or a custom endpoint.
 
 ## Building a client site
@@ -94,6 +95,20 @@ scripts/
 tests/
   pages.spec.ts          smoke + launch gate
 ```
+
+## Content editing
+
+Journal posts live under `src/content/journal/` as Markdown. The client can edit them through a browser at `/cms/`, powered by Decap CMS. Every save is a Git commit, which triggers a rebuild on the host.
+
+**To activate:**
+1. Edit `public/cms/config.yml` and set `backend.repo` to the client's `owner/repo`.
+2. Set up an OAuth backend. The easiest is Netlify Identity:
+   - On Netlify: Site settings → Identity → enable → enable Git Gateway.
+   - In the CMS config, change `backend.name` to `git-gateway` and remove `base_url`.
+3. Invite the client as a Netlify user. They sign in at `/cms/` to edit.
+4. Alternatives: GitHub OAuth (`backend.name: github`), GitLab, Gitea, local proxy for development.
+
+The CMS has its own auth, independent of the admin gate. For real sites, keep both routes protected.
 
 ## Admin security
 
