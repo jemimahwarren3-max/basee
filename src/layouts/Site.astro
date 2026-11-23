@@ -45,6 +45,9 @@ const ogImage = new URL(image ?? '/og.png', Astro.site ?? 'https://example.com')
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="alternate" type="application/rss+xml" title="Journal feed" href="/journal/rss.xml" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
