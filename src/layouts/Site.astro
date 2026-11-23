@@ -1,14 +1,29 @@
 ---
 import { getFamily } from '../design-families';
 import { googleFontsHref, themeCss } from '../design-families/theme';
+import { site } from '../site.config';
 
 interface Props {
   title: string;
   description?: string;
   family: string;
+  image?: string; // Open Graph image URL, absolute or root-relative
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  structuredData?: Record<string, unknown>;
 }
-const { title, description = '', family: familyId } = Astro.props;
+const {
+  title,
+  description = '',
+  family: familyId,
+  image,
+  ogType = 'website',
+  noindex = false,
+  structuredData,
+} = Astro.props;
 const family = getFamily(familyId);
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://example.com').toString();
+const ogImage = image ? new URL(image, Astro.site ?? 'https://example.com').toString() : undefined;
 ---
 <!doctype html>
 <html lang="en">
@@ -16,12 +31,31 @@ const family = getFamily(familyId);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonical} />
+    {site.name && <meta property="og:site_name" content={site.name} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href={googleFontsHref(family)} />
     <style is:inline set:html={themeCss(family)} />
-    <title>{title}</title>
   </head>
   <body>
     <slot />
