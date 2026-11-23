@@ -1,16 +1,51 @@
 ---
-interface Props { brand: string; links: { label: string; href: string }[]; cta?: { label: string; href: string } }
+interface Props {
+  brand: string;
+  links: { label: string; href: string }[];
+  cta?: { label: string; href: string };
+}
 const { brand, links, cta } = Astro.props;
 ---
-<nav class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl" data-component="nav-floating">
+
+<nav
+  class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl"
+  data-component="nav-floating"
+>
   <div class="bg-[var(--color-bg,#fff)]/90 backdrop-blur-lg border border-[var(--color-border,#e5e5e5)] rounded-full px-6 flex items-center justify-between h-14 shadow-lg">
-    <a href="/" class="text-base font-bold tracking-tight">{brand}</a>
+    <a href="/" class="text-base font-bold tracking-tight">
+      {brand}
+    </a>
     <ul class="hidden md:flex items-center gap-6">
-      {links.map(l => <li><a href={l.href} class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors">{l.label}</a></li>)}
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors"
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
     </ul>
-    {cta && <a href={cta.href} class="hidden md:inline-flex px-5 py-2 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] text-xs font-medium rounded-full">{cta.label}</a>}
+    {cta && (
+      <a
+        href={cta.href}
+        class="hidden md:inline-flex px-5 py-2 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] text-xs font-medium rounded-full"
+      >
+        {cta.label}
+      </a>
+    )}
     <button class="md:hidden" aria-label="Menu" data-menu-toggle>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
     </button>
   </div>
 </nav>

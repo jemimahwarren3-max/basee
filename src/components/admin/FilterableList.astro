@@ -9,7 +9,12 @@ const { title, items, placeholder = 'Search…', empty = 'No matches.' } = Astro
 const tags = Array.from(new Set(items.map((i) => i.tag).filter(Boolean))) as string[];
 const id = `fl-${Math.random().toString(36).slice(2, 8)}`;
 ---
-<div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg overflow-hidden" id={id} data-filterable-list>
+
+<div
+  class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg overflow-hidden"
+  id={id}
+  data-filterable-list
+>
   <div class="p-4 border-b border-[var(--color-border,#e5e5e5)] flex flex-col sm:flex-row gap-3">
     {title && <h3 class="text-sm font-medium mr-auto">{title}</h3>}
     <input
@@ -25,7 +30,9 @@ const id = `fl-${Math.random().toString(36).slice(2, 8)}`;
         class="px-3 py-1.5 text-sm border border-[var(--color-border,#e5e5e5)] rounded bg-transparent"
       >
         <option value="">All</option>
-        {tags.map((t) => <option value={t}>{t}</option>)}
+        {tags.map((t) => (
+          <option value={t}>{t}</option>
+        ))}
       </select>
     )}
   </div>
@@ -38,7 +45,9 @@ const id = `fl-${Math.random().toString(36).slice(2, 8)}`;
       >
         <div class="min-w-0">
           <p class="text-sm font-medium truncate">{item.title}</p>
-          {item.subtitle && <p class="text-xs text-[var(--color-muted-fg,#999)] truncate">{item.subtitle}</p>}
+          {item.subtitle && (
+            <p class="text-xs text-[var(--color-muted-fg,#999)] truncate">{item.subtitle}</p>
+          )}
         </div>
         <div class="flex items-center gap-3 shrink-0">
           {item.tag && (
@@ -46,12 +55,19 @@ const id = `fl-${Math.random().toString(36).slice(2, 8)}`;
               {item.tag}
             </span>
           )}
-          {item.meta && <span class="text-xs text-[var(--color-muted-fg,#999)] tabular-nums">{item.meta}</span>}
+          {item.meta && (
+            <span class="text-xs text-[var(--color-muted-fg,#999)] tabular-nums">{item.meta}</span>
+          )}
         </div>
       </li>
     ))}
   </ul>
-  <p class="hidden px-4 py-8 text-center text-sm text-[var(--color-muted-fg,#999)]" data-filter-empty>{empty}</p>
+  <p
+    class="hidden px-4 py-8 text-center text-sm text-[var(--color-muted-fg,#999)]"
+    data-filter-empty
+  >
+    {empty}
+  </p>
 </div>
 
 <script define:vars={{ id }}>
@@ -65,7 +81,7 @@ const id = `fl-${Math.random().toString(36).slice(2, 8)}`;
 
     function apply() {
       const q = (input?.value ?? '').toLowerCase().trim();
-      const tag = (tagEl?.value ?? '');
+      const tag = tagEl?.value ?? '';
       let shown = 0;
       items.forEach((li) => {
         const matchQ = !q || li.getAttribute('data-title')?.includes(q);

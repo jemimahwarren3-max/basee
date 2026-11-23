@@ -1,19 +1,30 @@
 ---
-interface Props { mission: string; vision?: string; image?: string }
+interface Props {
+  mission: string;
+  vision?: string;
+  image?: string;
+}
 const { mission, vision, image } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="about-mission">
   <div class="container-site grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
     <div>
-      <span class="text-xs font-medium uppercase tracking-widest text-[var(--color-accent,#6366F1)]">Our Mission</span>
+      <span class="text-xs font-medium uppercase tracking-widest text-[var(--color-accent,#6366F1)]">
+        Our Mission
+      </span>
       <p class="mt-4 text-2xl sm:text-3xl font-light leading-relaxed">{mission}</p>
       {vision && (
         <>
-          <span class="mt-12 block text-xs font-medium uppercase tracking-widest text-[var(--color-accent,#6366F1)]">Our Vision</span>
+          <span class="mt-12 block text-xs font-medium uppercase tracking-widest text-[var(--color-accent,#6366F1)]">
+            Our Vision
+          </span>
           <p class="mt-4 text-2xl sm:text-3xl font-light leading-relaxed">{vision}</p>
         </>
       )}
     </div>
-    {image && <img src={image} alt="" class="w-full aspect-square object-cover rounded-xl" loading="lazy" />}
+    {image && (
+      <img src={image} alt="" class="w-full aspect-square object-cover rounded-xl" loading="lazy" />
+    )}
   </div>
 </section>

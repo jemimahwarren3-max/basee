@@ -12,12 +12,19 @@ const RADIUS: Record<DesignFamily['imagery']['corners'], string> = {
 
 function firstFont(stack: string): string | undefined {
   if (stack.startsWith('#')) return undefined;
-  const name = stack.split(',')[0].trim().replace(/^["']|["']$/g, '');
+  const name = stack
+    .split(',')[0]
+    .trim()
+    .replace(/^["']|["']$/g, '');
   return GENERIC.has(name) ? undefined : name;
 }
 
 export function googleFontsHref(family: DesignFamily): string {
-  const stacks = [family.typography.heading, family.typography.body, family.typography.accent ?? ''];
+  const stacks = [
+    family.typography.heading,
+    family.typography.body,
+    family.typography.accent ?? '',
+  ];
   const names = new Set<string>();
   for (const stack of stacks) {
     const name = firstFont(stack);

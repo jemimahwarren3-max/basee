@@ -11,18 +11,18 @@ const { image, title, subtitle, cta, reversed = false } = Astro.props;
 ---
 
 <section class="min-h-screen flex flex-col lg:flex-row" data-component="hero-split">
-  <div class:list={[
-    'flex-1 flex items-center px-8 lg:px-16 xl:px-24 py-24 lg:py-0',
-    reversed ? 'lg:order-2' : 'lg:order-1',
-  ]}>
+  <div
+    class:list={[
+      'flex-1 flex items-center px-8 lg:px-16 xl:px-24 py-24 lg:py-0',
+      reversed ? 'lg:order-2' : 'lg:order-1',
+    ]}
+  >
     <div class="max-w-lg">
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight">
         <Fragment set:html={title} />
       </h1>
       {subtitle && (
-        <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">
-          {subtitle}
-        </p>
+        <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{subtitle}</p>
       )}
       {cta && (
         <a
@@ -35,15 +35,7 @@ const { image, title, subtitle, cta, reversed = false } = Astro.props;
     </div>
   </div>
 
-  <div class:list={[
-    'flex-1 min-h-[50vh] lg:min-h-0',
-    reversed ? 'lg:order-1' : 'lg:order-2',
-  ]}>
-    <img
-      src={image}
-      alt=""
-      class="w-full h-full object-cover"
-      loading="eager"
-    />
+  <div class:list={['flex-1 min-h-[50vh] lg:min-h-0', reversed ? 'lg:order-1' : 'lg:order-2']}>
+    <img src={image} alt="" class="w-full h-full object-cover" loading="eager" />
   </div>
 </section>

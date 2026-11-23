@@ -26,17 +26,15 @@ const { title, subtitle, image, tag, cta } = Astro.props;
       </p>
     )}
     {cta && (
-      <a href={cta.href} class="mt-8 inline-block text-sm uppercase tracking-[0.15em] border-b border-current pb-1 hover:opacity-70 transition-opacity">
+      <a
+        href={cta.href}
+        class="mt-8 inline-block text-sm uppercase tracking-[0.15em] border-b border-current pb-1 hover:opacity-70 transition-opacity"
+      >
         {cta.label}
       </a>
     )}
   </div>
   <div class="mt-16 md:mt-24">
-    <img
-      src={image}
-      alt=""
-      class="w-full h-[50vh] md:h-[70vh] object-cover"
-      loading="eager"
-    />
+    <img src={image} alt="" class="w-full h-[50vh] md:h-[70vh] object-cover" loading="eager" />
   </div>
 </section>

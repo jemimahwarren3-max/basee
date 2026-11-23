@@ -1,28 +1,45 @@
 ---
-interface Props { title?: string; products: { name: string; image: string; price: string; features: Record<string, string> }[]; featureLabels: string[] }
+interface Props {
+  title?: string;
+  products: { name: string; image: string; price: string; features: Record<string, string> }[];
+  featureLabels: string[];
+}
 const { title = 'Compare', products, featureLabels } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="products-compare">
   <div class="container-site overflow-x-auto">
-    {title && <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>}
+    {title && (
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>
+    )}
     <table class="w-full text-left min-w-[600px]">
       <thead>
         <tr>
           <th class="pb-8" />
-          {products.map(p => (
+          {products.map((p) => (
             <th class="pb-8 text-center px-4">
-              <img src={p.image} alt={p.name} class="w-24 h-24 object-cover rounded-lg mx-auto mb-3" />
+              <img
+                src={p.image}
+                alt={p.name}
+                class="w-24 h-24 object-cover rounded-lg mx-auto mb-3"
+              />
               <span class="block text-lg font-semibold">{p.name}</span>
-              <span class="block text-sm font-bold text-[var(--color-accent,#6366F1)] mt-1">{p.price}</span>
+              <span class="block text-sm font-bold text-[var(--color-accent,#6366F1)] mt-1">
+                {p.price}
+              </span>
             </th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {featureLabels.map(label => (
+        {featureLabels.map((label) => (
           <tr class="border-t border-[var(--color-border,#e5e5e5)]">
             <td class="py-4 text-sm font-medium pr-8">{label}</td>
-            {products.map(p => <td class="py-4 text-center text-sm text-[var(--color-muted-fg,#666)]">{p.features[label] || '—'}</td>)}
+            {products.map((p) => (
+              <td class="py-4 text-center text-sm text-[var(--color-muted-fg,#666)]">
+                {p.features[label] || '—'}
+              </td>
+            ))}
           </tr>
         ))}
       </tbody>

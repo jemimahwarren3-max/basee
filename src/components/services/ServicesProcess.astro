@@ -1,7 +1,12 @@
 ---
-interface Props { title?: string; subtitle?: string; steps: { number: string; title: string; description: string }[] }
+interface Props {
+  title?: string;
+  subtitle?: string;
+  steps: { number: string; title: string; description: string }[];
+}
 const { title = 'Our Process', subtitle, steps } = Astro.props;
 ---
+
 <section class="py-24 md:py-32 bg-[var(--color-surface,#f9f9f9)]" data-component="services-process">
   <div class="container-site">
     <div class="text-center max-w-2xl mx-auto mb-16">
@@ -9,7 +14,7 @@ const { title = 'Our Process', subtitle, steps } = Astro.props;
       {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)]">{subtitle}</p>}
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {steps.map(s => (
+      {steps.map((s) => (
         <div class="relative">
           <span class="text-6xl font-bold text-[var(--color-border,#e5e5e5)]">{s.number}</span>
           <h3 class="text-lg font-semibold mt-2">{s.title}</h3>

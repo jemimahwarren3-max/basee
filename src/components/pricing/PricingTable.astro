@@ -1,15 +1,22 @@
 ---
-interface Props { title?: string; features: { name: string; values: (string | boolean)[] }[]; plans: { name: string; price: string; cta: { label: string; href: string } }[] }
+interface Props {
+  title?: string;
+  features: { name: string; values: (string | boolean)[] }[];
+  plans: { name: string; price: string; cta: { label: string; href: string } }[];
+}
 const { title = 'Compare Plans', features, plans } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="pricing-table">
   <div class="container-site overflow-x-auto">
-    {title && <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>}
+    {title && (
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>
+    )}
     <table class="w-full text-left">
       <thead>
         <tr class="border-b border-[var(--color-border,#e5e5e5)]">
           <th class="pb-6 text-sm font-medium text-[var(--color-muted-fg,#999)]">Feature</th>
-          {plans.map(p => (
+          {plans.map((p) => (
             <th class="pb-6 text-center">
               <span class="block text-lg font-semibold">{p.name}</span>
               <span class="block text-2xl font-bold mt-1">{p.price}</span>
@@ -18,12 +25,20 @@ const { title = 'Compare Plans', features, plans } = Astro.props;
         </tr>
       </thead>
       <tbody>
-        {features.map(f => (
+        {features.map((f) => (
           <tr class="border-b border-[var(--color-border,#e5e5e5)]">
             <td class="py-4 text-sm">{f.name}</td>
-            {f.values.map(v => (
+            {f.values.map((v) => (
               <td class="py-4 text-center text-sm">
-                {typeof v === 'boolean' ? (v ? <span class="text-[var(--color-accent,#6366F1)]">✓</span> : <span class="text-[var(--color-muted-fg,#ccc)]">—</span>) : v}
+                {typeof v === 'boolean' ? (
+                  v ? (
+                    <span class="text-[var(--color-accent,#6366F1)]">✓</span>
+                  ) : (
+                    <span class="text-[var(--color-muted-fg,#ccc)]">—</span>
+                  )
+                ) : (
+                  v
+                )}
               </td>
             ))}
           </tr>
@@ -32,7 +47,16 @@ const { title = 'Compare Plans', features, plans } = Astro.props;
       <tfoot>
         <tr>
           <td />
-          {plans.map(p => <td class="pt-8 text-center"><a href={p.cta.href} class="inline-flex px-6 py-2.5 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium rounded-md">{p.cta.label}</a></td>)}
+          {plans.map((p) => (
+            <td class="pt-8 text-center">
+              <a
+                href={p.cta.href}
+                class="inline-flex px-6 py-2.5 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium rounded-md"
+              >
+                {p.cta.label}
+              </a>
+            </td>
+          ))}
         </tr>
       </tfoot>
     </table>

@@ -27,73 +27,125 @@ const {
       {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)]">{subtitle}</p>}
     </div>
 
-    <form action={action} method="post" class="bg-[var(--color-surface,#fff)] p-8 md:p-12 space-y-6" data-ajax-form>
+    <form
+      action={action}
+      method="post"
+      class="bg-[var(--color-surface,#fff)] p-8 md:p-12 space-y-6"
+      data-ajax-form
+    >
       <div class="hidden text-center py-8" data-form-success>
         <p class="text-xl font-semibold">Thank you — your enquiry is in.</p>
         <p class="mt-2 text-[var(--color-muted-fg,#666)]">We'll be in touch shortly.</p>
       </div>
       <div class="hidden text-sm text-red-600" data-form-error></div>
       <div data-form-body>
-      <FormSpamGuard />
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {fields.includes('name') && (
-          <div>
-            <label for="b-name" class="block text-sm font-medium mb-2">Full name *</label>
-            <input type="text" id="b-name" name="name" required class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors" />
-          </div>
-        )}
-        {fields.includes('email') && (
-          <div>
-            <label for="b-email" class="block text-sm font-medium mb-2">Email *</label>
-            <input type="email" id="b-email" name="email" required class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors" />
-          </div>
-        )}
-        {fields.includes('phone') && (
-          <div>
-            <label for="b-phone" class="block text-sm font-medium mb-2">Phone</label>
-            <input type="tel" id="b-phone" name="phone" class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors" />
-          </div>
-        )}
-        {fields.includes('guests') && (
-          <div>
-            <label for="b-guests" class="block text-sm font-medium mb-2">Number of guests</label>
-            <select id="b-guests" name="guests" class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors">
-              <option value="">Select</option>
-              <option value="1">1 guest</option>
-              <option value="2">2 guests</option>
-              <option value="3-4">3-4 guests</option>
-              <option value="5+">5+ guests</option>
-            </select>
-          </div>
-        )}
-        {fields.includes('dates') && (
-          <div class="sm:col-span-2">
-            <label for="b-dates" class="block text-sm font-medium mb-2">Preferred dates</label>
-            <input type="text" id="b-dates" name="dates" placeholder="e.g. 15-20 March 2025" class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors" />
-          </div>
-        )}
-      </div>
-      {fields.includes('message') && (
-        <div>
-          <label for="b-message" class="block text-sm font-medium mb-2">Additional requests</label>
-          <textarea id="b-message" name="message" rows={4} class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors resize-none" />
+        <FormSpamGuard />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {fields.includes('name') && (
+            <div>
+              <label for="b-name" class="block text-sm font-medium mb-2">
+                Full name *
+              </label>
+              <input
+                type="text"
+                id="b-name"
+                name="name"
+                required
+                class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors"
+              />
+            </div>
+          )}
+          {fields.includes('email') && (
+            <div>
+              <label for="b-email" class="block text-sm font-medium mb-2">
+                Email *
+              </label>
+              <input
+                type="email"
+                id="b-email"
+                name="email"
+                required
+                class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors"
+              />
+            </div>
+          )}
+          {fields.includes('phone') && (
+            <div>
+              <label for="b-phone" class="block text-sm font-medium mb-2">
+                Phone
+              </label>
+              <input
+                type="tel"
+                id="b-phone"
+                name="phone"
+                class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors"
+              />
+            </div>
+          )}
+          {fields.includes('guests') && (
+            <div>
+              <label for="b-guests" class="block text-sm font-medium mb-2">
+                Number of guests
+              </label>
+              <select
+                id="b-guests"
+                name="guests"
+                class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors"
+              >
+                <option value="">Select</option>
+                <option value="1">1 guest</option>
+                <option value="2">2 guests</option>
+                <option value="3-4">3-4 guests</option>
+                <option value="5+">5+ guests</option>
+              </select>
+            </div>
+          )}
+          {fields.includes('dates') && (
+            <div class="sm:col-span-2">
+              <label for="b-dates" class="block text-sm font-medium mb-2">
+                Preferred dates
+              </label>
+              <input
+                type="text"
+                id="b-dates"
+                name="dates"
+                placeholder="e.g. 15-20 March 2025"
+                class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors"
+              />
+            </div>
+          )}
         </div>
-      )}
-      <div class="flex flex-col sm:flex-row gap-4">
-        <button type="submit" class="px-8 py-3.5 bg-[var(--color-primary,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium hover:opacity-90 transition-opacity">
-          {submitLabel}
-        </button>
-        {whatsapp && (
-          <a
-            href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#25D366] text-white text-sm font-medium rounded hover:opacity-90 transition-opacity"
-          >
-            WhatsApp us instead
-          </a>
+        {fields.includes('message') && (
+          <div>
+            <label for="b-message" class="block text-sm font-medium mb-2">
+              Additional requests
+            </label>
+            <textarea
+              id="b-message"
+              name="message"
+              rows={4}
+              class="w-full px-4 py-3 border border-[var(--color-border,#e5e5e5)] bg-transparent focus:border-[var(--color-fg,#111)] focus:outline-none transition-colors resize-none"
+            />
+          </div>
         )}
-      </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button
+            type="submit"
+            class="px-8 py-3.5 bg-[var(--color-primary,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            {submitLabel}
+          </button>
+          {whatsapp && (
+            <a
+              href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#25D366] text-white text-sm font-medium rounded hover:opacity-90 transition-opacity"
+            >
+              WhatsApp us instead
+            </a>
+          )}
+        </div>
       </div>
     </form>
   </div>
@@ -135,7 +187,8 @@ const {
         success?.classList.remove('hidden');
       } catch (err) {
         if (error) {
-          error.textContent = err instanceof Error ? err.message : 'Submission failed. Please try again.';
+          error.textContent =
+            err instanceof Error ? err.message : 'Submission failed. Please try again.';
           error.classList.remove('hidden');
         }
       }

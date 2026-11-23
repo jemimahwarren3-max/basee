@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const modernBrutalism: DesignFamily = {
   id: 'modern-brutalism',
   name: 'Modern Brutalism',
-  description: 'Bold, raw aesthetics with oversized typography, hard edges and unapologetic contrast. For creative studios, agencies, portfolios and experimental brands.',
+  description:
+    'Bold, raw aesthetics with oversized typography, hard edges and unapologetic contrast. For creative studios, agencies, portfolios and experimental brands.',
   industries: ['creative-agency', 'design-studio', 'portfolio', 'music', 'art', 'experimental'],
   personality: ['bold', 'raw', 'confident', 'rebellious', 'expressive'],
 

@@ -21,7 +21,9 @@ const { images } = Astro.props;
         <figure class:list={[layouts[i % layouts.length]]}>
           <img src={img.src} alt={img.alt || ''} class="w-full object-cover" loading="lazy" />
           {img.caption && (
-            <figcaption class="mt-4 text-sm text-[var(--color-muted-fg,#888)] max-w-md">{img.caption}</figcaption>
+            <figcaption class="mt-4 text-sm text-[var(--color-muted-fg,#888)] max-w-md">
+              {img.caption}
+            </figcaption>
           )}
         </figure>
       );

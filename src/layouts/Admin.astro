@@ -26,6 +26,7 @@ const cmsNav = [
   { key: 'cms', label: 'Edit content ↗', href: '/cms/' },
 ];
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -60,7 +61,9 @@ const cmsNav = [
         </nav>
 
         <div class="mt-8 pt-4 border-t border-[var(--color-border,#e5e5e5)]">
-          <p class="text-[10px] uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-2">Tools</p>
+          <p class="text-[10px] uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-2">
+            Tools
+          </p>
           {cmsNav.map((item) => (
             <a
               href={item.href}
@@ -72,7 +75,10 @@ const cmsNav = [
         </div>
 
         <div class="mt-auto pt-6 border-t border-[var(--color-border,#e5e5e5)]">
-          <a href="/" class="text-sm text-[var(--color-muted-fg,#999)] hover:text-[var(--color-fg,#111)]">
+          <a
+            href="/"
+            class="text-sm text-[var(--color-muted-fg,#999)] hover:text-[var(--color-fg,#111)]"
+          >
             ← Back to site
           </a>
         </div>
@@ -92,7 +98,13 @@ const cmsNav = [
     </div>
 
     <style is:global>
-      :where(body) { font-family: system-ui, -apple-system, sans-serif; color: var(--color-fg, #111); }
+      :where(body) {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: var(--color-fg, #111);
+      }
     </style>
   </body>
 </html>

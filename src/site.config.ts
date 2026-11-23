@@ -56,5 +56,7 @@ export const site = {
 };
 
 export function copyright(): string {
-  return site.copyright.replace('{year}', String(new Date().getFullYear())).replace('{name}', site.name);
+  return site.copyright
+    .replace('{year}', String(new Date().getFullYear()))
+    .replace('{name}', site.name);
 }

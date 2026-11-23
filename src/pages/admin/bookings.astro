@@ -2,10 +2,11 @@
 import Admin from '../../layouts/Admin.astro';
 import DataTable from '../../components/admin/DataTable.astro';
 ---
+
 <Admin title="Bookings" active="bookings">
   <p class="text-sm text-[var(--color-muted-fg,#666)] mb-6">
-    Connect this view to your booking provider. Options: Cal.com API, a webhook from
-    the booking form endpoint, or a server route that reads a database.
+    Connect this view to your booking provider. Options: Cal.com API, a webhook from the booking
+    form endpoint, or a server route that reads a database.
   </p>
 
   <DataTable

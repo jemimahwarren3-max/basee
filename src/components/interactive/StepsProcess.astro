@@ -1,7 +1,12 @@
 ---
-interface Props { title?: string; subtitle?: string; steps: { number: string; title: string; description: string; icon?: string }[] }
+interface Props {
+  title?: string;
+  subtitle?: string;
+  steps: { number: string; title: string; description: string; icon?: string }[];
+}
 const { title = 'How It Works', subtitle, steps } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="steps-process">
   <div class="container-site">
     <div class="text-center max-w-2xl mx-auto mb-16">
@@ -11,7 +16,7 @@ const { title = 'How It Works', subtitle, steps } = Astro.props;
     <div class="relative">
       <div class="hidden md:block absolute top-12 left-0 right-0 h-px bg-[var(--color-border,#e5e5e5)]" />
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-        {steps.map(s => (
+        {steps.map((s) => (
           <div class="text-center">
             <div class="w-24 h-24 rounded-full bg-[var(--color-surface,#f5f5f5)] flex items-center justify-center mx-auto mb-6 relative z-10">
               <span class="text-2xl font-bold text-[var(--color-accent,#6366F1)]">{s.number}</span>

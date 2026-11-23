@@ -27,8 +27,12 @@ const demo = {
   whatsapp: '[WhatsApp number]',
 };
 ---
-<Site title="Serenité Spa — Luxury Wellness (demo)" description="Demo spa page built from the component library." family="beauty-cosmetics">
 
+<Site
+  title="Serenité Spa — Luxury Wellness (demo)"
+  description="Demo spa page built from the component library."
+  family="beauty-cosmetics"
+>
   <AnnouncementBar text="New guest offer: [offer details]" href="#booking" />
 
   <NavCentered
@@ -53,7 +57,15 @@ const demo = {
   />
 
   <Marquee
-    items={['Therapeutic Massage', 'Facial Treatments', 'Body Wraps', 'Aromatherapy', 'Hot Stone Therapy', 'Couples Rituals', 'Wellness Packages']}
+    items={[
+      'Therapeutic Massage',
+      'Facial Treatments',
+      'Body Wraps',
+      'Aromatherapy',
+      'Hot Stone Therapy',
+      'Couples Rituals',
+      'Wellness Packages',
+    ]}
     speed="slow"
     separator="·"
   />
@@ -83,12 +95,45 @@ const demo = {
     <ServicesHover
       title="Signature treatments"
       services={[
-        { title: 'Signature Massage', description: 'A bespoke 90-minute full-body journey with warm botanical oils.', image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop' },
-        { title: 'Gold Radiance Facial', description: 'Luxury anti-aging facial with 24K gold-infused serums and microcurrent lifting.', image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=400&fit=crop' },
-        { title: 'Warm Stone Ritual', description: 'Heated basalt stones along the energy meridians, paired with aromatic oils.', image: 'https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=600&h=400&fit=crop' },
-        { title: 'Couples Harmony', description: 'Side-by-side treatments in a private suite, with champagne and an aromatherapy bath.', image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&h=400&fit=crop' },
-        { title: 'Ayurvedic Body Wrap', description: 'Detoxifying herbal wrap with turmeric, sandalwood and neem.', image: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&h=400&fit=crop' },
-        { title: 'Japanese Head Spa', description: 'Scalp therapy combining deep cleansing, acupressure and botanical nourishment.', image: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&h=400&fit=crop' },
+        {
+          title: 'Signature Massage',
+          description: 'A bespoke 90-minute full-body journey with warm botanical oils.',
+          image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop',
+        },
+        {
+          title: 'Gold Radiance Facial',
+          description:
+            'Luxury anti-aging facial with 24K gold-infused serums and microcurrent lifting.',
+          image:
+            'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=400&fit=crop',
+        },
+        {
+          title: 'Warm Stone Ritual',
+          description:
+            'Heated basalt stones along the energy meridians, paired with aromatic oils.',
+          image:
+            'https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=600&h=400&fit=crop',
+        },
+        {
+          title: 'Couples Harmony',
+          description:
+            'Side-by-side treatments in a private suite, with champagne and an aromatherapy bath.',
+          image:
+            'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&h=400&fit=crop',
+        },
+        {
+          title: 'Ayurvedic Body Wrap',
+          description: 'Detoxifying herbal wrap with turmeric, sandalwood and neem.',
+          image:
+            'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&h=400&fit=crop',
+        },
+        {
+          title: 'Japanese Head Spa',
+          description:
+            'Scalp therapy combining deep cleansing, acupressure and botanical nourishment.',
+          image:
+            'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&h=400&fit=crop',
+        },
       ]}
     />
   </div>
@@ -103,12 +148,30 @@ const demo = {
   <div id="gallery">
     <GalleryFullwidth
       images={[
-        { src: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&h=800&fit=crop', alt: 'Massage treatment room' },
-        { src: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1200&h=800&fit=crop', alt: 'Essential oils and candles' },
-        { src: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1200&h=800&fit=crop', alt: 'Relaxation pool' },
-        { src: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1200&h=800&fit=crop', alt: 'Facial treatment' },
-        { src: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1200&h=800&fit=crop', alt: 'Spa interior' },
-        { src: 'https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=1200&h=800&fit=crop', alt: 'Hot stones' },
+        {
+          src: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&h=800&fit=crop',
+          alt: 'Massage treatment room',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1200&h=800&fit=crop',
+          alt: 'Essential oils and candles',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1200&h=800&fit=crop',
+          alt: 'Relaxation pool',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1200&h=800&fit=crop',
+          alt: 'Facial treatment',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1200&h=800&fit=crop',
+          alt: 'Spa interior',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=1200&h=800&fit=crop',
+          alt: 'Hot stones',
+        },
       ]}
     />
   </div>
@@ -117,10 +180,34 @@ const demo = {
     <ServicesPricing
       title="Treatment menu"
       services={[
-        { title: 'Classic Relaxation Massage', description: '60 minutes of full-body relaxation', price: '[Price]', unit: 'session', features: ['Hot towel service', 'Aromatherapy blend', 'Herbal tea ritual'] },
-        { title: 'Signature Massage', description: 'Our bespoke 90-minute signature treatment', price: '[Price]', unit: 'session', features: ['Personal consultation', 'Custom oil blend', 'Relaxation lounge'] },
-        { title: 'Gold Radiance Facial', description: '75-minute luxury facial with 24K gold serums', price: '[Price]', unit: 'session', features: ['Skin analysis', 'Microcurrent lifting', 'Take-home serum'] },
-        { title: 'Couples Harmony', description: 'Two-hour shared experience in a private suite', price: '[Price]', unit: 'couple', features: ['Private suite', 'Champagne & treats', 'Aromatherapy bath'] },
+        {
+          title: 'Classic Relaxation Massage',
+          description: '60 minutes of full-body relaxation',
+          price: '[Price]',
+          unit: 'session',
+          features: ['Hot towel service', 'Aromatherapy blend', 'Herbal tea ritual'],
+        },
+        {
+          title: 'Signature Massage',
+          description: 'Our bespoke 90-minute signature treatment',
+          price: '[Price]',
+          unit: 'session',
+          features: ['Personal consultation', 'Custom oil blend', 'Relaxation lounge'],
+        },
+        {
+          title: 'Gold Radiance Facial',
+          description: '75-minute luxury facial with 24K gold serums',
+          price: '[Price]',
+          unit: 'session',
+          features: ['Skin analysis', 'Microcurrent lifting', 'Take-home serum'],
+        },
+        {
+          title: 'Couples Harmony',
+          description: 'Two-hour shared experience in a private suite',
+          price: '[Price]',
+          unit: 'couple',
+          features: ['Private suite', 'Champagne & treats', 'Aromatherapy bath'],
+        },
       ]}
     />
   </div>
@@ -129,10 +216,26 @@ const demo = {
     title="Your visit"
     subtitle="From the moment you arrive, every detail is taken care of."
     steps={[
-      { number: '01', title: 'Book', description: 'Choose your treatment and time online or on WhatsApp.' },
-      { number: '02', title: 'Arrive', description: 'Settle into the relaxation lounge with herbal tea and heated robes.' },
-      { number: '03', title: 'Consult', description: 'Your therapist learns your needs and preferences before you begin.' },
-      { number: '04', title: 'Unwind', description: 'Surrender to your treatment, then linger in the recovery lounge.' },
+      {
+        number: '01',
+        title: 'Book',
+        description: 'Choose your treatment and time online or on WhatsApp.',
+      },
+      {
+        number: '02',
+        title: 'Arrive',
+        description: 'Settle into the relaxation lounge with herbal tea and heated robes.',
+      },
+      {
+        number: '03',
+        title: 'Consult',
+        description: 'Your therapist learns your needs and preferences before you begin.',
+      },
+      {
+        number: '04',
+        title: 'Unwind',
+        description: 'Surrender to your treatment, then linger in the recovery lounge.',
+      },
     ]}
   />
 
@@ -159,11 +262,24 @@ const demo = {
     <FaqAccordion
       title="Frequently asked questions"
       items={[
-        { question: 'What should I wear?', answer: 'Plush robes, slippers and disposable undergarments are provided. Just bring yourself.' },
-        { question: 'How far ahead should I book?', answer: '[Client to confirm booking lead time.]' },
+        {
+          question: 'What should I wear?',
+          answer:
+            'Plush robes, slippers and disposable undergarments are provided. Just bring yourself.',
+        },
+        {
+          question: 'How far ahead should I book?',
+          answer: '[Client to confirm booking lead time.]',
+        },
         { question: 'Is there parking?', answer: '[Client to confirm parking details.]' },
-        { question: 'Can I request a specific therapist?', answer: 'Yes. Select your preferred therapist when booking.' },
-        { question: 'What is your cancellation policy?', answer: '[Client to confirm cancellation policy.]' },
+        {
+          question: 'Can I request a specific therapist?',
+          answer: 'Yes. Select your preferred therapist when booking.',
+        },
+        {
+          question: 'What is your cancellation policy?',
+          answer: '[Client to confirm cancellation policy.]',
+        },
       ]}
     />
   </div>
@@ -177,7 +293,20 @@ const demo = {
         { name: 'name', label: 'Full name', type: 'text', required: true },
         { name: 'email', label: 'Email', type: 'email', required: true },
         { name: 'phone', label: 'Phone', type: 'tel', required: true },
-        { name: 'treatment', label: 'Treatment', type: 'select', required: true, options: ['Classic Relaxation Massage', 'Signature Massage', 'Gold Radiance Facial', 'Couples Harmony', 'Ayurvedic Body Wrap', 'Japanese Head Spa'] },
+        {
+          name: 'treatment',
+          label: 'Treatment',
+          type: 'select',
+          required: true,
+          options: [
+            'Classic Relaxation Massage',
+            'Signature Massage',
+            'Gold Radiance Facial',
+            'Couples Harmony',
+            'Ayurvedic Body Wrap',
+            'Japanese Head Spa',
+          ],
+        },
         { name: 'date', label: 'Preferred date', type: 'date', required: true },
         { name: 'notes', label: 'Special requests', type: 'textarea', required: false },
       ]}
@@ -195,23 +324,32 @@ const demo = {
     brand={demo.name}
     description="A luxury wellness destination. Bespoke treatments and an unwavering commitment to your wellbeing."
     columns={[
-      { title: 'Treatments', links: [
-        { label: 'Massage', href: '#treatments' },
-        { label: 'Facials', href: '#treatments' },
-        { label: 'Couples', href: '#treatments' },
-        { label: 'Gift vouchers', href: '#booking' },
-      ]},
-      { title: 'Visit', links: [
-        { label: 'About', href: '#experience' },
-        { label: 'Menu', href: '#pricing' },
-        { label: 'FAQ', href: '#faq' },
-        { label: 'Book', href: '#booking' },
-      ]},
-      { title: 'Contact', links: [
-        { label: '[Address]', href: '#' },
-        { label: '[Hours]', href: '#' },
-        { label: '[Email]', href: '#' },
-      ]},
+      {
+        title: 'Treatments',
+        links: [
+          { label: 'Massage', href: '#treatments' },
+          { label: 'Facials', href: '#treatments' },
+          { label: 'Couples', href: '#treatments' },
+          { label: 'Gift vouchers', href: '#booking' },
+        ],
+      },
+      {
+        title: 'Visit',
+        links: [
+          { label: 'About', href: '#experience' },
+          { label: 'Menu', href: '#pricing' },
+          { label: 'FAQ', href: '#faq' },
+          { label: 'Book', href: '#booking' },
+        ],
+      },
+      {
+        title: 'Contact',
+        links: [
+          { label: '[Address]', href: '#' },
+          { label: '[Hours]', href: '#' },
+          { label: '[Email]', href: '#' },
+        ],
+      },
     ]}
     copyright="© Serenité (demo)"
   />
@@ -219,5 +357,4 @@ const demo = {
   <BackToTop />
   <CookieBanner />
   <SmoothScroll />
-
 </Site>

@@ -1,21 +1,47 @@
 ---
-interface Props { title?: string; services: { title: string; description: string; features: string[]; image?: string }[] }
+interface Props {
+  title?: string;
+  services: { title: string; description: string; features: string[]; image?: string }[];
+}
 const { title = 'What We Do', services } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="services-detailed">
   <div class="container-site">
     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>
     <div class="space-y-24">
       {services.map((s, i) => (
-        <div class:list={['grid grid-cols-1 md:grid-cols-2 gap-12 items-center', i % 2 !== 0 ? 'md:[&>:first-child]:order-2' : '']}>
-          {s.image && <img src={s.image} alt="" class="w-full aspect-[4/3] object-cover rounded-xl" loading="lazy" />}
+        <div
+          class:list={[
+            'grid grid-cols-1 md:grid-cols-2 gap-12 items-center',
+            i % 2 !== 0 ? 'md:[&>:first-child]:order-2' : '',
+          ]}
+        >
+          {s.image && (
+            <img
+              src={s.image}
+              alt=""
+              class="w-full aspect-[4/3] object-cover rounded-xl"
+              loading="lazy"
+            />
+          )}
           <div>
             <h3 class="text-2xl font-bold">{s.title}</h3>
             <p class="mt-4 text-[var(--color-muted-fg,#666)] leading-relaxed">{s.description}</p>
             <ul class="mt-6 space-y-2">
-              {s.features.map(f => (
+              {s.features.map((f) => (
                 <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-[var(--color-accent,#6366F1)] mt-0.5 flex-none" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <svg
+                    class="w-5 h-5 text-[var(--color-accent,#6366F1)] mt-0.5 flex-none"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
                   <span class="text-sm text-[var(--color-muted-fg,#666)]">{f}</span>
                 </li>
               ))}

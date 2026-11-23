@@ -1,27 +1,49 @@
 ---
-interface Props { images: { src: string; alt?: string }[] }
+interface Props {
+  images: { src: string; alt?: string }[];
+}
 const { images } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="gallery-thumbnails">
   <div class="container-site">
     <div class="aspect-video overflow-hidden rounded-xl mb-4">
-      <img id="gallery-main" src={images[0]?.src} alt={images[0]?.alt || ''} class="w-full h-full object-cover transition-opacity duration-300" />
+      <img
+        id="gallery-main"
+        src={images[0]?.src}
+        alt={images[0]?.alt || ''}
+        class="w-full h-full object-cover transition-opacity duration-300"
+      />
     </div>
     <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
       {images.map((img, i) => (
-        <button class:list={['aspect-square overflow-hidden rounded-md border-2 transition-colors', i === 0 ? 'border-[var(--color-fg,#111)]' : 'border-transparent']} data-thumb={i} data-src={img.src}>
-          <img src={img.src} alt={img.alt || ''} class="w-full h-full object-cover" loading="lazy" />
+        <button
+          class:list={[
+            'aspect-square overflow-hidden rounded-md border-2 transition-colors',
+            i === 0 ? 'border-[var(--color-fg,#111)]' : 'border-transparent',
+          ]}
+          data-thumb={i}
+          data-src={img.src}
+        >
+          <img
+            src={img.src}
+            alt={img.alt || ''}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
         </button>
       ))}
     </div>
   </div>
 </section>
 <script>
-  document.querySelectorAll('[data-thumb]').forEach(btn => {
+  document.querySelectorAll('[data-thumb]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const main = document.getElementById('gallery-main') as HTMLImageElement;
       if (main) main.src = btn.getAttribute('data-src') || '';
-      document.querySelectorAll('[data-thumb]').forEach(b => b.classList.replace('border-[var(--color-fg,#111)]', 'border-transparent'));
+      document
+        .querySelectorAll('[data-thumb]')
+        .forEach((b) => b.classList.replace('border-[var(--color-fg,#111)]', 'border-transparent'));
       btn.classList.replace('border-transparent', 'border-[var(--color-fg,#111)]');
     });
   });

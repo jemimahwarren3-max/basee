@@ -20,6 +20,7 @@ const brand = site.name || 'Site';
 const links = site.nav;
 const cta = site.primaryCta;
 ---
+
 {style === 'centered' && <NavCentered brand={brand} links={links} cta={cta} />}
 {style === 'minimal' && <NavMinimal brand={brand} links={links} cta={cta} />}
 {style === 'sidebar' && <NavSidebar brand={brand} links={links} cta={cta} />}

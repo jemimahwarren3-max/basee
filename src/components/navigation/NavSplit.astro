@@ -1,19 +1,62 @@
 ---
-interface Props { brand: string; leftLinks: { label: string; href: string }[]; rightLinks: { label: string; href: string }[]; cta?: { label: string; href: string } }
+interface Props {
+  brand: string;
+  leftLinks: { label: string; href: string }[];
+  rightLinks: { label: string; href: string }[];
+  cta?: { label: string; href: string };
+}
 const { brand, leftLinks, rightLinks, cta } = Astro.props;
 ---
-<nav class="fixed top-0 inset-x-0 z-50 bg-[var(--color-bg,#fff)] border-b border-[var(--color-border,#e5e5e5)]" data-component="nav-split">
+
+<nav
+  class="fixed top-0 inset-x-0 z-50 bg-[var(--color-bg,#fff)] border-b border-[var(--color-border,#e5e5e5)]"
+  data-component="nav-split"
+>
   <div class="container-site flex items-center justify-between h-16">
     <ul class="hidden md:flex items-center gap-6">
-      {leftLinks.map(l => <li><a href={l.href} class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors">{l.label}</a></li>)}
+      {leftLinks.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors"
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
     </ul>
-    <a href="/" class="text-lg font-bold tracking-tight absolute left-1/2 -translate-x-1/2">{brand}</a>
+    <a href="/" class="text-lg font-bold tracking-tight absolute left-1/2 -translate-x-1/2">
+      {brand}
+    </a>
     <div class="hidden md:flex items-center gap-6">
-      {rightLinks.map(l => <a href={l.href} class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors">{l.label}</a>)}
-      {cta && <a href={cta.href} class="px-5 py-2 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium rounded-md">{cta.label}</a>}
+      {rightLinks.map((l) => (
+        <a
+          href={l.href}
+          class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors"
+        >
+          {l.label}
+        </a>
+      ))}
+      {cta && (
+        <a
+          href={cta.href}
+          class="px-5 py-2 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium rounded-md"
+        >
+          {cta.label}
+        </a>
+      )}
     </div>
     <button class="md:hidden ml-auto" aria-label="Menu" data-menu-toggle>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
     </button>
   </div>
 </nav>

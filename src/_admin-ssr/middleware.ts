@@ -4,7 +4,7 @@
 //
 // See src/lib/auth.ts for how to switch to server mode.
 import { defineMiddleware } from 'astro:middleware';
-import { isAuthenticated } from './lib/auth';
+import { isAuthenticated } from '../lib/auth';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const path = context.url.pathname;

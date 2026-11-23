@@ -6,7 +6,12 @@ import ContactForm from '../components/contact/ContactForm.astro';
 import { site } from '../site.config';
 import { enquiryAction } from '../lib/forms';
 ---
-<Site title={`Contact — ${site.name || 'Site'}`} description={site.description} family={site.family}>
+
+<Site
+  title={`Contact — ${site.name || 'Site'}`}
+  description={site.description}
+  family={site.family}
+>
   {site.nav.length > 0 && <SiteNav />}
   <main>
     <section class="container-site pt-24 md:pt-32">

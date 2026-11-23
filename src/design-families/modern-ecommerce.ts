@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const modernEcommerce: DesignFamily = {
   id: 'modern-ecommerce',
   name: 'Modern Ecommerce',
-  description: 'Conversion-optimised with clean product presentation, strong CTAs and efficient layouts. For online shops, DTC brands, marketplaces and subscription services.',
+  description:
+    'Conversion-optimised with clean product presentation, strong CTAs and efficient layouts. For online shops, DTC brands, marketplaces and subscription services.',
   industries: ['ecommerce', 'dtc', 'marketplace', 'subscription', 'retail', 'electronics'],
   personality: ['efficient', 'trustworthy', 'modern', 'conversion-focused', 'clean'],
 
@@ -35,11 +36,29 @@ export const modernEcommerce: DesignFamily = {
     grid: 'symmetric',
     maxWidth: '1360px',
     preferredHero: ['hero-product', 'hero-split-clean', 'hero-centered-image'],
-    preferredSections: ['products-grid', 'testimonial-cards', 'features-icons', 'cta-simple', 'faq-accordion'],
+    preferredSections: [
+      'products-grid',
+      'testimonial-cards',
+      'features-icons',
+      'cta-simple',
+      'faq-accordion',
+    ],
     avoidSections: ['gallery-masonry', 'hero-cinematic', 'about-editorial'],
   },
-  imagery: { treatment: 'full-color', corners: 'rounded', aspectRatios: ['1:1', '4:5', '3:4'], overlays: false, parallax: false },
+  imagery: {
+    treatment: 'full-color',
+    corners: 'rounded',
+    aspectRatios: ['1:1', '4:5', '3:4'],
+    overlays: false,
+    parallax: false,
+  },
   navigation: { style: 'solid', sticky: true, cta: true },
-  animation: { intensity: 'subtle', reveals: true, parallax: false, microInteractions: true, pageTransitions: false },
+  animation: {
+    intensity: 'subtle',
+    reveals: true,
+    parallax: false,
+    microInteractions: true,
+    pageTransitions: false,
+  },
   buttons: { style: 'solid', corners: '8px', uppercase: false, tracking: '0' },
 };

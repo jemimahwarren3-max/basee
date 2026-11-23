@@ -3,8 +3,16 @@ import type { DesignFamily } from './types';
 export const swissMinimalism: DesignFamily = {
   id: 'swiss-minimalism',
   name: 'Swiss Minimalism',
-  description: 'Clean grid-based precision with strong typographic hierarchy. For consultancies, law firms, professional services and corporate brands.',
-  industries: ['consulting', 'legal', 'finance', 'corporate', 'professional-services', 'accounting'],
+  description:
+    'Clean grid-based precision with strong typographic hierarchy. For consultancies, law firms, professional services and corporate brands.',
+  industries: [
+    'consulting',
+    'legal',
+    'finance',
+    'corporate',
+    'professional-services',
+    'accounting',
+  ],
   personality: ['precise', 'trustworthy', 'clean', 'authoritative', 'professional'],
 
   typography: {

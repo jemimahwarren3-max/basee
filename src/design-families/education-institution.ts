@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const educationInstitution: DesignFamily = {
   id: 'education-institution',
   name: 'Education & Institutions',
-  description: 'Structured, approachable and information-dense. For schools, universities, training providers, online courses and educational institutions.',
+  description:
+    'Structured, approachable and information-dense. For schools, universities, training providers, online courses and educational institutions.',
   industries: ['education', 'university', 'school', 'training', 'online-courses', 'academy'],
   personality: ['approachable', 'knowledgeable', 'structured', 'inclusive', 'progressive'],
 
@@ -35,11 +36,29 @@ export const educationInstitution: DesignFamily = {
     grid: 'symmetric',
     maxWidth: '1200px',
     preferredHero: ['hero-text-centered', 'hero-split-clean', 'hero-centered-image'],
-    preferredSections: ['services-cards', 'stats-counter', 'testimonial-cards', 'faq-accordion', 'cta-simple'],
+    preferredSections: [
+      'services-cards',
+      'stats-counter',
+      'testimonial-cards',
+      'faq-accordion',
+      'cta-simple',
+    ],
     avoidSections: ['gallery-masonry', 'hero-cinematic'],
   },
-  imagery: { treatment: 'full-color', corners: 'rounded', aspectRatios: ['16:9', '4:3', '1:1'], overlays: false, parallax: false },
+  imagery: {
+    treatment: 'full-color',
+    corners: 'rounded',
+    aspectRatios: ['16:9', '4:3', '1:1'],
+    overlays: false,
+    parallax: false,
+  },
   navigation: { style: 'solid', sticky: true, cta: true },
-  animation: { intensity: 'none', reveals: false, parallax: false, microInteractions: true, pageTransitions: false },
+  animation: {
+    intensity: 'none',
+    reveals: false,
+    parallax: false,
+    microInteractions: true,
+    pageTransitions: false,
+  },
   buttons: { style: 'solid', corners: '8px', uppercase: false, tracking: '0' },
 };

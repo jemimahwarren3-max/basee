@@ -3,8 +3,16 @@ import type { DesignFamily } from './types';
 export const financeConsulting: DesignFamily = {
   id: 'finance-consulting',
   name: 'Finance & Consulting',
-  description: 'Conservative authority with modern polish. For financial advisors, investment firms, insurance, accounting and management consulting.',
-  industries: ['finance', 'investment', 'insurance', 'accounting', 'consulting', 'wealth-management'],
+  description:
+    'Conservative authority with modern polish. For financial advisors, investment firms, insurance, accounting and management consulting.',
+  industries: [
+    'finance',
+    'investment',
+    'insurance',
+    'accounting',
+    'consulting',
+    'wealth-management',
+  ],
   personality: ['authoritative', 'trustworthy', 'sophisticated', 'stable', 'professional'],
 
   typography: {
@@ -30,16 +38,39 @@ export const financeConsulting: DesignFamily = {
     surfaceForeground: '#0F172A',
   },
 
-  spacing: { density: 'balanced', sectionGap: '6rem', componentGap: '2.5rem', contentWidth: '800px' },
+  spacing: {
+    density: 'balanced',
+    sectionGap: '6rem',
+    componentGap: '2.5rem',
+    contentWidth: '800px',
+  },
   layout: {
     grid: 'symmetric',
     maxWidth: '1200px',
     preferredHero: ['hero-split-clean', 'hero-text-centered', 'hero-minimal'],
-    preferredSections: ['services-grid', 'stats-counter', 'testimonial-cards', 'about-team', 'contact-form'],
+    preferredSections: [
+      'services-grid',
+      'stats-counter',
+      'testimonial-cards',
+      'about-team',
+      'contact-form',
+    ],
     avoidSections: ['gallery-masonry', 'hero-cinematic', 'gallery-lookbook'],
   },
-  imagery: { treatment: 'muted', corners: 'slight', aspectRatios: ['16:9', '4:3', '1:1'], overlays: false, parallax: false },
+  imagery: {
+    treatment: 'muted',
+    corners: 'slight',
+    aspectRatios: ['16:9', '4:3', '1:1'],
+    overlays: false,
+    parallax: false,
+  },
   navigation: { style: 'solid', sticky: true, cta: true },
-  animation: { intensity: 'subtle', reveals: true, parallax: false, microInteractions: false, pageTransitions: false },
+  animation: {
+    intensity: 'subtle',
+    reveals: true,
+    parallax: false,
+    microInteractions: false,
+    pageTransitions: false,
+  },
   buttons: { style: 'solid', corners: '6px', uppercase: false, tracking: '0' },
 };

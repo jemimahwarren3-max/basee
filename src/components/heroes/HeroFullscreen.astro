@@ -19,11 +19,12 @@ const { image, title, subtitle, cta, scrollIndicator = true } = Astro.props;
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-light leading-[1.1] tracking-tight max-w-4xl">
         <Fragment set:html={title} />
       </h1>
-      {subtitle && (
-        <p class="mt-5 text-lg text-white/70 max-w-lg leading-relaxed">{subtitle}</p>
-      )}
+      {subtitle && <p class="mt-5 text-lg text-white/70 max-w-lg leading-relaxed">{subtitle}</p>}
       {cta && (
-        <a href={cta.href} class="mt-8 inline-block text-sm uppercase tracking-[0.15em] text-white border border-white/50 px-8 py-4 hover:bg-white hover:text-black transition-all duration-500">
+        <a
+          href={cta.href}
+          class="mt-8 inline-block text-sm uppercase tracking-[0.15em] text-white border border-white/50 px-8 py-4 hover:bg-white hover:text-black transition-all duration-500"
+        >
           {cta.label}
         </a>
       )}

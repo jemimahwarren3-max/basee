@@ -6,32 +6,50 @@ import { getCollection } from 'astro:content';
 import { site } from '../../site.config';
 
 const now = Date.now();
-const all = (await getCollection('events', ({ data }) => !data.draft))
-  .sort((a, b) => a.data.start.getTime() - b.data.start.getTime());
+const all = (await getCollection('events', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.start.getTime() - b.data.start.getTime(),
+);
 const upcoming = all.filter((e) => e.data.start.getTime() >= now);
 const past = all.filter((e) => e.data.start.getTime() < now).reverse();
 
-const fmt = (d: Date) => d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
-<Site title={`Events — ${site.name || 'Site'}`} description="Upcoming events and past highlights." family={site.family}>
+
+<Site
+  title={`Events — ${site.name || 'Site'}`}
+  description="Upcoming events and past highlights."
+  family={site.family}
+>
   {site.nav.length > 0 && <SiteNav />}
   <main class="container-site py-24 md:py-32 max-w-3xl">
     <h1 class="text-4xl md:text-5xl leading-tight">Events</h1>
 
     {all.length === 0 && (
-      <p class="mt-8 text-[var(--color-muted-fg,#666)]">No events yet. Add one under src/content/events/.</p>
+      <p class="mt-8 text-[var(--color-muted-fg,#666)]">
+        No events yet. Add one under src/content/events/.
+      </p>
     )}
 
     {upcoming.length > 0 && (
       <section class="mt-16">
-        <h2 class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-6">Upcoming</h2>
+        <h2 class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-6">
+          Upcoming
+        </h2>
         <ul class="space-y-8">
           {upcoming.map((e) => (
             <li>
               <a href={`/events/${e.id}`} class="group block">
-                <time class="text-sm text-[var(--color-muted-fg,#999)] tabular-nums">{fmt(e.data.start)}{e.data.end ? ` — ${fmt(e.data.end)}` : ''}</time>
-                <h3 class="mt-1 text-xl md:text-2xl leading-tight group-hover:opacity-70 transition-opacity">{e.data.title}</h3>
-                {e.data.venue && <p class="mt-1 text-sm text-[var(--color-muted-fg,#666)]">{e.data.venue}</p>}
+                <time class="text-sm text-[var(--color-muted-fg,#999)] tabular-nums">
+                  {fmt(e.data.start)}
+                  {e.data.end ? ` — ${fmt(e.data.end)}` : ''}
+                </time>
+                <h3 class="mt-1 text-xl md:text-2xl leading-tight group-hover:opacity-70 transition-opacity">
+                  {e.data.title}
+                </h3>
+                {e.data.venue && (
+                  <p class="mt-1 text-sm text-[var(--color-muted-fg,#666)]">{e.data.venue}</p>
+                )}
                 <p class="mt-2 text-[var(--color-muted-fg,#666)]">{e.data.description}</p>
               </a>
             </li>
@@ -42,13 +60,19 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { year: 'numeric', month:
 
     {past.length > 0 && (
       <section class="mt-16">
-        <h2 class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-6">Past</h2>
+        <h2 class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-6">
+          Past
+        </h2>
         <ul class="space-y-4">
           {past.map((e) => (
             <li>
               <a href={`/events/${e.id}`} class="group flex items-baseline justify-between gap-6">
-                <span class="text-sm text-[var(--color-muted-fg,#999)] tabular-nums shrink-0">{fmt(e.data.start)}</span>
-                <span class="text-base md:text-lg group-hover:opacity-70 transition-opacity flex-1 min-w-0 truncate">{e.data.title}</span>
+                <span class="text-sm text-[var(--color-muted-fg,#999)] tabular-nums shrink-0">
+                  {fmt(e.data.start)}
+                </span>
+                <span class="text-base md:text-lg group-hover:opacity-70 transition-opacity flex-1 min-w-0 truncate">
+                  {e.data.title}
+                </span>
               </a>
             </li>
           ))}

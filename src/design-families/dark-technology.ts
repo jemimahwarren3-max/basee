@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const darkTechnology: DesignFamily = {
   id: 'dark-technology',
   name: 'Dark Technology',
-  description: 'Sleek dark interfaces with luminous accents, sharp geometry and futuristic feel. For SaaS, software companies, fintech and technology startups.',
+  description:
+    'Sleek dark interfaces with luminous accents, sharp geometry and futuristic feel. For SaaS, software companies, fintech and technology startups.',
   industries: ['saas', 'software', 'fintech', 'ai', 'startup', 'cybersecurity', 'devtools'],
   personality: ['innovative', 'cutting-edge', 'powerful', 'sleek', 'futuristic'],
 

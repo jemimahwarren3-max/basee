@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const architectureInteriors: DesignFamily = {
   id: 'architecture-interiors',
   name: 'Architecture & Interiors',
-  description: 'Structural precision, generous whitespace and architectural grids. For architecture firms, interior designers, construction and built-environment professionals.',
+  description:
+    'Structural precision, generous whitespace and architectural grids. For architecture firms, interior designers, construction and built-environment professionals.',
   industries: ['architecture', 'interior-design', 'construction', 'landscape', 'urban-planning'],
   personality: ['precise', 'spatial', 'refined', 'structural', 'considered'],
 
@@ -30,7 +31,12 @@ export const architectureInteriors: DesignFamily = {
     surfaceForeground: '#1A1A1A',
   },
 
-  spacing: { density: 'editorial', sectionGap: '10rem', componentGap: '4rem', contentWidth: '720px' },
+  spacing: {
+    density: 'editorial',
+    sectionGap: '10rem',
+    componentGap: '4rem',
+    contentWidth: '720px',
+  },
   layout: {
     grid: 'asymmetric',
     maxWidth: '1440px',
@@ -38,8 +44,20 @@ export const architectureInteriors: DesignFamily = {
     preferredSections: ['gallery-grid', 'about-editorial', 'services-list'],
     avoidSections: ['testimonial-cards', 'pricing-cards', 'stats-counter'],
   },
-  imagery: { treatment: 'full-color', corners: 'sharp', aspectRatios: ['16:9', '3:2', '4:5', '1:1'], overlays: false, parallax: true },
+  imagery: {
+    treatment: 'full-color',
+    corners: 'sharp',
+    aspectRatios: ['16:9', '3:2', '4:5', '1:1'],
+    overlays: false,
+    parallax: true,
+  },
   navigation: { style: 'minimal', sticky: true, cta: false },
-  animation: { intensity: 'subtle', reveals: true, parallax: true, microInteractions: true, pageTransitions: false },
+  animation: {
+    intensity: 'subtle',
+    reveals: true,
+    parallax: true,
+    microInteractions: true,
+    pageTransitions: false,
+  },
   buttons: { style: 'outline', corners: '0', uppercase: true, tracking: '0.12em' },
 };

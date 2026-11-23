@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const contemporaryAfrican: DesignFamily = {
   id: 'contemporary-african',
   name: 'Contemporary African',
-  description: 'Rich earth tones with bold patterns, vibrant accents and expressive typography. For African brands, cultural enterprises, creative businesses and diaspora ventures.',
+  description:
+    'Rich earth tones with bold patterns, vibrant accents and expressive typography. For African brands, cultural enterprises, creative businesses and diaspora ventures.',
   industries: ['african-brand', 'cultural', 'creative', 'diaspora', 'textile', 'artisan', 'safari'],
   personality: ['vibrant', 'cultural', 'bold', 'authentic', 'expressive', 'grounded'],
 
@@ -39,8 +40,20 @@ export const contemporaryAfrican: DesignFamily = {
     preferredSections: ['gallery-editorial', 'about-story', 'testimonial-quote', 'cta-image'],
     avoidSections: ['pricing-cards', 'features-bento'],
   },
-  imagery: { treatment: 'warm', corners: 'sharp', aspectRatios: ['16:9', '3:2', '4:5'], overlays: true, parallax: true },
+  imagery: {
+    treatment: 'warm',
+    corners: 'sharp',
+    aspectRatios: ['16:9', '3:2', '4:5'],
+    overlays: true,
+    parallax: true,
+  },
   navigation: { style: 'transparent', sticky: true, cta: true },
-  animation: { intensity: 'moderate', reveals: true, parallax: true, microInteractions: true, pageTransitions: false },
+  animation: {
+    intensity: 'moderate',
+    reveals: true,
+    parallax: true,
+    microInteractions: true,
+    pageTransitions: false,
+  },
   buttons: { style: 'solid', corners: '0', uppercase: true, tracking: '0.08em' },
 };

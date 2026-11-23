@@ -8,27 +8,49 @@ interface Props {
   gradientTo?: string;
 }
 
-const { title, subtitle, cta, secondaryCta, gradientFrom = '#09090B', gradientTo = '#1E1B4B' } = Astro.props;
+const {
+  title,
+  subtitle,
+  cta,
+  secondaryCta,
+  gradientFrom = '#09090B',
+  gradientTo = '#1E1B4B',
+} = Astro.props;
 ---
 
-<section class="min-h-screen flex items-center relative overflow-hidden" style={`background: linear-gradient(135deg, ${gradientFrom}, ${gradientTo});`} data-component="hero-gradient">
-  <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 50%, rgba(99,102,241,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(34,211,238,0.2) 0%, transparent 50%);" />
+<section
+  class="min-h-screen flex items-center relative overflow-hidden"
+  style={`background: linear-gradient(135deg, ${gradientFrom}, ${gradientTo});`}
+  data-component="hero-gradient"
+>
+  <div
+    class="absolute inset-0 opacity-30"
+    style="background-image: radial-gradient(circle at 20% 50%, rgba(99,102,241,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(34,211,238,0.2) 0%, transparent 50%);"
+  />
 
   <div class="container-site relative z-10 text-center py-32">
     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight text-white max-w-4xl mx-auto">
       <Fragment set:html={title} />
     </h1>
     {subtitle && (
-      <p class="mt-6 text-lg md:text-xl text-white/60 max-w-xl mx-auto leading-relaxed">{subtitle}</p>
+      <p class="mt-6 text-lg md:text-xl text-white/60 max-w-xl mx-auto leading-relaxed">
+        {subtitle}
+      </p>
     )}
     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
       {cta && (
-        <a href={cta.href} class="px-8 py-3.5 bg-white text-black text-sm font-medium rounded-lg hover:bg-white/90 transition-colors">
+        <a
+          href={cta.href}
+          class="px-8 py-3.5 bg-white text-black text-sm font-medium rounded-lg hover:bg-white/90 transition-colors"
+        >
           {cta.label}
         </a>
       )}
       {secondaryCta && (
-        <a href={secondaryCta.href} class="px-8 py-3.5 text-sm font-medium text-white/80 hover:text-white transition-colors">
+        <a
+          href={secondaryCta.href}
+          class="px-8 py-3.5 text-sm font-medium text-white/80 hover:text-white transition-colors"
+        >
           {secondaryCta.label} →
         </a>
       )}

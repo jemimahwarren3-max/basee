@@ -16,6 +16,7 @@ interface Props {
 }
 const { text, image, fontSize = '18vw', fontWeight = 900 } = Astro.props;
 ---
+
 <section class="py-24 md:py-32 overflow-hidden" data-component="text-mask">
   <div class="flex items-center justify-center">
     <h2
@@ -28,7 +29,9 @@ const { text, image, fontSize = '18vw', fontWeight = 900 } = Astro.props;
         'background-clip: text',
         'background-size: cover',
         'background-position: center',
-        image ? `background-image: url('${image}')` : 'background-image: linear-gradient(135deg, var(--color-primary, #C1A08A), var(--color-accent, #B76E79))',
+        image
+          ? `background-image: url('${image}')`
+          : 'background-image: linear-gradient(135deg, var(--color-primary, #C1A08A), var(--color-accent, #B76E79))',
       ].join('; ')}
     >
       {text}

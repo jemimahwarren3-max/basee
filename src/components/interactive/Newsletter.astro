@@ -9,10 +9,22 @@ interface Props {
 const { title, subtitle, action = '#', dark = false } = Astro.props;
 ---
 
-<section class:list={['py-20 md:py-24', dark ? 'bg-[var(--color-fg,#0a0a0a)] text-white' : 'bg-[var(--color-muted,#f7f7f7)]']} data-component="newsletter">
+<section
+  class:list={[
+    'py-20 md:py-24',
+    dark ? 'bg-[var(--color-fg,#0a0a0a)] text-white' : 'bg-[var(--color-muted,#f7f7f7)]',
+  ]}
+  data-component="newsletter"
+>
   <div class="container-site max-w-xl text-center">
     <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">{title}</h2>
-    {subtitle && <p class:list={['mt-3 text-sm', dark ? 'text-white/60' : 'text-[var(--color-muted-fg,#666)]']}>{subtitle}</p>}
+    {subtitle && (
+      <p
+        class:list={['mt-3 text-sm', dark ? 'text-white/60' : 'text-[var(--color-muted-fg,#666)]']}
+      >
+        {subtitle}
+      </p>
+    )}
     <form action={action} method="post" class="mt-8 flex gap-3">
       <input
         type="email"
@@ -21,7 +33,9 @@ const { title, subtitle, action = '#', dark = false } = Astro.props;
         required
         class:list={[
           'flex-1 px-4 py-3 text-sm border focus:outline-none transition-colors',
-          dark ? 'border-white/20 bg-transparent text-white placeholder:text-white/40 focus:border-white/60' : 'border-[var(--color-border,#e5e5e5)] bg-white focus:border-[var(--color-fg,#111)]',
+          dark
+            ? 'border-white/20 bg-transparent text-white placeholder:text-white/40 focus:border-white/60'
+            : 'border-[var(--color-border,#e5e5e5)] bg-white focus:border-[var(--color-fg,#111)]',
         ]}
       />
       <button

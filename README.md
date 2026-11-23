@@ -27,7 +27,7 @@ Open `src/site.config.ts` and fill in what you have. The site reads everything f
 ```ts
 export const site = {
   name: 'Serenité',
-  family: 'beauty-cosmetics',           // pick from src/design-families/
+  family: 'beauty-cosmetics', // pick from src/design-families/
   title: 'Serenité Spa — Luxury Wellness',
   description: 'Escape into tranquility.',
   nav: [
@@ -35,9 +35,9 @@ export const site = {
     { label: 'Contact', href: '#contact' },
   ],
   primaryCta: { label: 'Book', href: '#book' },
-  contact: { email: 'hello@serenite.co.za', whatsapp: '27612345678', /* … */ },
+  contact: { email: 'hello@serenite.co.za', whatsapp: '27612345678' /* … */ },
   forms: {
-    enquiry: 'https://formspree.io/f/xxxxxxxx',  // or Web3Forms, Netlify
+    enquiry: 'https://formspree.io/f/xxxxxxxx', // or Web3Forms, Netlify
     booking: 'https://cal.com/you/consultation',
   },
   commerce: { snipcartApiKey: '', currency: 'USD' },
@@ -68,6 +68,7 @@ import SiteNav from '../components/common/SiteNav.astro';
 import HeroCinematic from '../components/heroes/HeroCinematic.astro';
 import { site } from '../site.config';
 ---
+
 <Site title={site.title} description={site.description} family={site.family}>
   <SiteNav />
   <HeroCinematic
@@ -132,29 +133,29 @@ Set `SITE_URL` in your host's env to the live origin so canonical URLs and the s
 
 ## What's in the box
 
-| Capability | File / command |
-|---|---|
-| 179 Astro components (15 categories) | `src/components/` |
-| 20 design families | `src/design-families/` |
-| Component gallery | `/admin/showcase` |
-| Family-aware nav & footer wrappers | `SiteNav.astro`, `SiteFooter.astro` |
-| Light/dark theme toggle | `ThemeToggle.astro` |
-| Brand mark (logo or wordmark) | `Brand.astro` |
-| Scroll effects (image sequence, text mask, smooth scroll) | `src/components/effects/` |
-| Bundled FFmpeg for video | `npm run extract-frames` |
-| Sharp-based image optimiser | `npm run optimise-images` |
-| Snipcart commerce | `src/components/commerce/` |
-| Content collections (journal, work, events) | `src/content/` |
-| Decap CMS for browser editing | `/cms/` |
-| Admin UI with KPIs, charts, tables | `/admin/*` |
-| Password gate (deterrent) | `AuthGate.astro` |
-| Real SSR admin auth (opt-in) | `src/_admin-ssr/README.md` |
-| Forms with AJAX + spam guard | `BookingEnquiry`, `ContactForm`, `FormSpamGuard` |
-| SEO: canonical, OG, Twitter, JSON-LD, sitemap, RSS | `Site.astro` + `@astrojs/sitemap` + `@astrojs/rss` |
-| Per-page OG images at build | `/og/{kind}/{slug}.png` |
-| A11y tests (axe, light + dark) | `tests/a11y.spec.ts` |
-| Deploy configs for 3 hosts | `netlify.toml`, `vercel.json`, `wrangler.toml` |
-| Prettier + editorconfig | `.prettierrc.json`, `.editorconfig` |
+| Capability                                                | File / command                                     |
+| --------------------------------------------------------- | -------------------------------------------------- |
+| 179 Astro components (15 categories)                      | `src/components/`                                  |
+| 20 design families                                        | `src/design-families/`                             |
+| Component gallery                                         | `/admin/showcase`                                  |
+| Family-aware nav & footer wrappers                        | `SiteNav.astro`, `SiteFooter.astro`                |
+| Light/dark theme toggle                                   | `ThemeToggle.astro`                                |
+| Brand mark (logo or wordmark)                             | `Brand.astro`                                      |
+| Scroll effects (image sequence, text mask, smooth scroll) | `src/components/effects/`                          |
+| Bundled FFmpeg for video                                  | `npm run extract-frames`                           |
+| Sharp-based image optimiser                               | `npm run optimise-images`                          |
+| Snipcart commerce                                         | `src/components/commerce/`                         |
+| Content collections (journal, work, events)               | `src/content/`                                     |
+| Decap CMS for browser editing                             | `/cms/`                                            |
+| Admin UI with KPIs, charts, tables                        | `/admin/*`                                         |
+| Password gate (deterrent)                                 | `AuthGate.astro`                                   |
+| Real SSR admin auth (opt-in)                              | `src/_admin-ssr/README.md`                         |
+| Forms with AJAX + spam guard                              | `BookingEnquiry`, `ContactForm`, `FormSpamGuard`   |
+| SEO: canonical, OG, Twitter, JSON-LD, sitemap, RSS        | `Site.astro` + `@astrojs/sitemap` + `@astrojs/rss` |
+| Per-page OG images at build                               | `/og/{kind}/{slug}.png`                            |
+| A11y tests (axe, light + dark)                            | `tests/a11y.spec.ts`                               |
+| Deploy configs for 3 hosts                                | `netlify.toml`, `vercel.json`, `wrangler.toml`     |
+| Prettier + editorconfig                                   | `.prettierrc.json`, `.editorconfig`                |
 
 See [CLAUDE.md](CLAUDE.md) for deeper notes, the security section, and known gaps.
 

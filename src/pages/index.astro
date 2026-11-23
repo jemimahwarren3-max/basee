@@ -5,7 +5,12 @@ import SiteFooter from '../components/common/SiteFooter.astro';
 import { site } from '../site.config';
 const unfilled = !site.name;
 ---
-<Site title={site.title || 'Yonah Website Engine'} description={site.description || 'A toolkit base for building client sites.'} family={site.family}>
+
+<Site
+  title={site.title || 'Yonah Website Engine'}
+  description={site.description || 'A toolkit base for building client sites.'}
+  family={site.family}
+>
   {site.nav.length > 0 && <SiteNav />}
   <main class="min-h-screen flex items-center justify-center">
     <div class="container-site max-w-2xl text-center py-32">

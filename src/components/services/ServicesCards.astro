@@ -18,11 +18,25 @@ const { title, subtitle, services } = Astro.props;
       {services.map((s) => (
         <div class="group bg-[var(--color-surface,#fafafa)] rounded-xl p-8 hover:shadow-lg transition-shadow">
           {s.icon && <div class="text-3xl mb-5">{s.icon}</div>}
-          {s.image && <img src={s.image} alt="" class="w-full aspect-video object-cover rounded-lg mb-6" loading="lazy" />}
+          {s.image && (
+            <img
+              src={s.image}
+              alt=""
+              class="w-full aspect-video object-cover rounded-lg mb-6"
+              loading="lazy"
+            />
+          )}
           <h3 class="text-lg font-semibold">{s.title}</h3>
-          <p class="mt-2 text-[var(--color-muted-fg,#666)] leading-relaxed text-sm">{s.description}</p>
+          <p class="mt-2 text-[var(--color-muted-fg,#666)] leading-relaxed text-sm">
+            {s.description}
+          </p>
           {s.href && (
-            <a href={s.href} class="mt-4 inline-block text-sm font-medium hover:opacity-70 transition-opacity">Learn more →</a>
+            <a
+              href={s.href}
+              class="mt-4 inline-block text-sm font-medium hover:opacity-70 transition-opacity"
+            >
+              Learn more →
+            </a>
           )}
         </div>
       ))}

@@ -1,8 +1,14 @@
 ---
-interface Props { testimonials: { quote: string; author: string }[] }
+interface Props {
+  testimonials: { quote: string; author: string }[];
+}
 const { testimonials } = Astro.props;
 ---
-<section class="py-24 md:py-32 bg-[var(--color-muted,#f7f7f7)]" data-component="testimonial-minimal">
+
+<section
+  class="py-24 md:py-32 bg-[var(--color-muted,#f7f7f7)]"
+  data-component="testimonial-minimal"
+>
   <div class="container-site">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
       {testimonials.map((t) => (

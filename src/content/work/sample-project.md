@@ -1,13 +1,13 @@
 ---
-title: "Sample project"
-client: "[Client name]"
-description: "A short line about what this project did. Replace with the real brief."
+title: 'Sample project'
+client: '[Client name]'
+description: 'A short line about what this project did. Replace with the real brief.'
 year: 2026
-role: "Design & development"
-cover: ""
+role: 'Design & development'
+cover: ''
 gallery: []
-tags: ["web"]
-url: ""
+tags: ['web']
+url: ''
 order: 0
 ---
 

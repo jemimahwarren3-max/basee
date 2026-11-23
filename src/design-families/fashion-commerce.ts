@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const fashionCommerce: DesignFamily = {
   id: 'fashion-commerce',
   name: 'Fashion Commerce',
-  description: 'High-fashion editorial meets clean ecommerce. For clothing, jewellery, lifestyle brands, luxury retail and beauty products.',
+  description:
+    'High-fashion editorial meets clean ecommerce. For clothing, jewellery, lifestyle brands, luxury retail and beauty products.',
   industries: ['fashion', 'jewellery', 'lifestyle', 'luxury-retail', 'beauty', 'accessories'],
   personality: ['aspirational', 'curated', 'editorial', 'modern', 'desirable'],
 

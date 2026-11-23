@@ -1,25 +1,56 @@
 ---
-interface Props { title?: string; headers: [string, string]; rows: { feature: string; us: string | boolean; them: string | boolean }[] }
+interface Props {
+  title?: string;
+  headers: [string, string];
+  rows: { feature: string; us: string | boolean; them: string | boolean }[];
+}
 const { title, headers, rows } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="comparison-table">
   <div class="container-site max-w-3xl">
-    {title && <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>}
+    {title && (
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>
+    )}
     <div class="overflow-x-auto">
       <table class="w-full">
         <thead>
           <tr class="border-b-2 border-[var(--color-fg,#111)]">
-            <th class="text-left py-4 text-sm font-medium text-[var(--color-muted-fg,#999)]">Feature</th>
+            <th class="text-left py-4 text-sm font-medium text-[var(--color-muted-fg,#999)]">
+              Feature
+            </th>
             <th class="text-center py-4 text-sm font-semibold">{headers[0]}</th>
-            <th class="text-center py-4 text-sm font-medium text-[var(--color-muted-fg,#999)]">{headers[1]}</th>
+            <th class="text-center py-4 text-sm font-medium text-[var(--color-muted-fg,#999)]">
+              {headers[1]}
+            </th>
           </tr>
         </thead>
         <tbody>
-          {rows.map(r => (
+          {rows.map((r) => (
             <tr class="border-b border-[var(--color-border,#e5e5e5)]">
               <td class="py-4 text-sm">{r.feature}</td>
-              <td class="py-4 text-center">{typeof r.us === 'boolean' ? (r.us ? <span class="text-green-600">✓</span> : <span class="text-[var(--color-muted-fg,#ccc)]">✗</span>) : <span class="text-sm">{r.us}</span>}</td>
-              <td class="py-4 text-center">{typeof r.them === 'boolean' ? (r.them ? <span class="text-green-600">✓</span> : <span class="text-[var(--color-muted-fg,#ccc)]">✗</span>) : <span class="text-sm text-[var(--color-muted-fg,#999)]">{r.them}</span>}</td>
+              <td class="py-4 text-center">
+                {typeof r.us === 'boolean' ? (
+                  r.us ? (
+                    <span class="text-green-600">✓</span>
+                  ) : (
+                    <span class="text-[var(--color-muted-fg,#ccc)]">✗</span>
+                  )
+                ) : (
+                  <span class="text-sm">{r.us}</span>
+                )}
+              </td>
+              <td class="py-4 text-center">
+                {typeof r.them === 'boolean' ? (
+                  r.them ? (
+                    <span class="text-green-600">✓</span>
+                  ) : (
+                    <span class="text-[var(--color-muted-fg,#ccc)]">✗</span>
+                  )
+                ) : (
+                  <span class="text-sm text-[var(--color-muted-fg,#999)]">{r.them}</span>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

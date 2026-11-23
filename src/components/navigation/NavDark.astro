@@ -1,17 +1,46 @@
 ---
-interface Props { brand: string; links: { label: string; href: string }[]; cta?: { label: string; href: string } }
+interface Props {
+  brand: string;
+  links: { label: string; href: string }[];
+  cta?: { label: string; href: string };
+}
 const { brand, links, cta } = Astro.props;
 ---
+
 <nav class="fixed top-0 inset-x-0 z-50 bg-[var(--color-fg,#111)]" data-component="nav-dark">
   <div class="container-site flex items-center justify-between h-16">
-    <a href="/" class="text-lg font-bold tracking-tight text-white">{brand}</a>
+    <a href="/" class="text-lg font-bold tracking-tight text-white">
+      {brand}
+    </a>
     <ul class="hidden md:flex items-center gap-8">
-      {links.map(l => <li><a href={l.href} class="text-sm text-white/70 hover:text-white transition-colors">{l.label}</a></li>)}
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="text-sm text-white/70 hover:text-white transition-colors">
+            {l.label}
+          </a>
+        </li>
+      ))}
     </ul>
     <div class="flex items-center gap-4">
-      {cta && <a href={cta.href} class="hidden md:inline-flex px-5 py-2 bg-white text-[var(--color-fg,#111)] text-sm font-medium rounded-md">{cta.label}</a>}
+      {cta && (
+        <a
+          href={cta.href}
+          class="hidden md:inline-flex px-5 py-2 bg-white text-[var(--color-fg,#111)] text-sm font-medium rounded-md"
+        >
+          {cta.label}
+        </a>
+      )}
       <button class="md:hidden text-white" aria-label="Menu" data-menu-toggle>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
       </button>
     </div>
   </div>

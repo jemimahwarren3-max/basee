@@ -19,7 +19,7 @@ import sharp from 'sharp';
 
 const [sourceArg, outArg = 'public'] = process.argv.slice(2);
 if (!sourceArg) {
-  console.error("Usage: npm run brand-kit -- <source|auto> [out=public]");
+  console.error('Usage: npm run brand-kit -- <source|auto> [out=public]');
   process.exit(1);
 }
 
@@ -83,9 +83,13 @@ if (sourceIsSvg) {
 // PNG sizes.
 async function makePng(size, filename) {
   const svg = initialsSvg(size);
-  const buf = sourceBuffer && !sourceIsSvg
-    ? await sharp(sourceBuffer).resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer()
-    : await rasterise(svg, size);
+  const buf =
+    sourceBuffer && !sourceIsSvg
+      ? await sharp(sourceBuffer)
+          .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+          .png()
+          .toBuffer()
+      : await rasterise(svg, size);
   writeFileSync(`${out}/${filename}`, buf);
 }
 
@@ -102,4 +106,6 @@ writeFileSync(`${out}/og-brand.png`, await sharp(Buffer.from(ogSvg)).png().toBuf
 
 console.log(`Wrote brand kit to ${out}:`);
 console.log('  favicon.svg, favicon.ico, favicon-192.png, apple-touch-icon.png, og-brand.png');
-console.log(`Using brand name "${name}" (initials "${initials}") with family "${familyId}" colours (bg ${bg}, fg ${fg}).`);
+console.log(
+  `Using brand name "${name}" (initials "${initials}") with family "${familyId}" colours (bg ${bg}, fg ${fg}).`,
+);

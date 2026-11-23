@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const creativePhotography: DesignFamily = {
   id: 'creative-photography',
   name: 'Creative Photography',
-  description: 'Image-first layouts with cinematic grids, dramatic scale and minimal UI. For photography studios, galleries, visual artists and media producers.',
+  description:
+    'Image-first layouts with cinematic grids, dramatic scale and minimal UI. For photography studios, galleries, visual artists and media producers.',
   industries: ['photography', 'gallery', 'visual-arts', 'media-production', 'videography'],
   personality: ['visual', 'dramatic', 'immersive', 'artistic', 'cinematic'],
 
@@ -30,7 +31,12 @@ export const creativePhotography: DesignFamily = {
     surfaceForeground: '#E8E8E8',
   },
 
-  spacing: { density: 'editorial', sectionGap: '6rem', componentGap: '2rem', contentWidth: '720px' },
+  spacing: {
+    density: 'editorial',
+    sectionGap: '6rem',
+    componentGap: '2rem',
+    contentWidth: '720px',
+  },
   layout: {
     grid: 'masonry',
     maxWidth: '1600px',
@@ -38,8 +44,20 @@ export const creativePhotography: DesignFamily = {
     preferredSections: ['gallery-masonry', 'gallery-fullwidth', 'about-minimal'],
     avoidSections: ['pricing-cards', 'services-grid', 'stats-counter', 'faq-accordion'],
   },
-  imagery: { treatment: 'full-color', corners: 'sharp', aspectRatios: ['3:2', '2:3', '16:9', '1:1'], overlays: true, parallax: true },
+  imagery: {
+    treatment: 'full-color',
+    corners: 'sharp',
+    aspectRatios: ['3:2', '2:3', '16:9', '1:1'],
+    overlays: true,
+    parallax: true,
+  },
   navigation: { style: 'overlay', sticky: false, cta: false },
-  animation: { intensity: 'moderate', reveals: true, parallax: true, microInteractions: true, pageTransitions: true },
+  animation: {
+    intensity: 'moderate',
+    reveals: true,
+    parallax: true,
+    microInteractions: true,
+    pageTransitions: true,
+  },
   buttons: { style: 'ghost', corners: '0', uppercase: true, tracking: '0.15em' },
 };

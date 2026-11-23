@@ -1,16 +1,32 @@
 ---
-interface Props { tabs: { label: string; content: string; image?: string }[] }
+interface Props {
+  tabs: { label: string; content: string; image?: string }[];
+}
 const { tabs } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="tabs">
   <div class="container-site">
     <div class="flex gap-4 border-b border-[var(--color-border,#e5e5e5)] mb-10 overflow-x-auto">
       {tabs.map((t, i) => (
-        <button class:list={['text-sm font-medium pb-3 px-1 whitespace-nowrap border-b-2 transition-colors', i === 0 ? 'border-[var(--color-fg,#111)]' : 'border-transparent text-[var(--color-muted-fg,#999)]']} data-tab-trigger={i}>{t.label}</button>
+        <button
+          class:list={[
+            'text-sm font-medium pb-3 px-1 whitespace-nowrap border-b-2 transition-colors',
+            i === 0
+              ? 'border-[var(--color-fg,#111)]'
+              : 'border-transparent text-[var(--color-muted-fg,#999)]',
+          ]}
+          data-tab-trigger={i}
+        >
+          {t.label}
+        </button>
       ))}
     </div>
     {tabs.map((t, i) => (
-      <div class:list={['grid grid-cols-1 md:grid-cols-2 gap-12 items-center', i > 0 ? 'hidden' : '']} data-tab-content={i}>
+      <div
+        class:list={['grid grid-cols-1 md:grid-cols-2 gap-12 items-center', i > 0 ? 'hidden' : '']}
+        data-tab-content={i}
+      >
         <p class="text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{t.content}</p>
         {t.image && <img src={t.image} alt="" class="w-full rounded-lg" loading="lazy" />}
       </div>
@@ -22,9 +38,13 @@ const { tabs } = Astro.props;
   document.querySelectorAll('[data-tab-trigger]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const idx = btn.getAttribute('data-tab-trigger');
-      document.querySelectorAll('[data-tab-trigger]').forEach(b => { b.classList.add('border-transparent','text-[var(--color-muted-fg,#999)]'); b.classList.remove('border-[var(--color-fg,#111)]'); });
-      btn.classList.remove('border-transparent','text-[var(--color-muted-fg,#999)]'); btn.classList.add('border-[var(--color-fg,#111)]');
-      document.querySelectorAll('[data-tab-content]').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('[data-tab-trigger]').forEach((b) => {
+        b.classList.add('border-transparent', 'text-[var(--color-muted-fg,#999)]');
+        b.classList.remove('border-[var(--color-fg,#111)]');
+      });
+      btn.classList.remove('border-transparent', 'text-[var(--color-muted-fg,#999)]');
+      btn.classList.add('border-[var(--color-fg,#111)]');
+      document.querySelectorAll('[data-tab-content]').forEach((p) => p.classList.add('hidden'));
       document.querySelector(`[data-tab-content="${idx}"]`)?.classList.remove('hidden');
     });
   });

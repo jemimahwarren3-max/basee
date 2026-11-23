@@ -1,7 +1,16 @@
 ---
-interface Props { title: string; address: string; phone?: string; email?: string; hours?: string; mapEmbed?: string; whatsapp?: string }
+interface Props {
+  title: string;
+  address: string;
+  phone?: string;
+  email?: string;
+  hours?: string;
+  mapEmbed?: string;
+  whatsapp?: string;
+}
 const { title, address, phone, email, hours, mapEmbed, whatsapp } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="contact-map">
   <div class="container-site">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -9,16 +18,39 @@ const { title, address, phone, email, hours, mapEmbed, whatsapp } = Astro.props;
         <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-8">{title}</h2>
         <div class="space-y-4">
           <p class="text-lg">{address}</p>
-          {phone && <p><a href={`tel:${phone}`} class="hover:opacity-70 transition-opacity">{phone}</a></p>}
-          {email && <p><a href={`mailto:${email}`} class="hover:opacity-70 transition-opacity">{email}</a></p>}
+          {phone && (
+            <p>
+              <a href={`tel:${phone}`} class="hover:opacity-70 transition-opacity">
+                {phone}
+              </a>
+            </p>
+          )}
+          {email && (
+            <p>
+              <a href={`mailto:${email}`} class="hover:opacity-70 transition-opacity">
+                {email}
+              </a>
+            </p>
+          )}
           {hours && <p class="text-[var(--color-muted-fg,#888)]">{hours}</p>}
           {whatsapp && (
-            <a href={`https://wa.me/${whatsapp.replace(/\D/g,'')}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 px-5 py-2.5 bg-[#25D366] text-white text-sm rounded-lg hover:opacity-90 transition-opacity">WhatsApp</a>
+            <a
+              href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 mt-4 px-5 py-2.5 bg-[#25D366] text-white text-sm rounded-lg hover:opacity-90 transition-opacity"
+            >
+              WhatsApp
+            </a>
           )}
         </div>
       </div>
       <div class="bg-[var(--color-muted,#f5f5f5)] min-h-[300px] lg:min-h-0 flex items-center justify-center">
-        {mapEmbed ? <Fragment set:html={mapEmbed} /> : <p class="text-[var(--color-muted-fg,#999)]">Map embed placeholder</p>}
+        {mapEmbed ? (
+          <Fragment set:html={mapEmbed} />
+        ) : (
+          <p class="text-[var(--color-muted-fg,#999)]">Map embed placeholder</p>
+        )}
       </div>
     </div>
   </div>

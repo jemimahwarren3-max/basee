@@ -1,17 +1,42 @@
 ---
-interface Props { title: string; subtitle?: string; image: string; cta?: { label: string; href: string }; secondaryCta?: { label: string; href: string } }
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: string;
+  cta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+}
 const { title, subtitle, image, cta, secondaryCta } = Astro.props;
 ---
+
 <section class="py-24 md:py-32 bg-[var(--color-surface,#f9f9f9)]" data-component="hero-card">
   <div class="container-site max-w-4xl">
     <div class="bg-[var(--color-bg,#fff)] rounded-2xl overflow-hidden shadow-xl">
       <img src={image} alt="" class="w-full aspect-[2/1] object-cover" />
       <div class="p-8 md:p-12 text-center">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight">{title}</h1>
-        {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)] max-w-xl mx-auto">{subtitle}</p>}
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+          {title}
+        </h1>
+        {subtitle && (
+          <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)] max-w-xl mx-auto">{subtitle}</p>
+        )}
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-          {cta && <a href={cta.href} class="px-8 py-3 bg-[var(--color-dark-bg,#111)] text-[var(--color-dark-fg,#fff)] font-medium rounded-md">{cta.label}</a>}
-          {secondaryCta && <a href={secondaryCta.href} class="px-8 py-3 border border-[var(--color-border,#e5e5e5)] font-medium rounded-md">{secondaryCta.label}</a>}
+          {cta && (
+            <a
+              href={cta.href}
+              class="px-8 py-3 bg-[var(--color-dark-bg,#111)] text-[var(--color-dark-fg,#fff)] font-medium rounded-md"
+            >
+              {cta.label}
+            </a>
+          )}
+          {secondaryCta && (
+            <a
+              href={secondaryCta.href}
+              class="px-8 py-3 border border-[var(--color-border,#e5e5e5)] font-medium rounded-md"
+            >
+              {secondaryCta.label}
+            </a>
+          )}
         </div>
       </div>
     </div>

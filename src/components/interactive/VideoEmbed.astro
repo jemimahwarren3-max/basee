@@ -1,9 +1,16 @@
 ---
-interface Props { title?: string; subtitle?: string; videoUrl: string; poster?: string; autoplay?: boolean }
+interface Props {
+  title?: string;
+  subtitle?: string;
+  videoUrl: string;
+  poster?: string;
+  autoplay?: boolean;
+}
 const { title, subtitle, videoUrl, poster, autoplay = false } = Astro.props;
 const isYoutube = videoUrl.includes('youtube') || videoUrl.includes('youtu.be');
 const isVimeo = videoUrl.includes('vimeo');
 ---
+
 <section class="py-24 md:py-32" data-component="video-embed">
   <div class="container-site">
     {(title || subtitle) && (
@@ -13,10 +20,27 @@ const isVimeo = videoUrl.includes('vimeo');
       </div>
     )}
     <div class="aspect-video rounded-2xl overflow-hidden bg-black">
-      {(isYoutube || isVimeo) ? (
-        <iframe src={videoUrl} width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Video" />
+      {isYoutube || isVimeo ? (
+        <iframe
+          src={videoUrl}
+          width="100%"
+          height="100%"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          loading="lazy"
+          title="Video"
+        />
       ) : (
-        <video src={videoUrl} poster={poster} controls autoplay={autoplay} muted={autoplay} class="w-full h-full object-cover" preload="none" />
+        <video
+          src={videoUrl}
+          poster={poster}
+          controls
+          autoplay={autoplay}
+          muted={autoplay}
+          class="w-full h-full object-cover"
+          preload="none"
+        />
       )}
     </div>
   </div>

@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const premiumAutomotive: DesignFamily = {
   id: 'premium-automotive',
   name: 'Premium Automotive',
-  description: 'Dark, cinematic and performance-driven with dynamic compositions. For car dealerships, automotive brands, motorsport and luxury vehicles.',
+  description:
+    'Dark, cinematic and performance-driven with dynamic compositions. For car dealerships, automotive brands, motorsport and luxury vehicles.',
   industries: ['automotive', 'car-dealer', 'motorsport', 'luxury-vehicle', 'motorcycle'],
   personality: ['powerful', 'dynamic', 'premium', 'performance', 'precision'],
 
@@ -38,8 +39,20 @@ export const premiumAutomotive: DesignFamily = {
     preferredSections: ['gallery-fullwidth', 'stats-counter', 'about-bold', 'cta-dark'],
     avoidSections: ['faq-accordion', 'pricing-cards', 'testimonial-cards'],
   },
-  imagery: { treatment: 'high-contrast', corners: 'sharp', aspectRatios: ['21:9', '16:9', '3:2'], overlays: true, parallax: true },
+  imagery: {
+    treatment: 'high-contrast',
+    corners: 'sharp',
+    aspectRatios: ['21:9', '16:9', '3:2'],
+    overlays: true,
+    parallax: true,
+  },
   navigation: { style: 'transparent', sticky: true, cta: true },
-  animation: { intensity: 'expressive', reveals: true, parallax: true, microInteractions: true, pageTransitions: true },
+  animation: {
+    intensity: 'expressive',
+    reveals: true,
+    parallax: true,
+    microInteractions: true,
+    pageTransitions: true,
+  },
   buttons: { style: 'solid', corners: '0', uppercase: true, tracking: '0.12em' },
 };

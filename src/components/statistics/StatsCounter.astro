@@ -8,7 +8,10 @@ const { stats, dark = false } = Astro.props;
 ---
 
 <section
-  class:list={['py-20 md:py-28', dark ? 'bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)]' : '']}
+  class:list={[
+    'py-20 md:py-28',
+    dark ? 'bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)]' : '',
+  ]}
   data-component="stats-counter"
 >
   <div class="container-site">
@@ -16,7 +19,14 @@ const { stats, dark = false } = Astro.props;
       {stats.map((s) => (
         <div>
           <span class="text-4xl sm:text-5xl md:text-6xl font-light tracking-tight">{s.value}</span>
-          <p class:list={['mt-2 text-sm uppercase tracking-widest', dark ? 'text-white/60' : 'text-[var(--color-muted-fg,#888)]']}>{s.label}</p>
+          <p
+            class:list={[
+              'mt-2 text-sm uppercase tracking-widest',
+              dark ? 'text-white/60' : 'text-[var(--color-muted-fg,#888)]',
+            ]}
+          >
+            {s.label}
+          </p>
         </div>
       ))}
     </div>

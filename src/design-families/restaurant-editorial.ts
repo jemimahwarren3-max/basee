@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const restaurantEditorial: DesignFamily = {
   id: 'restaurant-editorial',
   name: 'Restaurant Editorial',
-  description: 'Warm, appetite-driven design with editorial food photography and intimate typography. For restaurants, cafes, bars, bakeries and food brands.',
+  description:
+    'Warm, appetite-driven design with editorial food photography and intimate typography. For restaurants, cafes, bars, bakeries and food brands.',
   industries: ['restaurant', 'cafe', 'bar', 'bakery', 'food-brand', 'catering', 'wine-bar'],
   personality: ['appetising', 'intimate', 'artisanal', 'warm', 'inviting'],
 
@@ -39,8 +40,20 @@ export const restaurantEditorial: DesignFamily = {
     preferredSections: ['gallery-editorial', 'about-story', 'contact-simple', 'cta-image'],
     avoidSections: ['pricing-cards', 'features-bento', 'stats-counter'],
   },
-  imagery: { treatment: 'warm', corners: 'sharp', aspectRatios: ['1:1', '4:5', '3:2'], overlays: true, parallax: false },
+  imagery: {
+    treatment: 'warm',
+    corners: 'sharp',
+    aspectRatios: ['1:1', '4:5', '3:2'],
+    overlays: true,
+    parallax: false,
+  },
   navigation: { style: 'centered', sticky: true, cta: true },
-  animation: { intensity: 'subtle', reveals: true, parallax: false, microInteractions: true, pageTransitions: false },
+  animation: {
+    intensity: 'subtle',
+    reveals: true,
+    parallax: false,
+    microInteractions: true,
+    pageTransitions: false,
+  },
   buttons: { style: 'solid', corners: '9999px', uppercase: false, tracking: '0' },
 };

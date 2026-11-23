@@ -14,15 +14,12 @@ const rows = posts.map((p) => [
   p.data.draft ? 'Draft' : 'Published',
 ]);
 ---
+
 <Admin title="Journal" active="journal">
   <p class="text-sm text-[var(--color-muted-fg,#666)] mb-6">
-    Journal posts live under src/content/journal/ as Markdown files. To edit from
-    the browser, connect a Git-based CMS (Decap/Netlify CMS, Keystatic, Sveltia).
+    Journal posts live under src/content/journal/ as Markdown files. To edit from the browser,
+    connect a Git-based CMS (Decap/Netlify CMS, Keystatic, Sveltia).
   </p>
 
-  <DataTable
-    columns={['Date', 'Title', 'Author', 'Status']}
-    rows={rows}
-    empty="No posts yet."
-  />
+  <DataTable columns={['Date', 'Title', 'Author', 'Status']} rows={rows} empty="No posts yet." />
 </Admin>

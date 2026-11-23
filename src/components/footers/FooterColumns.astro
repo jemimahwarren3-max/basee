@@ -11,16 +11,28 @@ const { brand, description, columns, socials = [], copyright } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
-<footer class="py-20 md:py-24 bg-[var(--color-dark-bg,#0a0a0a)] text-[var(--color-dark-fg,#fff)]" data-component="footer-columns">
+<footer
+  class="py-20 md:py-24 bg-[var(--color-dark-bg,#0a0a0a)] text-[var(--color-dark-fg,#fff)]"
+  data-component="footer-columns"
+>
   <div class="container-site">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
       <div class="md:col-span-4">
-        <a href="/" class="text-xl font-semibold">{brand}</a>
-        {description && <p class="mt-4 text-sm text-white/70 leading-relaxed max-w-sm">{description}</p>}
+        <a href="/" class="text-xl font-semibold">
+          {brand}
+        </a>
+        {description && (
+          <p class="mt-4 text-sm text-white/70 leading-relaxed max-w-sm">{description}</p>
+        )}
         {socials.length > 0 && (
           <div class="mt-6 flex gap-4">
             {socials.map((s) => (
-              <a href={s.href} target="_blank" rel="noopener noreferrer" class="text-sm text-white/70 hover:text-white transition-colors">
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm text-white/70 hover:text-white transition-colors"
+              >
                 {s.label}
               </a>
             ))}
@@ -33,7 +45,12 @@ const year = new Date().getFullYear();
           <ul class="space-y-3">
             {col.links.map((link) => (
               <li>
-                <a href={link.href} class="text-sm text-white/70 hover:text-white transition-colors">{link.label}</a>
+                <a
+                  href={link.href}
+                  class="text-sm text-white/70 hover:text-white transition-colors"
+                >
+                  {link.label}
+                </a>
               </li>
             ))}
           </ul>

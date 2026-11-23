@@ -14,10 +14,16 @@ const { tag, title, lead, values, image } = Astro.props;
   <div class="container-site">
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
       <div class="lg:col-span-2">
-        {tag && <span class="text-xs uppercase tracking-[0.2em] text-[var(--color-muted-fg,#999)] mb-4 block">{tag}</span>}
+        {tag && (
+          <span class="text-xs uppercase tracking-[0.2em] text-[var(--color-muted-fg,#999)] mb-4 block">
+            {tag}
+          </span>
+        )}
         <h2 class="text-3xl sm:text-4xl font-light tracking-tight">{title}</h2>
         <p class="mt-6 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{lead}</p>
-        {image && <img src={image} alt="" class="mt-10 w-full aspect-[4/3] object-cover" loading="lazy" />}
+        {image && (
+          <img src={image} alt="" class="mt-10 w-full aspect-[4/3] object-cover" loading="lazy" />
+        )}
       </div>
       <div class="lg:col-span-3 lg:pl-8">
         <div class="space-y-10">

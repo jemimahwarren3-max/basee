@@ -17,7 +17,9 @@ const { quote, author, role, image } = Astro.props;
       </p>
     </blockquote>
     <div class="mt-10 flex items-center justify-center gap-4">
-      {image && <img src={image} alt={author} class="w-14 h-14 rounded-full object-cover" loading="lazy" />}
+      {image && (
+        <img src={image} alt={author} class="w-14 h-14 rounded-full object-cover" loading="lazy" />
+      )}
       <div class:list={[image ? 'text-left' : 'text-center']}>
         <p class="font-semibold">{author}</p>
         {role && <p class="text-sm text-[var(--color-muted-fg,#888)] mt-0.5">{role}</p>}

@@ -1,23 +1,75 @@
 ---
-interface Props { title?: string; plans: { name: string; price: string; period?: string; features: { name: string; included: boolean }[]; cta: { label: string; href: string }; featured?: boolean }[] }
+interface Props {
+  title?: string;
+  plans: {
+    name: string;
+    price: string;
+    period?: string;
+    features: { name: string; included: boolean }[];
+    cta: { label: string; href: string };
+    featured?: boolean;
+  }[];
+}
 const { title = 'Pricing', plans } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="pricing-comparison">
   <div class="container-site">
-    {title && <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>}
+    {title && (
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>
+    )}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-      {plans.map(p => (
-        <div class:list={['rounded-2xl p-8 border', p.featured ? 'border-[var(--color-fg,#111)] bg-[var(--color-fg,#111)] text-white' : 'border-[var(--color-border,#e5e5e5)]']}>
+      {plans.map((p) => (
+        <div
+          class:list={[
+            'rounded-2xl p-8 border',
+            p.featured
+              ? 'border-[var(--color-fg,#111)] bg-[var(--color-fg,#111)] text-white'
+              : 'border-[var(--color-border,#e5e5e5)]',
+          ]}
+        >
           <h3 class="text-lg font-semibold">{p.name}</h3>
-          <p class="mt-4"><span class="text-4xl font-bold">{p.price}</span>{p.period && <span class:list={['text-sm', p.featured ? 'text-white/60' : 'text-[var(--color-muted-fg,#999)]']}> / {p.period}</span>}</p>
+          <p class="mt-4">
+            <span class="text-4xl font-bold">{p.price}</span>
+            {p.period && (
+              <span
+                class:list={[
+                  'text-sm',
+                  p.featured ? 'text-white/60' : 'text-[var(--color-muted-fg,#999)]',
+                ]}
+              >
+                {' '}
+                / {p.period}
+              </span>
+            )}
+          </p>
           <ul class="mt-8 space-y-3">
-            {p.features.map(f => (
-              <li class:list={['flex items-center gap-3 text-sm', !f.included ? (p.featured ? 'text-white/30' : 'text-[var(--color-muted-fg,#ccc)]') : '']}>
+            {p.features.map((f) => (
+              <li
+                class:list={[
+                  'flex items-center gap-3 text-sm',
+                  !f.included
+                    ? p.featured
+                      ? 'text-white/30'
+                      : 'text-[var(--color-muted-fg,#ccc)]'
+                    : '',
+                ]}
+              >
                 <span>{f.included ? '✓' : '—'}</span> {f.name}
               </li>
             ))}
           </ul>
-          <a href={p.cta.href} class:list={['mt-8 block text-center py-3 rounded-md font-medium text-sm', p.featured ? 'bg-white text-[var(--color-fg,#111)]' : 'bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)]']}>{p.cta.label}</a>
+          <a
+            href={p.cta.href}
+            class:list={[
+              'mt-8 block text-center py-3 rounded-md font-medium text-sm',
+              p.featured
+                ? 'bg-white text-[var(--color-fg,#111)]'
+                : 'bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)]',
+            ]}
+          >
+            {p.cta.label}
+          </a>
         </div>
       ))}
     </div>

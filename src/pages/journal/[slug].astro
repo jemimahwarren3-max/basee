@@ -8,7 +8,9 @@ export async function getStaticPaths() {
   return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 
-interface Props { post: CollectionEntry<'journal'> }
+interface Props {
+  post: CollectionEntry<'journal'>;
+}
 const { post } = Astro.props;
 const { Content } = await render(post);
 
@@ -21,6 +23,7 @@ const structuredData = {
   author: post.data.author ? { '@type': 'Person', name: post.data.author } : undefined,
 };
 ---
+
 <Site
   title={`${post.data.title} — ${site.name || 'Journal'}`}
   description={post.data.description}
@@ -30,12 +33,19 @@ const structuredData = {
   structuredData={structuredData}
 >
   <main class="container-site py-24 md:py-32 max-w-2xl">
-    <a href="/journal" class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] hover:opacity-70">
+    <a
+      href="/journal"
+      class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] hover:opacity-70"
+    >
       ← Journal
     </a>
     <article class="mt-6">
       <time class="text-sm text-[var(--color-muted-fg,#999)]">
-        {post.data.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+        {post.data.date.toLocaleDateString('en-GB', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
       </time>
       <h1 class="mt-3 text-4xl md:text-5xl leading-tight">{post.data.title}</h1>
       {post.data.author && (

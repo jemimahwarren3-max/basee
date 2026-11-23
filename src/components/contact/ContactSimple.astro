@@ -18,8 +18,20 @@ const { title, subtitle, email, phone, address, whatsapp, hours } = Astro.props;
     {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)]">{subtitle}</p>}
 
     <div class="mt-12 space-y-6">
-      {email && <p><a href={`mailto:${email}`} class="text-lg hover:opacity-70 transition-opacity">{email}</a></p>}
-      {phone && <p><a href={`tel:${phone}`} class="text-lg hover:opacity-70 transition-opacity">{phone}</a></p>}
+      {email && (
+        <p>
+          <a href={`mailto:${email}`} class="text-lg hover:opacity-70 transition-opacity">
+            {email}
+          </a>
+        </p>
+      )}
+      {phone && (
+        <p>
+          <a href={`tel:${phone}`} class="text-lg hover:opacity-70 transition-opacity">
+            {phone}
+          </a>
+        </p>
+      )}
       {address && <p class="text-lg text-[var(--color-muted-fg,#666)]">{address}</p>}
       {hours && <p class="text-sm text-[var(--color-muted-fg,#888)]">{hours}</p>}
       {whatsapp && (

@@ -1,15 +1,46 @@
 ---
-interface Props { title: string; subtitle?: string; email?: string; phone?: string; whatsapp?: string; cta?: { label: string; href: string } }
+interface Props {
+  title: string;
+  subtitle?: string;
+  email?: string;
+  phone?: string;
+  whatsapp?: string;
+  cta?: { label: string; href: string };
+}
 const { title, subtitle, email, phone, whatsapp, cta } = Astro.props;
 ---
+
 <section class="py-24 md:py-32 bg-[var(--color-fg,#111)]" data-component="contact-cta">
   <div class="container-site text-center">
     <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">{title}</h2>
     {subtitle && <p class="mt-4 text-lg text-white/60 max-w-2xl mx-auto">{subtitle}</p>}
     <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-      {cta && <a href={cta.href} class="px-8 py-3 bg-white text-[var(--color-fg,#111)] font-medium rounded-md">{cta.label}</a>}
-      {email && <a href={`mailto:${email}`} class="px-8 py-3 border border-white/20 text-white font-medium rounded-md hover:bg-white/10 transition-colors">{email}</a>}
-      {whatsapp && <a href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`} class="px-8 py-3 bg-[#25D366] text-white font-medium rounded-md" target="_blank" rel="noopener">WhatsApp</a>}
+      {cta && (
+        <a
+          href={cta.href}
+          class="px-8 py-3 bg-white text-[var(--color-fg,#111)] font-medium rounded-md"
+        >
+          {cta.label}
+        </a>
+      )}
+      {email && (
+        <a
+          href={`mailto:${email}`}
+          class="px-8 py-3 border border-white/20 text-white font-medium rounded-md hover:bg-white/10 transition-colors"
+        >
+          {email}
+        </a>
+      )}
+      {whatsapp && (
+        <a
+          href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`}
+          class="px-8 py-3 bg-[#25D366] text-white font-medium rounded-md"
+          target="_blank"
+          rel="noopener"
+        >
+          WhatsApp
+        </a>
+      )}
     </div>
     {phone && <p class="mt-6 text-white/70 text-sm">{phone}</p>}
   </div>

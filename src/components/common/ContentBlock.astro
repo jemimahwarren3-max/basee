@@ -1,7 +1,12 @@
 ---
-interface Props { title?: string; content: string; align?: 'left' | 'center' }
+interface Props {
+  title?: string;
+  content: string;
+  align?: 'left' | 'center';
+}
 const { title, content, align = 'left' } = Astro.props;
 ---
+
 <section class="py-16 md:py-24" data-component="content-block">
   <div class:list={['container-site max-w-3xl', align === 'center' ? 'text-center' : '']}>
     {title && <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6">{title}</h2>}

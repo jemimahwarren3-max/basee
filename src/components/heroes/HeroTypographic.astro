@@ -22,12 +22,13 @@ const { lines, subtitle, cta } = Astro.props;
     </div>
     <div class="mt-12 flex flex-col sm:flex-row items-start gap-8">
       {subtitle && (
-        <p class="text-lg text-[var(--color-muted-fg,#666)] max-w-md leading-relaxed">
-          {subtitle}
-        </p>
+        <p class="text-lg text-[var(--color-muted-fg,#666)] max-w-md leading-relaxed">{subtitle}</p>
       )}
       {cta && (
-        <a href={cta.href} class="text-sm uppercase tracking-[0.15em] border border-current px-8 py-4 hover:bg-[var(--color-dark-bg,#111)] hover:text-[var(--color-dark-fg,#fff)] transition-all">
+        <a
+          href={cta.href}
+          class="text-sm uppercase tracking-[0.15em] border border-current px-8 py-4 hover:bg-[var(--color-dark-bg,#111)] hover:text-[var(--color-dark-fg,#fff)] transition-all"
+        >
           {cta.label}
         </a>
       )}

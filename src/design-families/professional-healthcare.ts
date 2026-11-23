@@ -3,8 +3,17 @@ import type { DesignFamily } from './types';
 export const professionalHealthcare: DesignFamily = {
   id: 'professional-healthcare',
   name: 'Professional Healthcare',
-  description: 'Clean, calming and trustworthy with soft tones and clear navigation. For clinics, dental practices, wellness centres and medical professionals.',
-  industries: ['healthcare', 'dental', 'wellness', 'medical', 'therapy', 'physiotherapy', 'optometry'],
+  description:
+    'Clean, calming and trustworthy with soft tones and clear navigation. For clinics, dental practices, wellness centres and medical professionals.',
+  industries: [
+    'healthcare',
+    'dental',
+    'wellness',
+    'medical',
+    'therapy',
+    'physiotherapy',
+    'optometry',
+  ],
   personality: ['trustworthy', 'calming', 'professional', 'caring', 'clean'],
 
   typography: {
@@ -41,12 +50,30 @@ export const professionalHealthcare: DesignFamily = {
     grid: 'symmetric',
     maxWidth: '1200px',
     preferredHero: ['hero-split-clean', 'hero-centered-image', 'hero-text-centered'],
-    preferredSections: ['services-cards', 'testimonial-cards', 'about-team', 'contact-form', 'faq-accordion'],
+    preferredSections: [
+      'services-cards',
+      'testimonial-cards',
+      'about-team',
+      'contact-form',
+      'faq-accordion',
+    ],
     avoidSections: ['gallery-masonry', 'hero-cinematic'],
   },
 
-  imagery: { treatment: 'full-color', corners: 'rounded', aspectRatios: ['16:9', '4:3', '1:1'], overlays: false, parallax: false },
+  imagery: {
+    treatment: 'full-color',
+    corners: 'rounded',
+    aspectRatios: ['16:9', '4:3', '1:1'],
+    overlays: false,
+    parallax: false,
+  },
   navigation: { style: 'solid', sticky: true, cta: true },
-  animation: { intensity: 'subtle', reveals: true, parallax: false, microInteractions: true, pageTransitions: false },
+  animation: {
+    intensity: 'subtle',
+    reveals: true,
+    parallax: false,
+    microInteractions: true,
+    pageTransitions: false,
+  },
   buttons: { style: 'solid', corners: '9999px', uppercase: false, tracking: '0' },
 };

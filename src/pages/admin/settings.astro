@@ -2,33 +2,44 @@
 import Admin from '../../layouts/Admin.astro';
 import { site } from '../../site.config';
 ---
+
 <Admin title="Settings" active="settings">
   <div class="space-y-6 max-w-2xl">
     <div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg p-6">
       <h2 class="text-base font-semibold">Site identity</h2>
       <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
-        <dt class="text-[var(--color-muted-fg,#666)]">Name</dt><dd class="font-mono">{site.name || '—'}</dd>
-        <dt class="text-[var(--color-muted-fg,#666)]">Design family</dt><dd class="font-mono">{site.family}</dd>
-        <dt class="text-[var(--color-muted-fg,#666)]">Title</dt><dd>{site.title || '—'}</dd>
-        <dt class="text-[var(--color-muted-fg,#666)]">Description</dt><dd>{site.description || '—'}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">Name</dt>
+        <dd class="font-mono">{site.name || '—'}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">Design family</dt>
+        <dd class="font-mono">{site.family}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">Title</dt>
+        <dd>{site.title || '—'}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">Description</dt>
+        <dd>{site.description || '—'}</dd>
       </dl>
     </div>
 
     <div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg p-6">
       <h2 class="text-base font-semibold">Contact</h2>
       <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
-        <dt class="text-[var(--color-muted-fg,#666)]">Email</dt><dd>{site.contact.email || '—'}</dd>
-        <dt class="text-[var(--color-muted-fg,#666)]">Phone</dt><dd>{site.contact.phone || '—'}</dd>
-        <dt class="text-[var(--color-muted-fg,#666)]">WhatsApp</dt><dd>{site.contact.whatsapp || '—'}</dd>
-        <dt class="text-[var(--color-muted-fg,#666)]">Address</dt><dd>{site.contact.address || '—'}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">Email</dt>
+        <dd>{site.contact.email || '—'}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">Phone</dt>
+        <dd>{site.contact.phone || '—'}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">WhatsApp</dt>
+        <dd>{site.contact.whatsapp || '—'}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">Address</dt>
+        <dd>{site.contact.address || '—'}</dd>
       </dl>
     </div>
 
     <div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg p-6">
       <h2 class="text-base font-semibold">Form endpoints</h2>
       <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
-        <dt class="text-[var(--color-muted-fg,#666)]">Enquiry</dt><dd class="font-mono truncate">{site.forms.enquiry || '— not configured —'}</dd>
-        <dt class="text-[var(--color-muted-fg,#666)]">Booking</dt><dd class="font-mono truncate">{site.forms.booking || '— not configured —'}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">Enquiry</dt>
+        <dd class="font-mono truncate">{site.forms.enquiry || '— not configured —'}</dd>
+        <dt class="text-[var(--color-muted-fg,#666)]">Booking</dt>
+        <dd class="font-mono truncate">{site.forms.booking || '— not configured —'}</dd>
       </dl>
     </div>
 

@@ -19,7 +19,13 @@ const { title, subtitle, items } = Astro.props;
         <details class="group py-6" data-faq>
           <summary class="flex items-center justify-between cursor-pointer list-none">
             <h3 class="text-lg font-medium pr-8">{item.question}</h3>
-            <svg class="w-5 h-5 flex-none text-[var(--color-muted-fg,#999)] group-open:rotate-45 transition-transform duration-200" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg
+              class="w-5 h-5 flex-none text-[var(--color-muted-fg,#999)] group-open:rotate-45 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
               <path d="M10 4v12M4 10h12" />
             </svg>
           </summary>

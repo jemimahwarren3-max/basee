@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const editorialLuxury: DesignFamily = {
   id: 'editorial-luxury',
   name: 'Editorial Luxury',
-  description: 'Refined elegance with generous whitespace, serif typography and cinematic imagery. For luxury brands, boutique hotels, high-end architecture and fashion houses.',
+  description:
+    'Refined elegance with generous whitespace, serif typography and cinematic imagery. For luxury brands, boutique hotels, high-end architecture and fashion houses.',
   industries: ['luxury', 'hotels', 'architecture', 'fashion', 'jewellery', 'wine', 'fine-dining'],
   personality: ['elegant', 'refined', 'exclusive', 'timeless', 'sophisticated'],
 

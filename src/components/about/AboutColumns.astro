@@ -12,7 +12,9 @@ const { title, subtitle, columns } = Astro.props;
   <div class="container-site">
     <div class="max-w-2xl">
       <h2 class="text-3xl sm:text-4xl font-semibold leading-tight tracking-tight">{title}</h2>
-      {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{subtitle}</p>}
+      {subtitle && (
+        <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{subtitle}</p>
+      )}
     </div>
     <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
       {columns.map((col) => (

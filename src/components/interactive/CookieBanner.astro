@@ -1,21 +1,53 @@
 ---
-interface Props { message?: string; acceptLabel?: string; declineLabel?: string }
-const { message = 'We use cookies to improve your experience.', acceptLabel = 'Accept', declineLabel = 'Decline' } = Astro.props;
+interface Props {
+  message?: string;
+  acceptLabel?: string;
+  declineLabel?: string;
+}
+const {
+  message = 'We use cookies to improve your experience.',
+  acceptLabel = 'Accept',
+  declineLabel = 'Decline',
+} = Astro.props;
 ---
-<div class="fixed bottom-0 inset-x-0 z-50 p-4 hidden" data-component="cookie-banner" id="cookie-banner">
+
+<div
+  class="fixed bottom-0 inset-x-0 z-50 p-4 hidden"
+  data-component="cookie-banner"
+  id="cookie-banner"
+>
   <div class="container-site max-w-3xl mx-auto bg-[var(--color-fg,#111)] text-white rounded-xl px-6 py-4 flex flex-col sm:flex-row items-center gap-4 shadow-2xl">
     <p class="text-sm flex-1">{message}</p>
     <div class="flex gap-2">
-      <button class="px-4 py-2 text-sm bg-white text-[var(--color-fg,#111)] rounded-md font-medium" data-cookie-accept>{acceptLabel}</button>
-      <button class="px-4 py-2 text-sm border border-white/20 rounded-md" data-cookie-decline>{declineLabel}</button>
+      <button
+        class="px-4 py-2 text-sm bg-white text-[var(--color-fg,#111)] rounded-md font-medium"
+        data-cookie-accept
+      >
+        {acceptLabel}
+      </button>
+      <button class="px-4 py-2 text-sm border border-white/20 rounded-md" data-cookie-decline>
+        {declineLabel}
+      </button>
     </div>
   </div>
 </div>
 <script>
   const banner = document.getElementById('cookie-banner');
   if (banner) {
-    try { if (!localStorage.getItem('cookie-consent')) banner.classList.remove('hidden'); } catch {}
-    banner.querySelector('[data-cookie-accept]')?.addEventListener('click', () => { try { localStorage.setItem('cookie-consent', 'accepted'); } catch {} banner.classList.add('hidden'); });
-    banner.querySelector('[data-cookie-decline]')?.addEventListener('click', () => { try { localStorage.setItem('cookie-consent', 'declined'); } catch {} banner.classList.add('hidden'); });
+    try {
+      if (!localStorage.getItem('cookie-consent')) banner.classList.remove('hidden');
+    } catch {}
+    banner.querySelector('[data-cookie-accept]')?.addEventListener('click', () => {
+      try {
+        localStorage.setItem('cookie-consent', 'accepted');
+      } catch {}
+      banner.classList.add('hidden');
+    });
+    banner.querySelector('[data-cookie-decline]')?.addEventListener('click', () => {
+      try {
+        localStorage.setItem('cookie-consent', 'declined');
+      } catch {}
+      banner.classList.add('hidden');
+    });
   }
 </script>

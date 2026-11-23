@@ -1,7 +1,10 @@
 ---
-interface Props { testimonials: { quote: string; author: string; role?: string; image?: string }[] }
+interface Props {
+  testimonials: { quote: string; author: string; role?: string; image?: string }[];
+}
 const { testimonials } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="testimonial-slider">
   <div class="container-site max-w-3xl text-center">
     {testimonials.map((t, i) => (
@@ -10,7 +13,14 @@ const { testimonials } = Astro.props;
           <p class="text-2xl md:text-3xl font-light leading-relaxed italic">"{t.quote}"</p>
         </blockquote>
         <div class="mt-8 flex items-center justify-center gap-3">
-          {t.image && <img src={t.image} alt={t.author} class="w-12 h-12 rounded-full object-cover" loading="lazy" />}
+          {t.image && (
+            <img
+              src={t.image}
+              alt={t.author}
+              class="w-12 h-12 rounded-full object-cover"
+              loading="lazy"
+            />
+          )}
           <div class="text-left">
             <p class="font-semibold">{t.author}</p>
             {t.role && <p class="text-sm text-[var(--color-muted-fg,#888)]">{t.role}</p>}
@@ -20,7 +30,13 @@ const { testimonials } = Astro.props;
     ))}
     <div class="mt-10 flex items-center justify-center gap-2">
       {testimonials.map((_, i) => (
-        <button class:list={['w-2 h-2 rounded-full transition-colors', i === 0 ? 'bg-[var(--color-fg,#111)]' : 'bg-[var(--color-border,#ddd)]']} data-testimonial-dot={i} />
+        <button
+          class:list={[
+            'w-2 h-2 rounded-full transition-colors',
+            i === 0 ? 'bg-[var(--color-fg,#111)]' : 'bg-[var(--color-border,#ddd)]',
+          ]}
+          data-testimonial-dot={i}
+        />
       ))}
     </div>
   </div>
@@ -31,10 +47,15 @@ const { testimonials } = Astro.props;
   const slides = document.querySelectorAll('[data-testimonial-slide]');
   const dots = document.querySelectorAll('[data-testimonial-dot]');
   function show(idx) {
-    slides.forEach((s,i) => s.classList.toggle('hidden', i !== idx));
-    dots.forEach((d,i) => { d.classList.toggle('bg-[var(--color-fg,#111)]', i === idx); d.classList.toggle('bg-[var(--color-border,#ddd)]', i !== idx); });
+    slides.forEach((s, i) => s.classList.toggle('hidden', i !== idx));
+    dots.forEach((d, i) => {
+      d.classList.toggle('bg-[var(--color-fg,#111)]', i === idx);
+      d.classList.toggle('bg-[var(--color-border,#ddd)]', i !== idx);
+    });
     current = idx;
   }
-  dots.forEach((d) => d.addEventListener('click', () => show(parseInt(d.getAttribute('data-testimonial-dot')))));
+  dots.forEach((d) =>
+    d.addEventListener('click', () => show(parseInt(d.getAttribute('data-testimonial-dot')))),
+  );
   setInterval(() => show((current + 1) % count), 6000);
 </script>

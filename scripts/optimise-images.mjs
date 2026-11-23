@@ -15,10 +15,15 @@ if (!existsSync(input)) {
   process.exit(1);
 }
 
-const widths = widthsArg.split(',').map(Number).filter((w) => w > 0);
+const widths = widthsArg
+  .split(',')
+  .map(Number)
+  .filter((w) => w > 0);
 const IMAGE = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.tif', '.tiff']);
 const sources = statSync(input).isDirectory()
-  ? readdirSync(input).map((f) => join(input, f)).filter((f) => IMAGE.has(extname(f).toLowerCase()))
+  ? readdirSync(input)
+      .map((f) => join(input, f))
+      .filter((f) => IMAGE.has(extname(f).toLowerCase()))
   : [input];
 
 const out = resolve(outDir);

@@ -1,16 +1,40 @@
 ---
-interface Props { text: string; href?: string; dismissable?: boolean }
+interface Props {
+  text: string;
+  href?: string;
+  dismissable?: boolean;
+}
 const { text, href, dismissable = true } = Astro.props;
 ---
-<div class="bg-[var(--color-fg,#111)] text-white py-2.5 text-center relative" data-component="announcement-bar" id="announcement-bar">
+
+<div
+  class="bg-[var(--color-fg,#111)] text-white py-2.5 text-center relative"
+  data-component="announcement-bar"
+  id="announcement-bar"
+>
   {href ? (
-    <a href={href} class="text-sm hover:underline">{text}</a>
+    <a href={href} class="text-sm hover:underline">
+      {text}
+    </a>
   ) : (
     <p class="text-sm">{text}</p>
   )}
   {dismissable && (
-    <button class="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white" aria-label="Dismiss" data-dismiss-announcement>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    <button
+      class="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white"
+      aria-label="Dismiss"
+      data-dismiss-announcement
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
     </button>
   )}
 </div>

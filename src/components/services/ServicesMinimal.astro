@@ -1,7 +1,10 @@
 ---
-interface Props { services: { title: string; description: string }[] }
+interface Props {
+  services: { title: string; description: string }[];
+}
 const { services } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="services-minimal">
   <div class="container-site max-w-4xl">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16">

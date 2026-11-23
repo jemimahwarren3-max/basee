@@ -1,7 +1,14 @@
 ---
-interface Props { title: string; price: string; period?: string; features: string[]; cta: { label: string; href: string } }
+interface Props {
+  title: string;
+  price: string;
+  period?: string;
+  features: string[];
+  cta: { label: string; href: string };
+}
 const { title, price, period, features, cta } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="pricing-minimal">
   <div class="container-site max-w-lg text-center">
     <h2 class="text-3xl font-semibold tracking-tight">{title}</h2>
@@ -11,9 +18,16 @@ const { title, price, period, features, cta } = Astro.props;
     </div>
     <ul class="mt-8 space-y-3 text-left max-w-xs mx-auto">
       {features.map((f) => (
-        <li class="flex items-center gap-3 text-sm"><span class="text-green-600">✓</span> {f}</li>
+        <li class="flex items-center gap-3 text-sm">
+          <span class="text-green-600">✓</span> {f}
+        </li>
       ))}
     </ul>
-    <a href={cta.href} class="mt-8 inline-block px-10 py-3.5 bg-[var(--color-primary,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium hover:opacity-90 transition-opacity">{cta.label}</a>
+    <a
+      href={cta.href}
+      class="mt-8 inline-block px-10 py-3.5 bg-[var(--color-primary,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium hover:opacity-90 transition-opacity"
+    >
+      {cta.label}
+    </a>
   </div>
 </section>

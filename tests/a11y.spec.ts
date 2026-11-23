@@ -32,14 +32,14 @@ for (const route of routes) {
       // Seed the theme in localStorage before the page loads so the inline
       // init script in Site.astro picks it up and sets [data-theme] pre-paint.
       await page.addInitScript((t) => {
-        try { localStorage.setItem('theme', t); } catch {}
+        try {
+          localStorage.setItem('theme', t);
+        } catch {}
       }, theme);
 
       await page.goto(route, { waitUntil: 'load' });
 
-      const results = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa'])
-        .analyze();
+      const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
 
       const blockers = results.violations.filter(
         (v) => v.impact === 'critical' || v.impact === 'serious',
@@ -52,7 +52,10 @@ for (const route of routes) {
         console.log(`\naxe violations on ${route} (${theme}):\n${summary}`);
       }
 
-      expect(blockers, `${blockers.length} critical/serious a11y violations on ${route} (${theme})`).toEqual([]);
+      expect(
+        blockers,
+        `${blockers.length} critical/serious a11y violations on ${route} (${theme})`,
+      ).toEqual([]);
     });
   }
 }

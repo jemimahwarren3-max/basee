@@ -19,8 +19,10 @@ const copy = copyright();
 // Build generic columns from the config for the richer variants.
 const contactLinks: { label: string; href: string }[] = [];
 if (site.contact.address) contactLinks.push({ label: site.contact.address, href: '#' });
-if (site.contact.email) contactLinks.push({ label: site.contact.email, href: `mailto:${site.contact.email}` });
-if (site.contact.phone) contactLinks.push({ label: site.contact.phone, href: `tel:${site.contact.phone}` });
+if (site.contact.email)
+  contactLinks.push({ label: site.contact.email, href: `mailto:${site.contact.email}` });
+if (site.contact.phone)
+  contactLinks.push({ label: site.contact.phone, href: `tel:${site.contact.phone}` });
 if (site.contact.hours) contactLinks.push({ label: site.contact.hours, href: '#' });
 
 const columns = [
@@ -32,8 +34,36 @@ const columns = [
 const socialsFull = site.social;
 const socialsFlat = site.social.map((s) => ({ label: s.platform, href: s.url }));
 ---
+
 {variant === 'simple' && <FooterSimple brand={brand} links={site.nav} copyright={copy} />}
-{variant === 'minimal' && <FooterMinimal brand={brand} links={site.nav} socials={socialsFlat} copyright={copy} />}
-{variant === 'columns' && <FooterColumns brand={brand} description={site.description} columns={columns} socials={socialsFlat} copyright={copy} />}
-{variant === 'full' && <FooterFull brand={brand} description={site.description} columns={columns} socials={socialsFull} copyright={copy} />}
-{variant === 'dark' && <FooterDark brand={brand} description={site.description} links={site.nav} email={site.contact.email || undefined} phone={site.contact.phone || undefined} socials={socialsFlat} />}
+{variant === 'minimal' && (
+  <FooterMinimal brand={brand} links={site.nav} socials={socialsFlat} copyright={copy} />
+)}
+{variant === 'columns' && (
+  <FooterColumns
+    brand={brand}
+    description={site.description}
+    columns={columns}
+    socials={socialsFlat}
+    copyright={copy}
+  />
+)}
+{variant === 'full' && (
+  <FooterFull
+    brand={brand}
+    description={site.description}
+    columns={columns}
+    socials={socialsFull}
+    copyright={copy}
+  />
+)}
+{variant === 'dark' && (
+  <FooterDark
+    brand={brand}
+    description={site.description}
+    links={site.nav}
+    email={site.contact.email || undefined}
+    phone={site.contact.phone || undefined}
+    socials={socialsFlat}
+  />
+)}

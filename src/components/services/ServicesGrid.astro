@@ -7,24 +7,40 @@ interface Props {
 }
 
 const { title, subtitle, services, columns = 3 } = Astro.props;
-const colClass = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-2 lg:grid-cols-3', 4: 'md:grid-cols-2 lg:grid-cols-4' };
+const colClass = {
+  2: 'md:grid-cols-2',
+  3: 'md:grid-cols-2 lg:grid-cols-3',
+  4: 'md:grid-cols-2 lg:grid-cols-4',
+};
 ---
 
 <section class="py-24 md:py-32" data-component="services-grid">
   <div class="container-site">
     <div class="max-w-2xl mb-16">
       <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight">{title}</h2>
-      {subtitle && <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{subtitle}</p>}
+      {subtitle && (
+        <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{subtitle}</p>
+      )}
     </div>
     <div class:list={['grid grid-cols-1 gap-8', colClass[columns]]}>
       {services.map((s) => (
         <div class="group p-8 border border-[var(--color-border,#e5e5e5)] hover:border-[var(--color-fg,#111)] transition-colors">
-          {s.image && <img src={s.image} alt="" class="w-full aspect-[16/10] object-cover mb-6" loading="lazy" />}
+          {s.image && (
+            <img
+              src={s.image}
+              alt=""
+              class="w-full aspect-[16/10] object-cover mb-6"
+              loading="lazy"
+            />
+          )}
           {s.icon && <div class="text-3xl mb-4">{s.icon}</div>}
           <h3 class="text-xl font-semibold">{s.title}</h3>
           <p class="mt-3 text-[var(--color-muted-fg,#666)] leading-relaxed">{s.description}</p>
           {s.href && (
-            <a href={s.href} class="mt-4 inline-block text-sm font-medium border-b border-current pb-0.5 group-hover:opacity-70 transition-opacity">
+            <a
+              href={s.href}
+              class="mt-4 inline-block text-sm font-medium border-b border-current pb-0.5 group-hover:opacity-70 transition-opacity"
+            >
               Learn more
             </a>
           )}

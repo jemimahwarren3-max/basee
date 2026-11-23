@@ -18,12 +18,7 @@ const alignClasses = {
 ---
 
 <section class="relative h-screen min-h-[600px] overflow-hidden" data-component="hero-cinematic">
-  <img
-    src={image}
-    alt=""
-    class="absolute inset-0 w-full h-full object-cover"
-    loading="eager"
-  />
+  <img src={image} alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
   {overlay && <div class="absolute inset-0 bg-black/40" />}
 
   <div class:list={['relative z-10 h-full flex flex-col max-w-4xl', alignClasses[align]]}>
@@ -31,9 +26,7 @@ const alignClasses = {
       <Fragment set:html={title} />
     </h1>
     {subtitle && (
-      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-xl leading-relaxed">
-        {subtitle}
-      </p>
+      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-xl leading-relaxed">{subtitle}</p>
     )}
     {cta && (
       <a

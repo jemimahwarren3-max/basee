@@ -2,7 +2,12 @@
 interface Props {
   title: string;
   subtitle?: string;
-  features: { title: string; description: string; image?: string; span?: 'wide' | 'tall' | 'normal' }[];
+  features: {
+    title: string;
+    description: string;
+    image?: string;
+    span?: 'wide' | 'tall' | 'normal';
+  }[];
 }
 
 const { title, subtitle, features } = Astro.props;
@@ -24,11 +29,18 @@ const { title, subtitle, features } = Astro.props;
           ]}
         >
           {f.image && (
-            <img src={f.image} alt="" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity" loading="lazy" />
+            <img
+              src={f.image}
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity"
+              loading="lazy"
+            />
           )}
           <div class="relative z-10">
             <h3 class="text-lg font-semibold">{f.title}</h3>
-            <p class="mt-2 text-sm text-[var(--color-muted-fg,#666)] leading-relaxed">{f.description}</p>
+            <p class="mt-2 text-sm text-[var(--color-muted-fg,#666)] leading-relaxed">
+              {f.description}
+            </p>
           </div>
         </div>
       ))}

@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const minimalistPortfolio: DesignFamily = {
   id: 'minimalist-portfolio',
   name: 'Minimalist Portfolio',
-  description: 'Maximum impact through restraint. Work speaks for itself with clean grids and no visual clutter. For photographers, designers, artists and freelancers.',
+  description:
+    'Maximum impact through restraint. Work speaks for itself with clean grids and no visual clutter. For photographers, designers, artists and freelancers.',
   industries: ['photographer', 'designer', 'artist', 'freelancer', 'illustrator', 'filmmaker'],
   personality: ['minimal', 'confident', 'focused', 'artistic', 'refined'],
 
@@ -38,8 +39,20 @@ export const minimalistPortfolio: DesignFamily = {
     preferredSections: ['gallery-masonry', 'gallery-grid', 'about-minimal', 'contact-minimal'],
     avoidSections: ['pricing-cards', 'testimonial-cards', 'stats-counter', 'faq-accordion'],
   },
-  imagery: { treatment: 'full-color', corners: 'sharp', aspectRatios: ['3:2', '4:5', '1:1', '16:9'], overlays: false, parallax: false },
+  imagery: {
+    treatment: 'full-color',
+    corners: 'sharp',
+    aspectRatios: ['3:2', '4:5', '1:1', '16:9'],
+    overlays: false,
+    parallax: false,
+  },
   navigation: { style: 'minimal', sticky: false, cta: false },
-  animation: { intensity: 'subtle', reveals: true, parallax: false, microInteractions: true, pageTransitions: true },
+  animation: {
+    intensity: 'subtle',
+    reveals: true,
+    parallax: false,
+    microInteractions: true,
+    pageTransitions: true,
+  },
   buttons: { style: 'underline', corners: '0', uppercase: false, tracking: '0' },
 };

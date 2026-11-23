@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const corporateInstitutional: DesignFamily = {
   id: 'corporate-institutional',
   name: 'Corporate Institutional',
-  description: 'Authoritative, structured and information-rich. For corporations, NGOs, government bodies, universities and large organisations.',
+  description:
+    'Authoritative, structured and information-rich. For corporations, NGOs, government bodies, universities and large organisations.',
   industries: ['corporate', 'ngo', 'government', 'university', 'institution', 'foundation'],
   personality: ['authoritative', 'structured', 'reliable', 'informative', 'established'],
 
@@ -30,16 +31,39 @@ export const corporateInstitutional: DesignFamily = {
     surfaceForeground: '#1A1A2E',
   },
 
-  spacing: { density: 'balanced', sectionGap: '6rem', componentGap: '2.5rem', contentWidth: '860px' },
+  spacing: {
+    density: 'balanced',
+    sectionGap: '6rem',
+    componentGap: '2.5rem',
+    contentWidth: '860px',
+  },
   layout: {
     grid: 'symmetric',
     maxWidth: '1200px',
     preferredHero: ['hero-text-centered', 'hero-split-clean', 'hero-minimal'],
-    preferredSections: ['services-grid', 'stats-counter', 'about-columns', 'faq-accordion', 'contact-form'],
+    preferredSections: [
+      'services-grid',
+      'stats-counter',
+      'about-columns',
+      'faq-accordion',
+      'contact-form',
+    ],
     avoidSections: ['hero-cinematic', 'gallery-masonry'],
   },
-  imagery: { treatment: 'full-color', corners: 'slight', aspectRatios: ['16:9', '4:3', '1:1'], overlays: false, parallax: false },
+  imagery: {
+    treatment: 'full-color',
+    corners: 'slight',
+    aspectRatios: ['16:9', '4:3', '1:1'],
+    overlays: false,
+    parallax: false,
+  },
   navigation: { style: 'solid', sticky: true, cta: true },
-  animation: { intensity: 'subtle', reveals: true, parallax: false, microInteractions: false, pageTransitions: false },
+  animation: {
+    intensity: 'subtle',
+    reveals: true,
+    parallax: false,
+    microInteractions: false,
+    pageTransitions: false,
+  },
   buttons: { style: 'solid', corners: '6px', uppercase: false, tracking: '0' },
 };

@@ -5,6 +5,7 @@ import SiteNav from '../components/common/SiteNav.astro';
 import SiteFooter from '../components/common/SiteFooter.astro';
 import { site } from '../site.config';
 ---
+
 <Site title={`About — ${site.name || 'Site'}`} description={site.description} family={site.family}>
   {site.nav.length > 0 && <SiteNav />}
   <main class="container-site py-24 md:py-32 max-w-3xl">

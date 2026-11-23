@@ -3,8 +3,17 @@ import type { DesignFamily } from './types';
 export const beautyCosmetics: DesignFamily = {
   id: 'beauty-cosmetics',
   name: 'Beauty & Cosmetics',
-  description: 'Soft, luxurious and sensorial with blush tones and refined imagery. For beauty brands, skincare, cosmetics, hair salons and personal care.',
-  industries: ['beauty', 'skincare', 'cosmetics', 'hair-salon', 'personal-care', 'perfume', 'nails'],
+  description:
+    'Soft, luxurious and sensorial with blush tones and refined imagery. For beauty brands, skincare, cosmetics, hair salons and personal care.',
+  industries: [
+    'beauty',
+    'skincare',
+    'cosmetics',
+    'hair-salon',
+    'personal-care',
+    'perfume',
+    'nails',
+  ],
   personality: ['luxurious', 'sensorial', 'feminine', 'soft', 'aspirational'],
 
   typography: {
@@ -35,11 +44,28 @@ export const beautyCosmetics: DesignFamily = {
     grid: 'editorial',
     maxWidth: '1360px',
     preferredHero: ['hero-split', 'hero-editorial', 'hero-centered-image'],
-    preferredSections: ['products-editorial', 'testimonial-quote', 'about-brand', 'gallery-lookbook'],
+    preferredSections: [
+      'products-editorial',
+      'testimonial-quote',
+      'about-brand',
+      'gallery-lookbook',
+    ],
     avoidSections: ['stats-counter', 'features-bento', 'pricing-dark'],
   },
-  imagery: { treatment: 'warm', corners: 'rounded', aspectRatios: ['4:5', '1:1', '3:4'], overlays: false, parallax: false },
+  imagery: {
+    treatment: 'warm',
+    corners: 'rounded',
+    aspectRatios: ['4:5', '1:1', '3:4'],
+    overlays: false,
+    parallax: false,
+  },
   navigation: { style: 'centered', sticky: true, cta: true },
-  animation: { intensity: 'subtle', reveals: true, parallax: false, microInteractions: true, pageTransitions: false },
+  animation: {
+    intensity: 'subtle',
+    reveals: true,
+    parallax: false,
+    microInteractions: true,
+    pageTransitions: false,
+  },
   buttons: { style: 'pill', corners: '9999px', uppercase: true, tracking: '0.1em' },
 };

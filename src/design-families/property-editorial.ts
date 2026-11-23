@@ -3,7 +3,8 @@ import type { DesignFamily } from './types';
 export const propertyEditorial: DesignFamily = {
   id: 'property-editorial',
   name: 'Property Editorial',
-  description: 'Architectural precision with large imagery and clean information hierarchy. For real estate agencies, property developers, luxury rentals and estates.',
+  description:
+    'Architectural precision with large imagery and clean information hierarchy. For real estate agencies, property developers, luxury rentals and estates.',
   industries: ['real-estate', 'property-development', 'rentals', 'estates', 'interior-design'],
   personality: ['premium', 'aspirational', 'trustworthy', 'spacious', 'architectural'],
 
@@ -45,8 +46,20 @@ export const propertyEditorial: DesignFamily = {
     avoidSections: ['pricing-cards', 'testimonial-cards'],
   },
 
-  imagery: { treatment: 'full-color', corners: 'sharp', aspectRatios: ['16:9', '4:3', '3:2'], overlays: true, parallax: true },
+  imagery: {
+    treatment: 'full-color',
+    corners: 'sharp',
+    aspectRatios: ['16:9', '4:3', '3:2'],
+    overlays: true,
+    parallax: true,
+  },
   navigation: { style: 'transparent', sticky: true, cta: true },
-  animation: { intensity: 'subtle', reveals: true, parallax: true, microInteractions: true, pageTransitions: false },
+  animation: {
+    intensity: 'subtle',
+    reveals: true,
+    parallax: true,
+    microInteractions: true,
+    pageTransitions: false,
+  },
   buttons: { style: 'solid', corners: '0', uppercase: true, tracking: '0.1em' },
 };

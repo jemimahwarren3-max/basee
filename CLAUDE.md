@@ -28,6 +28,7 @@ A toolkit base for building client websites. Clone it, fill in the config, and c
 ## Building a client site
 
 1. **Clone and install.**
+
    ```sh
    git clone https://github.com/jemimahwarren3-max/basee.git my-client
    cd my-client
@@ -108,6 +109,7 @@ tests/
 Journal posts live under `src/content/journal/` as Markdown. The client can edit them through a browser at `/cms/`, powered by Decap CMS. Every save is a Git commit, which triggers a rebuild on the host.
 
 **To activate:**
+
 1. Edit `public/cms/config.yml` and set `backend.repo` to the client's `owner/repo`.
 2. Set up an OAuth backend. The easiest is Netlify Identity:
    - On Netlify: Site settings → Identity → enable → enable Git Gateway.

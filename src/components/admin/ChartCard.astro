@@ -9,6 +9,7 @@ interface Props {
 const { title, points, unit = '' } = Astro.props;
 const max = Math.max(1, ...points.map((p) => p.value));
 ---
+
 <div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg p-5">
   <p class="text-sm font-medium">{title}</p>
   <div class="mt-6 flex items-end gap-2 h-40">
@@ -21,7 +22,9 @@ const max = Math.max(1, ...points.map((p) => p.value));
             title={`${p.label}: ${p.value}${unit}`}
           />
         </div>
-        <span class="text-[10px] text-[var(--color-muted-fg,#999)] truncate w-full text-center">{p.label}</span>
+        <span class="text-[10px] text-[var(--color-muted-fg,#999)] truncate w-full text-center">
+          {p.label}
+        </span>
       </div>
     ))}
   </div>

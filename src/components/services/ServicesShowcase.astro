@@ -1,6 +1,11 @@
 ---
 interface Props {
-  services: { title: string; description: string; image: string; stats?: { value: string; label: string }[] }[];
+  services: {
+    title: string;
+    description: string;
+    image: string;
+    stats?: { value: string; label: string }[];
+  }[];
 }
 
 const { services } = Astro.props;
@@ -15,13 +20,17 @@ const { services } = Astro.props;
         </div>
         <div class:list={[i % 2 === 1 ? 'lg:order-1' : '']}>
           <h3 class="text-3xl md:text-4xl font-semibold tracking-tight">{s.title}</h3>
-          <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">{s.description}</p>
+          <p class="mt-4 text-lg text-[var(--color-muted-fg,#666)] leading-relaxed">
+            {s.description}
+          </p>
           {s.stats && (
             <div class="mt-8 grid grid-cols-2 gap-6">
               {s.stats.map((stat) => (
                 <div>
                   <span class="text-3xl font-light">{stat.value}</span>
-                  <p class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mt-1">{stat.label}</p>
+                  <p class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mt-1">
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>

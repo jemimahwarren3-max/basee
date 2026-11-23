@@ -3,8 +3,18 @@ import type { DesignFamily } from './types';
 export const warmHospitality: DesignFamily = {
   id: 'warm-hospitality',
   name: 'Warm Hospitality',
-  description: 'Inviting warmth with earthy tones, generous photography and organic textures. For restaurants, resorts, lodges, tourism and boutique hospitality.',
-  industries: ['hospitality', 'restaurant', 'resort', 'lodge', 'tourism', 'safari', 'boutique-hotel', 'spa'],
+  description:
+    'Inviting warmth with earthy tones, generous photography and organic textures. For restaurants, resorts, lodges, tourism and boutique hospitality.',
+  industries: [
+    'hospitality',
+    'restaurant',
+    'resort',
+    'lodge',
+    'tourism',
+    'safari',
+    'boutique-hotel',
+    'spa',
+  ],
   personality: ['warm', 'inviting', 'authentic', 'experiential', 'relaxed'],
 
   typography: {

@@ -40,7 +40,10 @@ for (const route of routes) {
 }
 
 test.describe('launch readiness', () => {
-  test.skip(!process.env.LAUNCH_CHECK, 'Set LAUNCH_CHECK=1 to fail on remaining [placeholder] text');
+  test.skip(
+    !process.env.LAUNCH_CHECK,
+    'Set LAUNCH_CHECK=1 to fail on remaining [placeholder] text',
+  );
 
   for (const route of routes) {
     test(`${route} has no bracketed placeholder text`, async ({ page }) => {

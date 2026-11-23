@@ -1,16 +1,24 @@
 ---
-interface Props { title?: string; testimonials: { quote: string; name: string; role?: string; avatar?: string }[] }
+interface Props {
+  title?: string;
+  testimonials: { quote: string; name: string; role?: string; avatar?: string }[];
+}
 const { title = 'What People Say', testimonials } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="testimonial-grid">
   <div class="container-site">
-    {title && <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>}
+    {title && (
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-16">{title}</h2>
+    )}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {testimonials.map(t => (
+      {testimonials.map((t) => (
         <div class="bg-[var(--color-surface,#f9f9f9)] rounded-xl p-8">
           <p class="text-[var(--color-muted-fg,#555)] leading-relaxed">"{t.quote}"</p>
           <div class="mt-6 flex items-center gap-3">
-            {t.avatar && <img src={t.avatar} alt={t.name} class="w-10 h-10 rounded-full object-cover" />}
+            {t.avatar && (
+              <img src={t.avatar} alt={t.name} class="w-10 h-10 rounded-full object-cover" />
+            )}
             <div>
               <p class="text-sm font-semibold">{t.name}</p>
               {t.role && <p class="text-xs text-[var(--color-muted-fg,#999)]">{t.role}</p>}

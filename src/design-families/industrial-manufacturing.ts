@@ -3,8 +3,17 @@ import type { DesignFamily } from './types';
 export const industrialManufacturing: DesignFamily = {
   id: 'industrial-manufacturing',
   name: 'Industrial & Manufacturing',
-  description: 'Robust and functional with strong structure and industrial aesthetics. For manufacturing, engineering, logistics, mining and heavy industry.',
-  industries: ['manufacturing', 'engineering', 'logistics', 'mining', 'construction', 'energy', 'agriculture'],
+  description:
+    'Robust and functional with strong structure and industrial aesthetics. For manufacturing, engineering, logistics, mining and heavy industry.',
+  industries: [
+    'manufacturing',
+    'engineering',
+    'logistics',
+    'mining',
+    'construction',
+    'energy',
+    'agriculture',
+  ],
   personality: ['robust', 'reliable', 'functional', 'strong', 'industrial'],
 
   typography: {
@@ -35,11 +44,29 @@ export const industrialManufacturing: DesignFamily = {
     grid: 'symmetric',
     maxWidth: '1280px',
     preferredHero: ['hero-split-clean', 'hero-fullscreen', 'hero-text-centered'],
-    preferredSections: ['services-grid', 'stats-counter', 'about-columns', 'gallery-grid', 'contact-form'],
+    preferredSections: [
+      'services-grid',
+      'stats-counter',
+      'about-columns',
+      'gallery-grid',
+      'contact-form',
+    ],
     avoidSections: ['gallery-masonry', 'testimonial-quote', 'hero-typographic'],
   },
-  imagery: { treatment: 'full-color', corners: 'slight', aspectRatios: ['16:9', '4:3', '3:2'], overlays: true, parallax: false },
+  imagery: {
+    treatment: 'full-color',
+    corners: 'slight',
+    aspectRatios: ['16:9', '4:3', '3:2'],
+    overlays: true,
+    parallax: false,
+  },
   navigation: { style: 'solid', sticky: true, cta: true },
-  animation: { intensity: 'none', reveals: false, parallax: false, microInteractions: true, pageTransitions: false },
+  animation: {
+    intensity: 'none',
+    reveals: false,
+    parallax: false,
+    microInteractions: true,
+    pageTransitions: false,
+  },
   buttons: { style: 'solid', corners: '4px', uppercase: true, tracking: '0.05em' },
 };

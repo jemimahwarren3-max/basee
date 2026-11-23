@@ -1,26 +1,55 @@
 ---
-interface Props { title?: string; images: { src: string; alt?: string; caption?: string }[]; columns?: 2 | 3 | 4 }
+interface Props {
+  title?: string;
+  images: { src: string; alt?: string; caption?: string }[];
+  columns?: 2 | 3 | 4;
+}
 const { title, images, columns = 3 } = Astro.props;
-const colClass = { 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-2 lg:grid-cols-3', 4: 'sm:grid-cols-2 lg:grid-cols-4' };
+const colClass = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+};
 ---
+
 <section class="py-24 md:py-32" data-component="gallery-lightbox">
   <div class="container-site">
     {title && <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-12">{title}</h2>}
     <div class:list={['grid grid-cols-1 gap-3', colClass[columns]]}>
       {images.map((img, i) => (
         <button class="group overflow-hidden cursor-zoom-in" data-lightbox-trigger={i}>
-          <img src={img.src} alt={img.alt || ''} class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          <img
+            src={img.src}
+            alt={img.alt || ''}
+            class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
         </button>
       ))}
     </div>
   </div>
 
-  <div class="fixed inset-0 z-[70] bg-black/90 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" data-lightbox-overlay>
+  <div
+    class="fixed inset-0 z-[70] bg-black/90 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+    data-lightbox-overlay
+  >
     <button class="absolute top-6 right-6 text-white p-2" data-lightbox-close>
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
     </button>
     <img class="max-w-[90vw] max-h-[85vh] object-contain" data-lightbox-img src="" alt="" />
-    <p class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-sm" data-lightbox-caption></p>
+    <p
+      class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-sm"
+      data-lightbox-caption
+    ></p>
   </div>
 </section>
 

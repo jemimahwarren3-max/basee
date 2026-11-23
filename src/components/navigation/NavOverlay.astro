@@ -10,26 +10,56 @@ const { brand, links, cta } = Astro.props;
 
 <nav class="fixed top-0 left-0 right-0 z-50" data-nav="overlay">
   <div class="container-site flex items-center justify-between h-24">
-    <a href="/" class="text-xl font-semibold text-white mix-blend-difference">{brand}</a>
-    <button class="p-2 text-white mix-blend-difference" aria-label="Open menu" data-nav-overlay-toggle>
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <a href="/" class="text-xl font-semibold text-white mix-blend-difference">
+      {brand}
+    </a>
+    <button
+      class="p-2 text-white mix-blend-difference"
+      aria-label="Open menu"
+      data-nav-overlay-toggle
+    >
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
         <path d="M4 8h16M4 16h16" />
       </svg>
     </button>
   </div>
 </nav>
 
-<div class="fixed inset-0 z-[60] bg-[var(--color-fg,#0a0a0a)] text-white flex flex-col opacity-0 pointer-events-none transition-opacity duration-500" data-nav-overlay-panel>
+<div
+  class="fixed inset-0 z-[60] bg-[var(--color-fg,#0a0a0a)] text-white flex flex-col opacity-0 pointer-events-none transition-opacity duration-500"
+  data-nav-overlay-panel
+>
   <div class="container-site flex items-center justify-between h-24">
-    <a href="/" class="text-xl font-semibold">{brand}</a>
+    <a href="/" class="text-xl font-semibold">
+      {brand}
+    </a>
     <button class="p-2" aria-label="Close menu" data-nav-overlay-close>
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12" /></svg>
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
     </button>
   </div>
 
   <div class="flex-1 flex flex-col items-start justify-center container-site gap-6">
     {links.map((link, i) => (
-      <a href={link.href} class="text-4xl md:text-6xl font-light hover:translate-x-4 transition-transform duration-300">
+      <a
+        href={link.href}
+        class="text-4xl md:text-6xl font-light hover:translate-x-4 transition-transform duration-300"
+      >
         <span class="text-sm text-white/60 mr-4 font-mono">{String(i + 1).padStart(2, '0')}</span>
         {link.label}
       </a>
@@ -38,18 +68,33 @@ const { brand, links, cta } = Astro.props;
 
   {cta && (
     <div class="container-site py-8 border-t border-white/10">
-      <a href={cta.href} class="text-sm uppercase tracking-widest hover:opacity-70 transition-opacity">{cta.label}</a>
+      <a
+        href={cta.href}
+        class="text-sm uppercase tracking-widest hover:opacity-70 transition-opacity"
+      >
+        {cta.label}
+      </a>
     </div>
   )}
 </div>
 
 <script>
-  document.querySelectorAll('[data-nav-overlay-toggle]').forEach(b => b.addEventListener('click', () => {
-    const p = document.querySelector('[data-nav-overlay-panel]');
-    if (p) { p.classList.remove('opacity-0','pointer-events-none'); p.classList.add('opacity-100'); }
-  }));
-  document.querySelectorAll('[data-nav-overlay-close]').forEach(b => b.addEventListener('click', () => {
-    const p = document.querySelector('[data-nav-overlay-panel]');
-    if (p) { p.classList.add('opacity-0','pointer-events-none'); p.classList.remove('opacity-100'); }
-  }));
+  document.querySelectorAll('[data-nav-overlay-toggle]').forEach((b) =>
+    b.addEventListener('click', () => {
+      const p = document.querySelector('[data-nav-overlay-panel]');
+      if (p) {
+        p.classList.remove('opacity-0', 'pointer-events-none');
+        p.classList.add('opacity-100');
+      }
+    }),
+  );
+  document.querySelectorAll('[data-nav-overlay-close]').forEach((b) =>
+    b.addEventListener('click', () => {
+      const p = document.querySelector('[data-nav-overlay-panel]');
+      if (p) {
+        p.classList.add('opacity-0', 'pointer-events-none');
+        p.classList.remove('opacity-100');
+      }
+    }),
+  );
 </script>

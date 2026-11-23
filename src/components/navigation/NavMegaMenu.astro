@@ -1,22 +1,43 @@
 ---
-interface Props { brand: string; groups: { label: string; links: { label: string; href: string; description?: string }[] }[]; cta?: { label: string; href: string } }
+interface Props {
+  brand: string;
+  groups: { label: string; links: { label: string; href: string; description?: string }[] }[];
+  cta?: { label: string; href: string };
+}
 const { brand, groups, cta } = Astro.props;
 ---
-<nav class="fixed top-0 inset-x-0 z-50 bg-[var(--color-bg,#fff)] border-b border-[var(--color-border,#e5e5e5)]" data-component="nav-mega-menu">
+
+<nav
+  class="fixed top-0 inset-x-0 z-50 bg-[var(--color-bg,#fff)] border-b border-[var(--color-border,#e5e5e5)]"
+  data-component="nav-mega-menu"
+>
   <div class="container-site flex items-center justify-between h-16">
-    <a href="/" class="text-lg font-bold tracking-tight">{brand}</a>
+    <a href="/" class="text-lg font-bold tracking-tight">
+      {brand}
+    </a>
     <div class="hidden md:flex items-center gap-8">
-      {groups.map(g => (
+      {groups.map((g) => (
         <div class="relative group">
-          <button class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors py-6">{g.label}</button>
+          <button class="text-sm text-[var(--color-muted-fg,#666)] hover:text-[var(--color-fg,#111)] transition-colors py-6">
+            {g.label}
+          </button>
           <div class="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity">
             <div class="bg-[var(--color-bg,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg shadow-xl p-6 min-w-[280px]">
               <ul class="space-y-1">
-                {g.links.map(l => (
-                  <li><a href={l.href} class="block p-3 rounded-md hover:bg-[var(--color-surface,#f5f5f5)] transition-colors">
-                    <span class="block text-sm font-medium">{l.label}</span>
-                    {l.description && <span class="block text-xs text-[var(--color-muted-fg,#999)] mt-0.5">{l.description}</span>}
-                  </a></li>
+                {g.links.map((l) => (
+                  <li>
+                    <a
+                      href={l.href}
+                      class="block p-3 rounded-md hover:bg-[var(--color-surface,#f5f5f5)] transition-colors"
+                    >
+                      <span class="block text-sm font-medium">{l.label}</span>
+                      {l.description && (
+                        <span class="block text-xs text-[var(--color-muted-fg,#999)] mt-0.5">
+                          {l.description}
+                        </span>
+                      )}
+                    </a>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -25,7 +46,14 @@ const { brand, groups, cta } = Astro.props;
       ))}
     </div>
     <div class="flex items-center gap-4">
-      {cta && <a href={cta.href} class="hidden md:inline-flex px-5 py-2 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium rounded-md">{cta.label}</a>}
+      {cta && (
+        <a
+          href={cta.href}
+          class="hidden md:inline-flex px-5 py-2 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] text-sm font-medium rounded-md"
+        >
+          {cta.label}
+        </a>
+      )}
     </div>
   </div>
 </nav>

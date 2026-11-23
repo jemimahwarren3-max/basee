@@ -5,11 +5,13 @@ The base ships with static-only output and a client-side `AuthGate` deterrent on
 ## Activate
 
 1. Install a server adapter:
+
    ```sh
    npm install @astrojs/node
    ```
 
 2. Edit `astro.config.mjs`:
+
    ```js
    import node from '@astrojs/node';
    export default defineConfig({
@@ -20,6 +22,7 @@ The base ships with static-only output and a client-side `AuthGate` deterrent on
    ```
 
 3. Move the middleware and login/logout files into place:
+
    ```sh
    mv src/_admin-ssr/middleware.ts src/
    mv src/_admin-ssr/pages/login.astro src/pages/admin/
@@ -27,12 +30,14 @@ The base ships with static-only output and a client-side `AuthGate` deterrent on
    ```
 
 4. Set env in `.env.local`:
+
    ```
    ADMIN_PASSWORD_HASH=<from: npm run hash-password -- 'password'>
    ADMIN_SESSION_SECRET=<openssl rand -hex 32>
    ```
 
 5. Add a logout link to the admin sidebar (optional):
+
    ```html
    <a href="/admin/logout">Sign out</a>
    ```

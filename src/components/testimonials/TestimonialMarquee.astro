@@ -1,10 +1,13 @@
 ---
-interface Props { testimonials: { quote: string; name: string; role?: string }[] }
+interface Props {
+  testimonials: { quote: string; name: string; role?: string }[];
+}
 const { testimonials } = Astro.props;
 ---
+
 <section class="py-16 overflow-hidden" data-component="testimonial-marquee">
   <div class="flex gap-6 animate-marquee">
-    {[...testimonials, ...testimonials].map(t => (
+    {[...testimonials, ...testimonials].map((t) => (
       <div class="flex-none w-[350px] bg-[var(--color-surface,#f9f9f9)] rounded-xl p-6">
         <p class="text-sm text-[var(--color-muted-fg,#555)] leading-relaxed">"{t.quote}"</p>
         <p class="mt-4 text-sm font-semibold">{t.name}</p>
@@ -14,7 +17,18 @@ const { testimonials } = Astro.props;
   </div>
 </section>
 <style>
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .animate-marquee { animation: marquee 40s linear infinite; }
-  .animate-marquee:hover { animation-play-state: paused; }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
 </style>

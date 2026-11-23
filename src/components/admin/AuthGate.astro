@@ -12,6 +12,7 @@
 // Generate one with: npm run hash-password -- 'yourpassword'
 const hash = import.meta.env.ADMIN_PASSWORD_HASH ?? '';
 ---
+
 <div
   id="admin-gate"
   data-hash={hash}
@@ -21,7 +22,9 @@ const hash = import.meta.env.ADMIN_PASSWORD_HASH ?? '';
     <div class="text-xs uppercase tracking-widest text-white/50 mb-2">Admin</div>
     <h1 class="text-2xl font-semibold">Password required</h1>
     <p class="mt-2 text-sm text-white/60">
-      {hash ? 'Enter the admin password to continue.' : 'No ADMIN_PASSWORD_HASH set. See CLAUDE.md to configure.'}
+      {hash
+        ? 'Enter the admin password to continue.'
+        : 'No ADMIN_PASSWORD_HASH set. See CLAUDE.md to configure.'}
     </p>
     <input
       type="password"
@@ -37,7 +40,9 @@ const hash = import.meta.env.ADMIN_PASSWORD_HASH ?? '';
     >
       Unlock
     </button>
-    <p id="admin-gate-error" class="mt-3 text-sm text-red-300 hidden">Wrong password.</p>
+    <p id="admin-gate-error" class="mt-3 text-sm text-red-300 hidden">
+      Wrong password.
+    </p>
   </form>
 </div>
 
@@ -64,7 +69,9 @@ const hash = import.meta.env.ADMIN_PASSWORD_HASH ?? '';
     }
 
     let authed = false;
-    try { authed = sessionStorage.getItem(key) === hash && !!hash; } catch {}
+    try {
+      authed = sessionStorage.getItem(key) === hash && !!hash;
+    } catch {}
 
     if (!authed) show();
 
@@ -77,7 +84,9 @@ const hash = import.meta.env.ADMIN_PASSWORD_HASH ?? '';
       const value = input?.value ?? '';
       const typed = await sha256Hex(value);
       if (typed === hash) {
-        try { sessionStorage.setItem(key, hash); } catch {}
+        try {
+          sessionStorage.setItem(key, hash);
+        } catch {}
         hide();
       } else {
         error?.classList.remove('hidden');

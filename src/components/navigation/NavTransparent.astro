@@ -17,39 +17,76 @@ const { brand, links, cta, dark = true } = Astro.props;
   data-nav="transparent"
   data-scrolled="false"
 >
-  <div class="container-site flex items-center justify-between h-24 transition-all duration-500" data-nav-inner>
-    <a href="/" class="text-xl font-semibold tracking-tight">{brand}</a>
+  <div
+    class="container-site flex items-center justify-between h-24 transition-all duration-500"
+    data-nav-inner
+  >
+    <a href="/" class="text-xl font-semibold tracking-tight">
+      {brand}
+    </a>
 
     <div class="hidden md:flex items-center gap-10">
       {links.map((link) => (
-        <a href={link.href} class="text-sm uppercase tracking-widest hover:opacity-70 transition-opacity">{link.label}</a>
+        <a
+          href={link.href}
+          class="text-sm uppercase tracking-widest hover:opacity-70 transition-opacity"
+        >
+          {link.label}
+        </a>
       ))}
       {cta && (
-        <a href={cta.href} class="text-sm uppercase tracking-widest px-6 py-2.5 border border-current hover:bg-white hover:text-black transition-all">
+        <a
+          href={cta.href}
+          class="text-sm uppercase tracking-widest px-6 py-2.5 border border-current hover:bg-white hover:text-black transition-all"
+        >
           {cta.label}
         </a>
       )}
     </div>
 
     <button class="md:hidden p-2" aria-label="Open menu" data-menu-toggle>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
         <path d="M4 8h16M4 16h16" />
       </svg>
     </button>
   </div>
 </nav>
 
-<div class="fixed inset-0 z-[60] bg-black text-white flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-500" data-menu-overlay>
+<div
+  class="fixed inset-0 z-[60] bg-black text-white flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-500"
+  data-menu-overlay
+>
   <button class="absolute top-6 right-6 p-2" aria-label="Close menu" data-menu-close>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+    >
       <path d="M18 6L6 18M6 6l12 12" />
     </svg>
   </button>
   {links.map((link) => (
-    <a href={link.href} class="text-3xl uppercase tracking-widest hover:opacity-70 transition-opacity">{link.label}</a>
+    <a
+      href={link.href}
+      class="text-3xl uppercase tracking-widest hover:opacity-70 transition-opacity"
+    >
+      {link.label}
+    </a>
   ))}
   {cta && (
-    <a href={cta.href} class="text-lg uppercase tracking-widest px-8 py-3 border border-white mt-4">{cta.label}</a>
+    <a href={cta.href} class="text-lg uppercase tracking-widest px-8 py-3 border border-white mt-4">
+      {cta.label}
+    </a>
   )}
 </div>
 
@@ -57,33 +94,43 @@ const { brand, links, cta, dark = true } = Astro.props;
   const nav = document.querySelector('[data-nav="transparent"]');
   const inner = document.querySelector('[data-nav-inner]');
   if (nav && inner) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY > 60;
-      nav.setAttribute('data-scrolled', String(scrolled));
-      if (scrolled) {
-        nav.classList.add('bg-white/95', 'backdrop-blur-sm', 'text-black', 'shadow-sm');
-        nav.classList.remove('text-white');
-        inner.classList.remove('h-24');
-        inner.classList.add('h-16');
-      } else {
-        nav.classList.remove('bg-white/95', 'backdrop-blur-sm', 'text-black', 'shadow-sm');
-        nav.classList.add('text-white');
-        inner.classList.add('h-24');
-        inner.classList.remove('h-16');
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        const scrolled = window.scrollY > 60;
+        nav.setAttribute('data-scrolled', String(scrolled));
+        if (scrolled) {
+          nav.classList.add('bg-white/95', 'backdrop-blur-sm', 'text-black', 'shadow-sm');
+          nav.classList.remove('text-white');
+          inner.classList.remove('h-24');
+          inner.classList.add('h-16');
+        } else {
+          nav.classList.remove('bg-white/95', 'backdrop-blur-sm', 'text-black', 'shadow-sm');
+          nav.classList.add('text-white');
+          inner.classList.add('h-24');
+          inner.classList.remove('h-16');
+        }
+      },
+      { passive: true },
+    );
   }
 
   document.querySelectorAll('[data-menu-toggle]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const overlay = document.querySelector('[data-menu-overlay]');
-      if (overlay) { overlay.classList.remove('opacity-0','pointer-events-none'); overlay.classList.add('opacity-100'); }
+      if (overlay) {
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        overlay.classList.add('opacity-100');
+      }
     });
   });
   document.querySelectorAll('[data-menu-close]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const overlay = document.querySelector('[data-menu-overlay]');
-      if (overlay) { overlay.classList.add('opacity-0','pointer-events-none'); overlay.classList.remove('opacity-100'); }
+      if (overlay) {
+        overlay.classList.add('opacity-0', 'pointer-events-none');
+        overlay.classList.remove('opacity-100');
+      }
     });
   });
 </script>

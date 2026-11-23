@@ -17,12 +17,19 @@ const { title, subtitle, services } = Astro.props;
     <div class="divide-y divide-[var(--color-border,#e5e5e5)]">
       {services.map((s, i) => (
         <div class="group py-8 md:py-12 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline">
-          <span class="md:col-span-1 text-sm text-[var(--color-muted-fg,#999)] font-mono">{s.number || String(i + 1).padStart(2, '0')}</span>
+          <span class="md:col-span-1 text-sm text-[var(--color-muted-fg,#999)] font-mono">
+            {s.number || String(i + 1).padStart(2, '0')}
+          </span>
           <h3 class="md:col-span-4 text-xl md:text-2xl font-semibold">{s.title}</h3>
-          <p class="md:col-span-5 text-[var(--color-muted-fg,#666)] leading-relaxed">{s.description}</p>
+          <p class="md:col-span-5 text-[var(--color-muted-fg,#666)] leading-relaxed">
+            {s.description}
+          </p>
           <div class="md:col-span-2 text-right">
             {s.href && (
-              <a href={s.href} class="text-sm border-b border-current pb-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+              <a
+                href={s.href}
+                class="text-sm border-b border-current pb-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
                 View →
               </a>
             )}

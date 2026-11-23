@@ -19,7 +19,10 @@ const dot: Record<Props['status'], string> = {
   neutral: 'bg-[var(--color-muted-fg,#999)]',
 };
 ---
-<span class={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-medium ${styles[status]}`}>
+
+<span
+  class={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-medium ${styles[status]}`}
+>
   <span class={`w-1.5 h-1.5 rounded-full ${dot[status]}`}></span>
   {label}
 </span>

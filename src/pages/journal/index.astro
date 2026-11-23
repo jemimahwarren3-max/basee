@@ -3,23 +3,37 @@ import Site from '../../layouts/Site.astro';
 import { getCollection } from 'astro:content';
 import { site } from '../../site.config';
 
-const posts = (await getCollection('journal', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const posts = (await getCollection('journal', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
 ---
-<Site title={`Journal — ${site.name || 'Site'}`} description="Articles and updates." family={site.family}>
+
+<Site
+  title={`Journal — ${site.name || 'Site'}`}
+  description="Articles and updates."
+  family={site.family}
+>
   <main class="container-site py-24 md:py-32 max-w-3xl">
     <h1 class="text-4xl md:text-5xl leading-tight">Journal</h1>
     {posts.length === 0 ? (
-      <p class="mt-8 text-[var(--color-muted-fg,#666)]">No posts yet. Add one under src/content/journal/.</p>
+      <p class="mt-8 text-[var(--color-muted-fg,#666)]">
+        No posts yet. Add one under src/content/journal/.
+      </p>
     ) : (
       <ul class="mt-12 space-y-10">
         {posts.map((p) => (
           <li>
             <a href={`/journal/${p.id}`} class="group block">
               <time class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)]">
-                {p.data.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
+                {p.data.date.toLocaleDateString('en-GB', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
               </time>
-              <h2 class="mt-2 text-2xl md:text-3xl leading-tight group-hover:opacity-70 transition-opacity">{p.data.title}</h2>
+              <h2 class="mt-2 text-2xl md:text-3xl leading-tight group-hover:opacity-70 transition-opacity">
+                {p.data.title}
+              </h2>
               <p class="mt-2 text-[var(--color-muted-fg,#666)]">{p.data.description}</p>
             </a>
           </li>

@@ -1,25 +1,52 @@
 ---
-interface Props { title?: string; product: { name: string; tagline: string; description: string; image: string; features: { title: string; description: string }[]; cta?: { label: string; href: string } } }
+interface Props {
+  title?: string;
+  product: {
+    name: string;
+    tagline: string;
+    description: string;
+    image: string;
+    features: { title: string; description: string }[];
+    cta?: { label: string; href: string };
+  };
+}
 const { title, product } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="products-showcase">
   <div class="container-site">
-    {title && <span class="text-xs font-medium uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-2 block">{title}</span>}
+    {title && (
+      <span class="text-xs font-medium uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-2 block">
+        {title}
+      </span>
+    )}
     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">{product.name}</h2>
     <p class="mt-2 text-lg text-[var(--color-accent,#6366F1)]">{product.tagline}</p>
     <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <img src={product.image} alt={product.name} class="w-full aspect-square object-cover rounded-2xl" loading="lazy" />
+      <img
+        src={product.image}
+        alt={product.name}
+        class="w-full aspect-square object-cover rounded-2xl"
+        loading="lazy"
+      />
       <div>
         <p class="text-[var(--color-muted-fg,#666)] leading-relaxed">{product.description}</p>
         <div class="mt-8 space-y-6">
-          {product.features.map(f => (
+          {product.features.map((f) => (
             <div>
               <h4 class="font-semibold">{f.title}</h4>
               <p class="mt-1 text-sm text-[var(--color-muted-fg,#666)]">{f.description}</p>
             </div>
           ))}
         </div>
-        {product.cta && <a href={product.cta.href} class="mt-8 inline-flex px-8 py-3 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] font-medium rounded-md">{product.cta.label}</a>}
+        {product.cta && (
+          <a
+            href={product.cta.href}
+            class="mt-8 inline-flex px-8 py-3 bg-[var(--color-fg,#111)] text-[var(--color-dark-fg,#fff)] font-medium rounded-md"
+          >
+            {product.cta.label}
+          </a>
+        )}
       </div>
     </div>
   </div>

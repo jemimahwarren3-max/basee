@@ -12,11 +12,18 @@ const year = new Date().getFullYear();
 
 <footer class="py-16 border-t border-[var(--color-border,#e5e5e5)]" data-component="footer-minimal">
   <div class="container-site flex flex-col md:flex-row items-center justify-between gap-6">
-    <a href="/" class="text-lg font-semibold">{brand}</a>
+    <a href="/" class="text-lg font-semibold">
+      {brand}
+    </a>
     {links.length > 0 && (
       <nav class="flex items-center gap-6">
         {links.map((link) => (
-          <a href={link.href} class="text-sm text-[var(--color-muted-fg,#888)] hover:text-[var(--color-fg,#111)] transition-colors">{link.label}</a>
+          <a
+            href={link.href}
+            class="text-sm text-[var(--color-muted-fg,#888)] hover:text-[var(--color-fg,#111)] transition-colors"
+          >
+            {link.label}
+          </a>
         ))}
       </nav>
     )}

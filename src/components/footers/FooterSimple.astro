@@ -1,13 +1,27 @@
 ---
-interface Props { brand: string; links?: { label: string; href: string }[]; copyright?: string }
+interface Props {
+  brand: string;
+  links?: { label: string; href: string }[];
+  copyright?: string;
+}
 const { brand, links, copyright } = Astro.props;
 ---
+
 <footer class="py-12 border-t border-[var(--color-border,#e5e5e5)]" data-component="footer-simple">
   <div class="container-site flex flex-col md:flex-row items-center justify-between gap-4">
-    <p class="text-sm text-[var(--color-muted-fg,#999)]">{copyright || `© ${new Date().getFullYear()} ${brand}`}</p>
+    <p class="text-sm text-[var(--color-muted-fg,#999)]">
+      {copyright || `© ${new Date().getFullYear()} ${brand}`}
+    </p>
     {links && (
       <nav class="flex gap-6">
-        {links.map(l => <a href={l.href} class="text-sm text-[var(--color-muted-fg,#999)] hover:text-[var(--color-fg,#111)] transition-colors">{l.label}</a>)}
+        {links.map((l) => (
+          <a
+            href={l.href}
+            class="text-sm text-[var(--color-muted-fg,#999)] hover:text-[var(--color-fg,#111)] transition-colors"
+          >
+            {l.label}
+          </a>
+        ))}
       </nav>
     )}
   </div>

@@ -1,22 +1,42 @@
 ---
-interface Props { title?: string; pairs: { before: string; after: string; label?: string }[] }
+interface Props {
+  title?: string;
+  pairs: { before: string; after: string; label?: string }[];
+}
 const { title, pairs } = Astro.props;
 ---
+
 <section class="py-24 md:py-32" data-component="gallery-before-after">
   <div class="container-site">
-    {title && <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-12 text-center">{title}</h2>}
+    {title && (
+      <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mb-12 text-center">{title}</h2>
+    )}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {pairs.map((p) => (
         <div>
           {p.label && <p class="text-sm font-medium mb-3">{p.label}</p>}
           <div class="grid grid-cols-2 gap-2">
             <div>
-              <span class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-2 block">Before</span>
-              <img src={p.before} alt="Before" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+              <span class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-2 block">
+                Before
+              </span>
+              <img
+                src={p.before}
+                alt="Before"
+                class="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+              />
             </div>
             <div>
-              <span class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-2 block">After</span>
-              <img src={p.after} alt="After" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+              <span class="text-xs uppercase tracking-widest text-[var(--color-muted-fg,#999)] mb-2 block">
+                After
+              </span>
+              <img
+                src={p.after}
+                alt="After"
+                class="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>

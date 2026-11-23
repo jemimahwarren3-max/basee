@@ -1,13 +1,33 @@
 ---
-interface Props { title: string; subtitle?: string; image: string; tag?: string; cta?: { label: string; href: string } }
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: string;
+  tag?: string;
+  cta?: { label: string; href: string };
+}
 const { title, subtitle, image, tag, cta } = Astro.props;
 ---
+
 <section class="pt-32 pb-48 md:pb-64 bg-[var(--color-dark-bg,#111)]" data-component="hero-overlap">
   <div class="container-site text-center">
-    {tag && <span class="inline-block text-xs font-medium uppercase tracking-widest text-[var(--color-accent,#6366F1)] mb-6">{tag}</span>}
-    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight max-w-4xl mx-auto">{title}</h1>
+    {tag && (
+      <span class="inline-block text-xs font-medium uppercase tracking-widest text-[var(--color-accent,#6366F1)] mb-6">
+        {tag}
+      </span>
+    )}
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight max-w-4xl mx-auto">
+      {title}
+    </h1>
     {subtitle && <p class="mt-6 text-lg text-white/60 max-w-2xl mx-auto">{subtitle}</p>}
-    {cta && <a href={cta.href} class="mt-8 inline-flex px-8 py-3 bg-white text-[var(--color-fg,#111)] font-medium rounded-md">{cta.label}</a>}
+    {cta && (
+      <a
+        href={cta.href}
+        class="mt-8 inline-flex px-8 py-3 bg-white text-[var(--color-fg,#111)] font-medium rounded-md"
+      >
+        {cta.label}
+      </a>
+    )}
   </div>
 </section>
 <div class="container-site -mt-32 md:-mt-48 relative z-10 mb-16">

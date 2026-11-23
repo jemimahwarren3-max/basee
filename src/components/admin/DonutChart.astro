@@ -6,7 +6,16 @@ interface Props {
 }
 const { title, segments, centerLabel } = Astro.props;
 const total = segments.reduce((sum, s) => sum + s.value, 0) || 1;
-const palette = ['#111827', '#6366F1', '#EC4899', '#10B981', '#F59E0B', '#06B6D4', '#EF4444', '#8B5CF6'];
+const palette = [
+  '#111827',
+  '#6366F1',
+  '#EC4899',
+  '#10B981',
+  '#F59E0B',
+  '#06B6D4',
+  '#EF4444',
+  '#8B5CF6',
+];
 const r = 60;
 const circumference = 2 * Math.PI * r;
 let offset = 0;
@@ -24,6 +33,7 @@ const arcs = segments.map((s, i) => {
   };
 });
 ---
+
 <div class="bg-[var(--color-surface,#fff)] border border-[var(--color-border,#e5e5e5)] rounded-lg p-5">
   <p class="text-sm font-medium">{title}</p>
   <div class="mt-4 flex items-center gap-6">

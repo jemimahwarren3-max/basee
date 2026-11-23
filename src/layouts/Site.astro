@@ -26,6 +26,7 @@ const family = getFamily(familyId);
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://example.com').toString();
 const ogImage = new URL(image ?? '/og.png', Astro.site ?? 'https://example.com').toString();
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -35,7 +36,9 @@ const ogImage = new URL(image ?? '/og.png', Astro.site ?? 'https://example.com')
       (function () {
         try {
           var stored = localStorage.getItem('theme');
-          var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          var theme =
+            stored ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
           document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {}
       })();
@@ -106,7 +109,12 @@ const ogImage = new URL(image ?? '/og.png', Astro.site ?? 'https://example.com')
     background: var(--color-bg);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     font-weight: var(--heading-weight);
     letter-spacing: var(--heading-tracking);
